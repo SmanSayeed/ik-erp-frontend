@@ -1,21 +1,21 @@
-// src/services/authApi.js
+// src/services/registerApi.js
 import { createApi } from '@reduxjs/toolkit/query/react';
 import axiosBaseQuery from './baseQuery';
 
-export const authApi = createApi({
-  reducerPath: 'authApi',
+export const registerApi = createApi({
+  reducerPath: 'registerApi',
   baseQuery: axiosBaseQuery({
     baseUrl: import.meta.env.VITE_API_BASE_URL,
   }),
   endpoints: (builder) => ({
-    login: builder.mutation({
-      query: (credentials) => ({
-        url: '/login',
+    register: builder.mutation({
+      query: (userData) => ({
+        url: '/register',
         method: 'POST',
-        data: credentials,
+        data: userData,
       }),
     }),
   }),
 });
 
-export const { useLoginMutation } = authApi;
+export const { useRegisterMutation } = registerApi;
