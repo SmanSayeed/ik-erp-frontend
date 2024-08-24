@@ -1,6 +1,6 @@
 import './App.css';
-import LoginPage from './Components/Organism/LoginPage';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
+import Login from './Components/Pages/Login';
 
 function App() {
   // const notify = () => {
@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <div className=''>
-        <LoginPage />
+        <Login />
         {/* <button onClick={notify}>Notify!</button> */}
         {/* Make sure ToastContainer is included */}
         {/* <ToastContainer 

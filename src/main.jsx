@@ -13,8 +13,8 @@ import ProtectedRoute from './Components/Auth/ProtectedRoute';
 // import ProtectedDashboardRoute from './Components/Auth/ProtectedDashboardRoute';
 import { loginLoader } from './loaders/loginloader';
 import { registerLoader } from './loaders/registerloader';
-import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
-import RegisterPage from './Components/Organism/RegisterPage';
+import 'react-toastify/dist/ReactToastify.css'; // Import Toastify
+import Register from './Components/Pages/Register';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <RegisterPage />,
+    element: <Register />,
     loader: registerLoader,
     errorElement: <ErrorPage />,
   },
