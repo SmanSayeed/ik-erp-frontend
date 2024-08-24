@@ -22,6 +22,7 @@ function RegisterPage() {
         email,
         password,
         password_confirmation: passwordConfirmation,
+        role:'client'
       }).unwrap();
       toast.success('Registration successful!');
     } catch (err) {
