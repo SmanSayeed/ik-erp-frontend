@@ -1,7 +1,11 @@
 // src/components/Atoms/SidebarImage.jsx
 
 import PropTypes from 'prop-types';
-function SidebarImage({ imageUrl }) {
+function SidebarImage(
+  // { imageUrl }
+) {
+  
+  const imageUrl = '/public/images/network.jpg';
   return (
     <div className="hidden md:block w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${imageUrl})` }}>
       {/* Background image */}
@@ -9,7 +13,7 @@ function SidebarImage({ imageUrl }) {
   );
 }
 
-SidebarImage.propTypes = {
-    imageUrl: PropTypes.string.isRequired,
-  };
+// SidebarImage.propTypes = {
+//     imageUrl: PropTypes.string.isRequired,
+//   };
 export default SidebarImage;

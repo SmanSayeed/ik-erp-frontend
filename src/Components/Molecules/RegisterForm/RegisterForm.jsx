@@ -1,6 +1,6 @@
 import InputField from '../../Atoms/InputField/InputField';
-import Button from '../../Atoms/Button/Button';
 import PropTypes from 'prop-types';
+import CustomButton from '../../Atoms/CustomButton/CustomButton';
 function RegisterForm({ name, setName, email, setEmail, password, setPassword, passwordConfirmation, setPasswordConfirmation, errors, handleSubmit, isLoading }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -35,7 +35,7 @@ function RegisterForm({ name, setName, email, setEmail, password, setPassword, p
         onChange={(e) => setPasswordConfirmation(e.target.value)}
         error={errors.passwordConfirmation}
       />
-      <Button label="Register" isLoading={isLoading} />
+      <CustomButton label="Register" isLoading={isLoading} />
     </form>
   );
 }

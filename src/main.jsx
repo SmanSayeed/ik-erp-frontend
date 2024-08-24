@@ -14,7 +14,8 @@ import ProtectedRoute from './Components/Auth/ProtectedRoute';
 import { loginLoader } from './loaders/loginloader';
 import { registerLoader } from './loaders/registerloader';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify
-import Register from './Components/Pages/Register';
+import RegisterPage from './Components/Organism/RegisterPage';
+import EmailVerificationPage from './Components/Organism/EmailVerificationPage';
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <Register />,
+    element: <RegisterPage />,
     loader: registerLoader,
     errorElement: <ErrorPage />,
   },
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
     ],
+  },
+  {
+    path: "/verify-email",
+    element: <EmailVerificationPage />,
   },
 ]);
 

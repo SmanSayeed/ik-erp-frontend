@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function Button({
+export default function CustomButton({
   type,
   label,
   isLoading,
@@ -19,7 +19,7 @@ export default function Button({
   );
 }
 
-Button.propTypes = {
+CustomButton.propTypes = {
   type: PropTypes.string,
   label: PropTypes.string,
   isLoading: PropTypes.bool,
@@ -27,6 +27,3 @@ Button.propTypes = {
   disabled: PropTypes.bool
 };
 
-Button.defaultProps = {
-  type: 'submit'
-};

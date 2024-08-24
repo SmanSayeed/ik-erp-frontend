@@ -1,7 +1,7 @@
 import InputField from '../../Atoms/InputField/InputField';
-import Button from '../../Atoms/Button/Button';
 
 import PropTypes from 'prop-types';
+import CustomButton from '../../Atoms/CustomButton/CustomButton';
 function LoginForm({ formik, isLoading }) {
   return (
     <form onSubmit={formik.handleSubmit} className="space-y-4">
@@ -23,7 +23,7 @@ function LoginForm({ formik, isLoading }) {
         onBlur={formik.handleBlur}
         error={formik.touched.password && formik.errors.password}
       />
-      <Button label="Login" isLoading={isLoading} disabled={formik.isSubmitting} />
+      <CustomButton label="Login" isLoading={isLoading} disabled={formik.isSubmitting} />
     </form>
   );
 }
