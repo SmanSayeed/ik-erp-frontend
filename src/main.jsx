@@ -1,4 +1,3 @@
-import React from 'react';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -8,14 +7,14 @@ import App from './App';
 import { store } from './store';
 import './index.css';
 import ErrorPage from "./error-page";
-import Dashboard from './Components/Pages/Dashboard';
+import Dashboard from './Components/Organism/Dashboard';
 import DashboardLayout from './Components/Layout/DashboardLayout';
 import ProtectedRoute from './Components/Auth/ProtectedRoute';
-import ProtectedDashboardRoute from './Components/Auth/ProtectedDashboardRoute';
-import Register from './Components/Pages/Register';
+// import ProtectedDashboardRoute from './Components/Auth/ProtectedDashboardRoute';
 import { loginLoader } from './loaders/loginloader';
 import { registerLoader } from './loaders/registerloader';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
+import RegisterPage from './Components/Organism/RegisterPage';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +29,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/register",
-    element: <Register />,
+    element: <RegisterPage />,
     loader: registerLoader,
     errorElement: <ErrorPage />,
   },

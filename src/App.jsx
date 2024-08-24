@@ -1,13 +1,8 @@
-// src/App.jsx
-import React, { useState } from 'react';
 import './App.css';
-import Login from './Components/Pages/Login';
-import { toast, ToastContainer } from 'react-toastify';
+import LoginPage from './Components/Organism/LoginPage';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 
 function App() {
-  const [count, setCount] = useState(0);
-
   // const notify = () => {
   //   console.log("clicked toaster");
   //   toast("Wow so easy!");
@@ -16,7 +11,7 @@ function App() {
   return (
     <>
       <div className=''>
-        <Login />
+        <LoginPage />
         {/* <button onClick={notify}>Notify!</button> */}
         {/* Make sure ToastContainer is included */}
         {/* <ToastContainer 

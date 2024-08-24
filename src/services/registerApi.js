@@ -1,11 +1,12 @@
 // src/services/registerApi.js
 import { createApi } from '@reduxjs/toolkit/query/react';
 import axiosBaseQuery from './baseQuery';
+import apiConfig from '../config/apiConfig';
 
 export const registerApi = createApi({
   reducerPath: 'registerApi',
   baseQuery: axiosBaseQuery({
-    baseUrl: import.meta.env.VITE_API_BASE_URL,
+    baseUrl: apiConfig.baseUrl,
   }),
   endpoints: (builder) => ({
     register: builder.mutation({
