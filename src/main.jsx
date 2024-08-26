@@ -16,6 +16,7 @@ import { registerLoader } from './loaders/registerloader';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify
 import RegisterPage from './Components/Organism/RegisterPage';
 import EmailVerificationPage from './Components/Organism/EmailVerificationPage';
+import UsersListPage from './Components/Organism/Admin/UsersListPage';
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
         path: "",
         element: <Dashboard />,
       },
+      {
+        path:"users",
+        element: <UsersListPage />,
+      }
     ],
   },
   {
