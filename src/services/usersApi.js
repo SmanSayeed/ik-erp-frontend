@@ -25,11 +25,15 @@ export const usersApi = createApi({
       }),
     }),
     editUser: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/users/${id}`,
-        method: 'PUT',
-        body: data,
-      }),
+      query: ({ id, data }) => {
+        // Log the data here
+        console.log('Edit User Data:',data);
+        return {
+          url: `/users/${id}`,
+          method: 'PUT',
+          body: data,
+        };
+      },
     }),
     deleteUser: builder.mutation({
       query: (id) => ({

@@ -4,7 +4,6 @@ import {
   useEditUserMutation,
   useDeleteUserMutation,
 } from "../../../services/usersApi";
-import { Table } from "@/components/ui/table";
 import Modal from "../../ui/modal"; // Update import based on your actual modal path
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input"; // Adjust imports based on actual Shadcn UI components
@@ -18,16 +17,16 @@ const UsersListPage = () => {
   const [keyword, setKeyword] = useState("");
   const [role, setRole] = useState("");
   const [status, setStatus] = useState("");
-  const [emailVerified, setEmailVerified] = useState("");
+  const [emailVerified, setEmailVerified] = useState(false);
   const [perPage, setPerPage] = useState(10);
   const [selectedUser, setSelectedUser] = useState(null);
-  const { data, isLoading, error, refetch  } = useGetUsersQuery({
+  const { data, isLoading, error, refetch } = useGetUsersQuery({
     keyword,
     status,
     email_verified_at: emailVerified,
     role,
-    order_by: "name",
-    order_direction: "asc",
+    order_by: "created_at",
+    order_direction: "desc",
     per_page: perPage,
     page,
   });
@@ -44,10 +43,7 @@ const UsersListPage = () => {
   };
 
   useEffect(() => {
-    // if (!auth?.isAuthenticated || auth.user.role !== 'admin') {
-    //  // navigate('/');
-    //   // Redirect to login page if not authenticated or not an admin
-    // }
+    // Check authentication and role
   }, [auth, navigate]);
 
   if (isLoading) return <p>Loading...</p>;
@@ -59,25 +55,35 @@ const UsersListPage = () => {
   };
 
   const handleDelete = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
-    if (!confirmDelete) return;
-
-    try {
-      await deleteUser(id).unwrap();
-      toast.success("User deleted successfully!");
-      refetch();
-    } catch (err) {
-      toast.error("Failed to delete user.");
+    if (window.confirm("Are you sure you want to delete this user?")) {
+      try {
+        await deleteUser(id).unwrap();
+        toast.success("User deleted successfully!");
+        refetch(); // Refetch data after deletion
+      } catch (err) {
+        toast.error("Failed to delete user.");
+      }
     }
   };
 
   const handleSubmitEdit = async (updatedUser) => {
     try {
-      await editUser({ id: selectedUser.id, data: updatedUser }).unwrap();
-      toast.success("User updated successfully!");
+      const { name, role, email_verified_at, status } = updatedUser;
+      const res = await editUser({
+        id: selectedUser.id,
+        data: { 
+            name, 
+            role, 
+            //// email_verified_at, 
+            //// status 
+        },
+      }).unwrap();
+      console.log("update res",res);
+      toast.success(res?.message || "User updated successfully!");
       closeModal(); // Close modal after successful edit
+      refetch(); // Refetch data after edit
     } catch (err) {
-      toast.error("Failed to update user.");
+      toast.error(err?.data?.message || "Failed to update user.");
     }
   };
 
@@ -93,32 +99,28 @@ const UsersListPage = () => {
           {/* Add more filters like Role, Status, etc. */}
         </div>
 
-        <Table
-          data={data?.data?.data}
-          columns={["Name", "Email", "Role", "Status", "Actions"]}
-        >
-          {/* Render table rows */}
-          <thead>
-            <tr>
-              <td>Id</td>
-              <td>Name</td>
-              <td>Email</td>
-              <td>Role</td>
-              <td>Status</td>
-              <td>Actions</td>
-            </tr>
-          </thead>
-          <tbody>
-            {data?.data?.data.map((user, index) => (
-              <React.Fragment key={index}>
-                <tr key={user.id}>
-                  <td>{user.id}</td>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.role}</td>
-                  <td>{user.status ? "Active" : "Inactive"}</td>
-                  <td>
-                    <Button onClick={() => handleEdit(user)}>Edit</Button>
+        <div className="overflow-x-auto">
+          <table className="min-w-full divide-y divide-gray-200 border border-gray-300 shadow-md rounded-lg">
+            <thead className="bg-gray-50">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="bg-white divide-y divide-gray-200">
+              {data?.data?.data.map((user, index) => (
+                <tr key={user.id} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.id}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.name}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.role}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.status ? "Active" : "Inactive"}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <Button onClick={() => handleEdit(user)} className="mr-2">Edit</Button>
                     <Button
                       variant="destructive"
                       onClick={() => handleDelete(user.id)}
@@ -127,16 +129,17 @@ const UsersListPage = () => {
                     </Button>
                   </td>
                 </tr>
-              </React.Fragment>
-            ))}
-          </tbody>
-        </Table>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         {/* Pagination */}
         <div className="flex justify-end mt-4">
           <Button
             onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
             disabled={page === 1}
+            className="mr-2"
           >
             Previous
           </Button>
@@ -154,11 +157,51 @@ const UsersListPage = () => {
                 const updatedUser = Object.fromEntries(formData.entries());
                 handleSubmitEdit(updatedUser);
               }}
+              className="space-y-4"
             >
-              <Input name="name" defaultValue={selectedUser.name} />
-              <Input name="email" defaultValue={selectedUser.email} />
-              {/* Other fields... */}
-              <Button type="submit">Save Changes</Button>
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+                <Input
+                  id="name"
+                  name="name"
+                  defaultValue={selectedUser.name}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+                />
+              </div>
+              <div>
+                <label htmlFor="role" className="block text-sm font-medium text-gray-700">Role</label>
+                <Input
+                  id="role"
+                  name="role"
+                  defaultValue={selectedUser.role}
+                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Email Verified</label>
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="email_verified_at"
+                    name="email_verified_at"
+                    defaultChecked={selectedUser.email_verified_at}
+                    className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700">Status</label>
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="status"
+                    name="status"
+                    defaultChecked={selectedUser.status}
+                    className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                  />
+                </div>
+              </div>
+              <Button type="submit" className="mt-4">Save Changes</Button>
             </form>
           </Modal>
         )}
