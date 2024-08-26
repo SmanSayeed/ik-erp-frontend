@@ -1,8 +1,13 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+// src/services/usersApi.js
+import { createApi } from '@reduxjs/toolkit/query/react';
+import axiosBaseQuery from './baseQuery';
+import apiConfig from '../config/apiConfig';
 
 export const usersApi = createApi({
   reducerPath: 'usersApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:8000/api' }),
+  baseQuery: axiosBaseQuery({
+    baseUrl: apiConfig.baseUrl,
+  }),
   endpoints: (builder) => ({
     getUsers: builder.query({
       query: ({ keyword, status, email_verified_at, role, order_by, order_direction, per_page, page }) => ({
@@ -15,8 +20,8 @@ export const usersApi = createApi({
           order_by,
           order_direction,
           per_page,
-          page
-        }
+          page,
+        },
       }),
     }),
     editUser: builder.mutation({

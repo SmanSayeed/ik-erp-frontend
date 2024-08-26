@@ -70,7 +70,7 @@ function DashboardLayout() {
               <User className="w-5 h-5 mr-3" /> Profile
             </a> */}
             <a
-              href="/users"
+              href="/dashboard/users"
               className="flex items-center py-2 px-4 hover:bg-gray-700"
             >
               <Users className="w-5 h-5 mr-3" /> Users

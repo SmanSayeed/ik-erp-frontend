@@ -13,7 +13,7 @@ export const registerApi = createApi({
       query: (userData) => ({
         url: '/register',
         method: 'POST',
-        data: userData,
+        body: userData,
       }),
     }),
   }),
