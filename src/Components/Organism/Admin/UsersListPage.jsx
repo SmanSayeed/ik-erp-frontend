@@ -74,8 +74,8 @@ const UsersListPage = () => {
         data: { 
             name, 
             role, 
-            //// email_verified_at, 
-            //// status 
+            email_verified_at:'on'?true:false, 
+            status:'on'?true:false 
         },
       }).unwrap();
       console.log("update res",res);

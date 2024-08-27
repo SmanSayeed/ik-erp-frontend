@@ -27,11 +27,11 @@ export const usersApi = createApi({
     editUser: builder.mutation({
       query: ({ id, data }) => {
         // Log the data here
-        console.log('Edit User Data:',data);
+        console.log('Edit User Data:', data);
         return {
           url: `/users/${id}`,
           method: 'PUT',
-          body: data,
+          data: data, // Change `body` to `data`
         };
       },
     }),
