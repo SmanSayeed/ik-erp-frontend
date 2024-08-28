@@ -26,12 +26,10 @@ export const usersApi = createApi({
     }),
     editUser: builder.mutation({
       query: ({ id, data }) => {
-        // Log the data here
-        console.log('Edit User Data:', data);
         return {
           url: `/users/${id}`,
           method: 'PUT',
-          data: data, // Change `body` to `data`
+          data: data,
         };
       },
     }),
@@ -41,7 +39,14 @@ export const usersApi = createApi({
         method: 'DELETE',
       }),
     }),
+    updateProfile: builder.mutation({
+      query: (data) => ({
+        url: `/admin/profile`,
+        method: 'PUT',
+        data,
+      }),
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useEditUserMutation, useDeleteUserMutation } = usersApi;
+export const { useGetUsersQuery, useEditUserMutation, useDeleteUserMutation, useUpdateProfileMutation } = usersApi;

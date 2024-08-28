@@ -1,5 +1,6 @@
 // Sidebar.jsx
-import { Home, Users } from 'lucide-react'; // Icons
+import { Box, Container, DockIcon, Home, Laptop, MapPinIcon, MapPinOff, Paperclip, Users } from 'lucide-react'; // Icons
+import { Link } from 'react-router-dom';
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
   return (
@@ -15,12 +16,24 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
           <h2 className="text-xl font-semibold">Admin Dashboard</h2>
         </div>
         <nav>
-          <a href="/dashboard" className="flex items-center py-2 px-4 hover:bg-gray-700">
+          <Link to="/dashboard" className="flex items-center py-2 px-4 hover:bg-gray-700">
             <Home className="w-5 h-5 mr-3" /> Dashboard
-          </a>
-          <a href="/dashboard/users" className="flex items-center py-2 px-4 hover:bg-gray-700">
+          </Link>
+          <Link to="/dashboard/users" className="flex items-center py-2 px-4 hover:bg-gray-700">
             <Users className="w-5 h-5 mr-3" /> Users
-          </a>
+          </Link>
+          <Link to="/dashboard/users" className="flex items-center py-2 px-4 hover:bg-gray-700">
+            <Laptop className="w-5 h-5 mr-3" /> Devices
+          </Link>
+          <Link to="/dashboard/users" className="flex items-center py-2 px-4 hover:bg-gray-700">
+            <Box className="w-5 h-5 mr-3" /> Device Clusters
+          </Link>
+          <Link to="/dashboard/users" className="flex items-center py-2 px-4 hover:bg-gray-700">
+            <MapPinIcon className="w-5 h-5 mr-3" /> Client Device Mappings
+          </Link>
+          <Link to="/dashboard/users" className="flex items-center py-2 px-4 hover:bg-gray-700">
+            <DockIcon className="w-5 h-5 mr-3" /> Invoices
+          </Link>
           {/* Add more links as needed */}
         </nav>
       </div>

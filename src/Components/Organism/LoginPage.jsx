@@ -3,7 +3,7 @@ import {
   useResendEmailMutation,
 } from "../../services/authApi";
 import { useDispatch } from "react-redux";
-import { setCredentials } from "../../features/auth/authSlice";
+import { setCredentials } from "../../features/authSlice";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -35,9 +35,14 @@ function LoginPage() {
     onSubmit: async (values) => {
       try {
         const userData = await login(values).unwrap();
-        console.log('userData',userData);
-        dispatch(setCredentials(userData));
+        const token = userData.data.token;
+        const role = userData.data.user.role;
+        const user = userData.data.user;
+        const toRedux = { token, role, user };
+        console.log('userData',toRedux);
+       
         if (userData.data.token) {
+          dispatch(setCredentials(toRedux));
           localStorage.setItem("token", userData.data.token);
           localStorage.setItem("role", userData.data.user.role); 
           toast.success("Login successful!");

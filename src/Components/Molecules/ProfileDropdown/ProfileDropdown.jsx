@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LogOut, User, Edit, Lock } from 'lucide-react'; // Icons
 import { useDispatch } from 'react-redux';
-import { logout as logoutAction } from '../../../features/auth/authSlice';
-import { useNavigate } from 'react-router-dom';
+import { logout as logoutAction } from '../../../features/authSlice';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useLogoutMutation } from '@/services/authApi';
 
@@ -47,15 +47,15 @@ const ProfileDropdown = ({ profileImage }) => {
       </Button>
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg">
-          <a href="/profile" className="flex items-center p-2 hover:bg-gray-100">
+          <Link to="/profile" className="flex items-center p-2 hover:bg-gray-100">
             <User className="w-5 h-5 mr-2" /> Profile
-          </a>
-          <a href="/profile/edit" className="flex items-center p-2 hover:bg-gray-100">
+          </Link>
+          <Link to="/dashboard/edit-profile" className="flex items-center p-2 hover:bg-gray-100">
             <Edit className="w-5 h-5 mr-2" /> Edit Profile
-          </a>
-          <a href="/profile/change-password" className="flex items-center p-2 hover:bg-gray-100">
+          </Link>
+          <Link to="/profile/change-password" className="flex items-center p-2 hover:bg-gray-100">
             <Lock className="w-5 h-5 mr-2" /> Change Password
-          </a>
+          </Link>
           <button
             onClick={handleLogout}
             className="w-full text-left flex items-center p-2 hover:bg-gray-100"

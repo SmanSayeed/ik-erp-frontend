@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useGetUsersQuery, useEditUserMutation, useDeleteUserMutation } from "../../../services/usersApi";
-import Modal from "../../ui/modal"; // Update import based on your actual modal path
+import Modal from "../../ui/modal";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"; // Adjust imports based on actual Shadcn UI components
+import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import UsersTable from "../../Molecules/UsersTable/UsersTable";
 import EditUserForm from "../../Molecules/EditUserForm/EditUserForm";
+import Filters from "../../Molecules/Filters/FIlters";// Adjust import path
 
 const UsersListPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -15,17 +16,19 @@ const UsersListPage = () => {
   const [keyword, setKeyword] = useState("");
   const [role, setRole] = useState("");
   const [status, setStatus] = useState("");
-  const [emailVerified, setEmailVerified] = useState(false);
+  const [emailVerified, setEmailVerified] = useState("");
+  const [orderBy, setOrderBy] = useState("created_at");
+  const [orderDirection, setOrderDirection] = useState("desc");
   const [perPage, setPerPage] = useState(10);
   const [selectedUser, setSelectedUser] = useState(null);
 
   const { data, isLoading, error, refetch } = useGetUsersQuery({
     keyword,
     status,
-    // email_verified_at: emailVerified,
+    email_verified_at: emailVerified,
     role,
-    order_by: "created_at",
-    order_direction: "desc",
+    order_by: orderBy,
+    order_direction: orderDirection,
     per_page: perPage,
     page,
   });
@@ -55,7 +58,7 @@ const UsersListPage = () => {
       try {
         await deleteUser(id).unwrap();
         toast.success("User deleted successfully!");
-        refetch(); // Refetch data after deletion
+        refetch();
       } catch (err) {
         toast.error("Failed to delete user.");
       }
@@ -76,7 +79,7 @@ const UsersListPage = () => {
       }).unwrap();
       toast.success(res?.message || "User updated successfully!");
       closeModal();
-      refetch(); // Refetch data after edit
+      refetch();
     } catch (err) {
       toast.error(err?.data?.message || "Failed to update user.");
     }
@@ -87,14 +90,27 @@ const UsersListPage = () => {
 
   return (
     <div className="p-4">
-      <div className="flex justify-between mb-4">
+      <div className="flex flex-col md:flex-row md:justify-between mb-4">
         <Input
           placeholder="Search by keyword"
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
+          className="mb-2 md:mb-0 md:w-1/3"
         />
-        {/* Add more filters like Role, Status, etc. */}
       </div>
+      
+      {/* <Filters
+        role={role}
+        setRole={setRole}
+        status={status}
+        setStatus={setStatus}
+        emailVerified={emailVerified}
+        setEmailVerified={setEmailVerified}
+        orderBy={orderBy}
+        setOrderBy={setOrderBy}
+        orderDirection={orderDirection}
+        setOrderDirection={setOrderDirection}
+      /> */}
 
       <UsersTable data={data} onEdit={handleEdit} onDelete={handleDelete} />
 

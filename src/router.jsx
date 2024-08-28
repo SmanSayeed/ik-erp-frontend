@@ -12,6 +12,7 @@ import RegisterPage from "./Components/Organism/RegisterPage";
 import EmailVerificationPage from "./Components/Organism/EmailVerificationPage";
 import UsersListPage from "./Components/Organism/Admin/UsersListPage";
 import ProtectedDashboardRoute from "./Components/Auth/ProtectedDashboardRoute";
+import EditProfile from "./Components/Molecules/EditProfile/EditProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: "users",
         element: <UsersListPage />,
+      },
+      {
+        path: "edit-profile",
+        element: <EditProfile />,
       },
     ],
   },

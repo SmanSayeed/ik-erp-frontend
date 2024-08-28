@@ -1,9 +1,9 @@
-// src/store.js
 import { configureStore } from '@reduxjs/toolkit';
 import { authApi } from './services/authApi';
 import { registerApi } from './services/registerApi';
 import { usersApi } from './services/usersApi';
-import { authReducer } from './features/auth/authSlice';
+import { authReducer } from './features/authSlice';
+import { userDataReducer } from './features/userDataSlice';// Import the new slice
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
@@ -14,12 +14,13 @@ const rootReducer = combineReducers({
   [registerApi.reducerPath]: registerApi.reducer,
   [usersApi.reducerPath]: usersApi.reducer,
   auth: authReducer,
+  userData: userDataReducer, // Add the userData reducer
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth'],
+  whitelist: ['auth', 'userData'], // Whitelist both slices
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -37,6 +38,5 @@ export const store = configureStore({
       usersApi.middleware
     ),
 });
-
 
 export const persistor = persistStore(store);
