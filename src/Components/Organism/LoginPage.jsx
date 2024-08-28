@@ -35,9 +35,11 @@ function LoginPage() {
     onSubmit: async (values) => {
       try {
         const userData = await login(values).unwrap();
+        console.log('userData',userData);
         dispatch(setCredentials(userData));
         if (userData.data.token) {
           localStorage.setItem("token", userData.data.token);
+          localStorage.setItem("role", userData.data.user.role); 
           toast.success("Login successful!");
           navigate("/dashboard");
         } else {

@@ -17,47 +17,9 @@ import 'react-toastify/dist/ReactToastify.css'; // Import Toastify
 import RegisterPage from './Components/Organism/RegisterPage';
 import EmailVerificationPage from './Components/Organism/EmailVerificationPage';
 import UsersListPage from './Components/Organism/Admin/UsersListPage';
+import router from './router.jsx';
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <ProtectedRoute>
-        <App />
-      </ProtectedRoute>
-    ),
-    loader: loginLoader,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-    loader: registerLoader,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: "/dashboard",
-    element: (
-      // <ProtectedDashboardRoute>
-        <DashboardLayout />
-      // </ProtectedDashboardRoute>
-    ),
-    children: [
-      {
-        path: "",
-        element: <Dashboard />,
-      },
-      {
-        path:"users",
-        element: <UsersListPage />,
-      }
-    ],
-  },
-  {
-    path: "/verify-email",
-    element: <EmailVerificationPage />,
-  },
-]);
+
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
