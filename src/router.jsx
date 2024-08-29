@@ -15,6 +15,9 @@ import ProtectedDashboardRoute from "./Components/Auth/ProtectedDashboardRoute";
 import EditProfile from "./Components/Molecules/EditProfile/EditProfile";
 import ResetPassword from "./Components/Molecules/ResetPassword/ResetPassword";
 import { useSelector } from "react-redux";
+import ForgetPassword from "./Components/Molecules/ResetPassword/ForgotPassword";
+import ForgotPassword from "./Components/Molecules/ResetPassword/ForgotPassword";
+import ResetPasswordByEmail from "./Components/Molecules/ResetPassword/ResetPasswordByEmail";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -36,6 +39,17 @@ const router = createBrowserRouter([
     path: "/register",
     element: <RegisterPage />,
     loader: registerLoader,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/reset-password-by-email",
+    element: <ResetPasswordByEmail />,
+    loader: registerLoader,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/forgot-password",
+    element: <ForgotPassword />,
     errorElement: <ErrorPage />,
   },
   {

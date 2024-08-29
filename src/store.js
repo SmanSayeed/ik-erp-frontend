@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { authApi } from './services/authApi';
 import { registerApi } from './services/registerApi';
 import { usersApi } from './services/usersApi';
+import { passwordApi } from './services/passwordApi';
 import { authReducer } from './features/authSlice';
 import { userDataReducer } from './features/userDataSlice';// Import the new slice
 import { persistStore, persistReducer } from 'redux-persist';
@@ -11,6 +12,7 @@ import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist
 
 const rootReducer = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
+  [passwordApi.reducerPath]: passwordApi.reducer,
   [registerApi.reducerPath]: registerApi.reducer,
   [usersApi.reducerPath]: usersApi.reducer,
   auth: authReducer,
@@ -35,7 +37,8 @@ export const store = configureStore({
     }).concat(
       authApi.middleware,
       registerApi.middleware,
-      usersApi.middleware
+      usersApi.middleware,
+      passwordApi.middleware
     ),
 });
 
