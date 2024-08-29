@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Laptop, MapPinIcon, DockIcon, Users, Home } from "lucide-react"; // Icons
 import SidebarMenuItem from "../../Atoms/SidebarMenuItem/SidebarMenuItem"; // Import the SidebarMenuItem component
 
-const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
+const UserDashboardSidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
   const iconClass ="w-5 h-5 mr-3";
   return (
     <aside
@@ -54,4 +54,4 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
   );
 };
 
-export default Sidebar;
+export default UserDashboardSidebar;

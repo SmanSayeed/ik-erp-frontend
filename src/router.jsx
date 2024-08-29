@@ -18,6 +18,8 @@ import { useSelector } from "react-redux";
 import ForgetPassword from "./Components/Molecules/ResetPassword/ForgotPassword";
 import ForgotPassword from "./Components/Molecules/ResetPassword/ForgotPassword";
 import ResetPasswordByEmail from "./Components/Molecules/ResetPassword/ResetPasswordByEmail";
+import ProtectedDashboardUserRoute from "./Components/Auth/ProtectedDashboardUserRoute";
+import UserDashboardLayout from "./Components/Layout/UserDashboardLayout";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -51,6 +53,28 @@ const router = createBrowserRouter([
     path: "/forgot-password",
     element: <ForgotPassword />,
     errorElement: <ErrorPage />,
+  },
+  {
+    path: "/user/dashboard",
+    element: (
+      <ProtectedDashboardUserRoute>
+        <UserDashboardLayout />
+      </ProtectedDashboardUserRoute>
+    ),
+    children: [
+      {
+        path: "",
+        element: <Dashboard />,
+      },
+      {
+        path: "edit-profile",
+        element: <EditProfile />,
+      },
+      {
+        path:"reset-password",
+        element: <ResetPasswordWrapper />,
+      }
+    ],
   },
   {
     path: "/dashboard",

@@ -46,7 +46,8 @@ function LoginPage() {
           localStorage.setItem("token", userData.data.token);
           localStorage.setItem("role", userData.data.user.role); 
           toast.success("Login successful!");
-          navigate("/dashboard");
+          if(role === "admin") navigate("/dashboard");
+          if(role=="client") navigate("/user/dashboard");
         } else {
           toast.error("Failed to login. Please try again.");
         }
