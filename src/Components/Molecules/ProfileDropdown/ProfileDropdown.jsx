@@ -53,7 +53,7 @@ const ProfileDropdown = ({ profileImage }) => {
           <Link to="/dashboard/edit-profile" className="flex items-center p-2 hover:bg-gray-100">
             <Edit className="w-5 h-5 mr-2" /> Edit Profile
           </Link>
-          <Link to="/profile/change-password" className="flex items-center p-2 hover:bg-gray-100">
+          <Link to="/dashboard/reset-password" className="flex items-center p-2 hover:bg-gray-100">
             <Lock className="w-5 h-5 mr-2" /> Change Password
           </Link>
           <button

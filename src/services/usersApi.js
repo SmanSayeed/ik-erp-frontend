@@ -46,7 +46,14 @@ export const usersApi = createApi({
         data,
       }),
     }),
+    resetPassword: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/users/${id}/password`,
+        method: 'PUT',
+        data,
+      }),
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useEditUserMutation, useDeleteUserMutation, useUpdateProfileMutation } = usersApi;
+export const { useGetUsersQuery, useEditUserMutation, useDeleteUserMutation, useUpdateProfileMutation,  useResetPasswordMutation  } = usersApi;

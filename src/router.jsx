@@ -13,6 +13,14 @@ import EmailVerificationPage from "./Components/Organism/EmailVerificationPage";
 import UsersListPage from "./Components/Organism/Admin/UsersListPage";
 import ProtectedDashboardRoute from "./Components/Auth/ProtectedDashboardRoute";
 import EditProfile from "./Components/Molecules/EditProfile/EditProfile";
+import ResetPassword from "./Components/Molecules/ResetPassword/ResetPassword";
+import { useSelector } from "react-redux";
+
+const ResetPasswordWrapper = () => {
+  const user = useSelector((state) => state.auth.user);
+  return <ResetPassword userId={user?.id} />;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -50,6 +58,10 @@ const router = createBrowserRouter([
         path: "edit-profile",
         element: <EditProfile />,
       },
+      {
+        path:"reset-password",
+        element: <ResetPasswordWrapper />,
+      }
     ],
   },
   {
@@ -57,5 +69,7 @@ const router = createBrowserRouter([
     element: <EmailVerificationPage />,
   },
 ]);
+
+
 
 export default router;
