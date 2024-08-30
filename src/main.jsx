@@ -17,7 +17,7 @@ import 'react-toastify/dist/ReactToastify.css'; // Import Toastify
 import RegisterPage from './Components/Organism/RegisterPage';
 import EmailVerificationPage from './Components/Organism/EmailVerificationPage';
 import UsersListPage from './Components/Organism/Admin/UsersListPage';
-import router from './router.jsx';
+import router from './routes/router.jsx';
 
 
 

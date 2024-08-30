@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import StyledLink from '../../Atoms/StyledLink/StyledLink';
+import routes from '../../../routes/routesLink';
 
 const ResetPassword = ({ userId }) => {
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
@@ -98,7 +99,7 @@ const ResetPassword = ({ userId }) => {
       </div>
 
       <div className="flex justify-between">
-        <StyledLink className="text-sm underline blue-500 font-bold " to="/forgot-password">Forgot password</StyledLink>
+        <StyledLink className="text-sm underline blue-500 font-bold " to={routes.forgotPassword.link}>{routes.forgotPassword.title}</StyledLink>
         <Button type="submit" disabled={isLoading}>
           {isLoading ? 'Updating...' : 'Update Password'}
         </Button>

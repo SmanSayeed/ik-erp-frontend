@@ -22,7 +22,7 @@ const UsersTable = ({ data, onEdit, onDelete }) => {
           {data?.data?.data.map((user, index) => (
             <tr key={user.id} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                <StyledLink to={`/dashboard/user-profile/${user.id}`}>
+                <StyledLink to={`/dashboard/users/${user.id}`}>
                 {user.id}
                 </StyledLink>
               

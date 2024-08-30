@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Sidebar from '../Molecules/Sidebar/Sidebar';
 import Header from '../Molecules/Header/Header';
+import BreadCrumbs from '../Atoms/BreadCrumbs/BreadCrumbs';
 
 const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -35,6 +36,7 @@ const DashboardLayout = () => {
       <div className={`w-[100vw] flex-1 flex flex-col ${isSidebarOpen ? 'ml-64' : 'ml-0'} transition-all duration-300`} >
         <Header isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
         <main className="flex-1 sm:p-2 md:p-2 lg:p-2 bg-gray-100 overflow-x-auto">
+          <BreadCrumbs/>
           <Outlet />
         </main>
         <footer className="bg-white p-4 text-center shadow">
