@@ -2,8 +2,10 @@
 import { Menu, Bell } from 'lucide-react'; // Icons
 import { Button } from '@/components/ui/button';
 import ProfileDropdown from '../ProfileDropdown/ProfileDropdown';
+import { useSelector } from 'react-redux';
 
 const Header = ({ isSidebarOpen, toggleSidebar }) => {
+
   return (
     <header className="bg-white shadow p-4 flex justify-between items-center">
       <Button variant="ghost" className="md:hidden" onClick={toggleSidebar}>

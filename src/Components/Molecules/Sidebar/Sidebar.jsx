@@ -1,9 +1,10 @@
 import React from "react";
 import { Box, Laptop, MapPinIcon, DockIcon, Users, Home } from "lucide-react"; // Icons
 import SidebarMenuItem from "../../Atoms/SidebarMenuItem/SidebarMenuItem"; // Import the SidebarMenuItem component
+import routes from "../../../routes/routesLink";
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
-  const iconClass ="w-5 h-5 mr-3";
+  const iconClass = "w-5 h-5 mr-3";
   return (
     <aside
       ref={sidebarRef}
@@ -18,32 +19,32 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
         </div>
         <nav>
           <SidebarMenuItem
-            to="/dashboard"
+            to={routes.adminDashboard.link}
             title="Dashboard"
             icon={<Home className={iconClass} />}
           />
           <SidebarMenuItem
-            to="/dashboard/users"
+            to={routes.adminDashboardUsers.link}
             title="Users"
             icon={<Users className={iconClass} />}
           />
           <SidebarMenuItem
-            to="/dashboard/devices"
+            to={routes.adminDashboardUsers.link}
             title="Devices"
             icon={<Laptop className={iconClass} />}
           />
           <SidebarMenuItem
-            to="/dashboard/device-clusters"
+            to={routes.adminDashboardUsers.link}
             title="Device Clusters"
             icon={<Box className={iconClass} />}
           />
           <SidebarMenuItem
-            to="/dashboard/client-device-mappings"
+            to={routes.adminDashboardUsers.link}
             title="Client Device Mappings"
             icon={<MapPinIcon className={iconClass} />}
           />
           <SidebarMenuItem
-            to="/dashboard/invoices"
+            to={routes.adminDashboardUsers.link}
             title="Invoices"
             icon={<DockIcon className={iconClass} />}
           />

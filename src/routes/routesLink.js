@@ -1,6 +1,8 @@
+
+
 const routes = {
-  dashboard: {
-    link: '/dashboard',
+  userDashboard: {
+    link: '/user/dashboard',
     title: 'Dashboard',
   },
   login: {
@@ -23,44 +25,43 @@ const routes = {
     link: '/verify-email',
     title: 'Verify Email',
   },
-  userDashboard: {
-    link: '/user/dashboard',
-    title: 'User Dashboard',
+  // -------------- User -----------------
+  userDashboardProfile: {
+    link: `/user/profile`,
+    title: `User Profile`,
   },
-  userDashboardProfile: (userId) => ({
-    link: `/user/dashboard/profile/${userId}`,
-    title: `User Profile ${userId}`,
-  }),
   userDashboardEditProfile: {
-    link: '/user/dashboard/edit-profile',
+    link: '/user/edit-profile',
     title: 'Edit Profile',
   },
   userDashboardResetPassword: {
-    link: '/user/dashboard/reset-password',
+    link: '/user/reset-password',
     title: 'Reset Password',
   },
+  
+  // --------------- Admin -----------------
   adminDashboard: {
-    link: '/dashboard',
+    link: '/admin/dashboard',
     title: 'Admin Dashboard',
   },
-  adminDashboardProfile: (userId) => ({
-    link: `/dashboard/profile/${userId}`,
-    title: `Admin Profile ${userId}`,
-  }),
+  adminDashboardProfile: {
+    link: `/admin/profile`,
+    title: `Admin Profile`,
+  },
   adminDashboardUserProfile: (userId) => ({
-    link: `/dashboard/users/${userId}`,
+    link: `/admin/users/${userId}`,
     title: `Admin User Profile ${userId}`,
   }),
   adminDashboardUsers: {
-    link: '/dashboard/users',
+    link: '/admin/users',
     title: 'Users',
   },
   adminDashboardEditProfile: {
-    link: '/dashboard/edit-profile',
+    link: '/admin/edit-profile',
     title: 'Edit Profile',
   },
   adminDashboardResetPassword: {
-    link: '/dashboard/reset-password',
+    link: '/admin/reset-password',
     title: 'Reset Password',
   },
 };

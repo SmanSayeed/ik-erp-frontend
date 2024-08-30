@@ -13,7 +13,7 @@ const BreadCrumbs = () => {
 
   return (
     <nav className="flex text-sm text-gray-600 mb-4" aria-label="Breadcrumb">
-      <ol className="inline-flex items-center space-x-1 md:space-x-3">
+      <ol className="inline-flex items-center space-x-1 md:space-x-1">
         {/* <li className="inline-flex items-center">
           <Link to="/" className="text-gray-600 hover:text-gray-900">
             Home
@@ -29,7 +29,7 @@ const BreadCrumbs = () => {
 
           return (
             <li key={to} className="inline-flex items-center">
-              {index>0 &&<span className="mx-2">/</span>}
+              {index>0 &&<span className="mx-1">/</span>}
               {isLast || isDynamic ? (
                 <span className="text-gray-500 capitalize">{value}</span>
               ) : (

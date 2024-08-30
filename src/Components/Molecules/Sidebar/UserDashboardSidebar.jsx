@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Laptop, MapPinIcon, DockIcon, Users, Home } from "lucide-react"; // Icons
 import SidebarMenuItem from "../../Atoms/SidebarMenuItem/SidebarMenuItem"; // Import the SidebarMenuItem component
+import routes from "../../../routes/routesLink";
 
 const UserDashboardSidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
   const iconClass ="w-5 h-5 mr-3";
@@ -17,38 +18,34 @@ const UserDashboardSidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
           <h2 className="text-xl font-semibold">Client Dashboard</h2>
         </div>
         <nav>
-          <SidebarMenuItem
-            to="/dashboard"
+        <SidebarMenuItem
+            to={routes.userDashboard.link}
             title="Dashboard"
             icon={<Home className={iconClass} />}
           />
           <SidebarMenuItem
-            to="/dashboard/users"
-            title="Users"
-            icon={<Users className={iconClass} />}
-          />
-          <SidebarMenuItem
-            to="/dashboard/devices"
+            to={routes.userDashboard.link}
             title="Devices"
             icon={<Laptop className={iconClass} />}
           />
           <SidebarMenuItem
-            to="/dashboard/device-clusters"
+            to={routes.userDashboard.link}
             title="Device Clusters"
             icon={<Box className={iconClass} />}
           />
           <SidebarMenuItem
-            to="/dashboard/client-device-mappings"
+            to={routes.userDashboard.link}
             title="Client Device Mappings"
             icon={<MapPinIcon className={iconClass} />}
           />
           <SidebarMenuItem
-            to="/dashboard/invoices"
+            to={routes.userDashboard.link}
             title="Invoices"
             icon={<DockIcon className={iconClass} />}
           />
           {/* Add more links as needed */}
         </nav>
+         
       </div>
     </aside>
   );

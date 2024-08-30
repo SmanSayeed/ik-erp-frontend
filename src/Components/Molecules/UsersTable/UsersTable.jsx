@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import StyledLink from "../../Atoms/StyledLink/StyledLink";
+import routes from "../../../routes/routesLink";
 
 const UsersTable = ({ data, onEdit, onDelete }) => {
   return (
@@ -22,7 +23,7 @@ const UsersTable = ({ data, onEdit, onDelete }) => {
           {data?.data?.data.map((user, index) => (
             <tr key={user.id} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                <StyledLink to={`/dashboard/users/${user.id}`}>
+                <StyledLink to={routes.adminDashboardUserProfile(user.id).link}>
                 {user.id}
                 </StyledLink>
               
