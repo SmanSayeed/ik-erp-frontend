@@ -20,6 +20,7 @@ import ForgotPassword from "./Components/Molecules/ResetPassword/ForgotPassword"
 import ResetPasswordByEmail from "./Components/Molecules/ResetPassword/ResetPasswordByEmail";
 import ProtectedDashboardUserRoute from "./Components/Auth/ProtectedDashboardUserRoute";
 import UserDashboardLayout from "./Components/Layout/UserDashboardLayout";
+import Profile from "./Components/Molecules/Profile/Profile";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
     element: (
       <ProtectedDashboardUserRoute>
         <UserDashboardLayout />
-      </ProtectedDashboardUserRoute>
+    </ProtectedDashboardUserRoute>
     ),
     children: [
       {
@@ -67,8 +68,12 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
         path: "edit-profile",
-        element: <EditProfile />,
+        element: <Profile />,
       },
       {
         path:"reset-password",
@@ -87,6 +92,14 @@ const router = createBrowserRouter([
       {
         path: "",
         element: <Dashboard />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "user-profile/:id",
+        element: <Profile />,
       },
       {
         path: "users",

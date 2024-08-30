@@ -14,7 +14,7 @@ const UserDashboardSidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
     >
       <div className="p-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold">Admin Dashboard</h2>
+          <h2 className="text-xl font-semibold">Client Dashboard</h2>
         </div>
         <nav>
           <SidebarMenuItem
