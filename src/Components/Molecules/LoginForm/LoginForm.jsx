@@ -2,9 +2,11 @@ import InputField from '../../Atoms/InputField/InputField';
 
 import PropTypes from 'prop-types';
 import CustomButton from '../../Atoms/CustomButton/CustomButton';
+import StyledLink from '../../Atoms/StyledLink/StyledLink';
 function LoginForm({ formik, isLoading }) {
   return (
-    <form onSubmit={formik.handleSubmit} className="space-y-4">
+    <>
+        <form onSubmit={formik.handleSubmit} className="space-y-4">
       <InputField
         label="Email"
         id="email"
@@ -25,6 +27,9 @@ function LoginForm({ formik, isLoading }) {
       />
       <CustomButton label="Login" isLoading={isLoading} disabled={formik.isSubmitting} />
     </form>
+      <StyledLink className="text-sm underline blue-500 font-bold " to="/forgot-password">Forgot password</StyledLink>
+    </>
+
   );
 }
 LoginForm.propTypes = {

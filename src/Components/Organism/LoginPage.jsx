@@ -13,6 +13,8 @@ import Loader from "../Atoms/Loader/Loader";
 import { useState } from "react";
 import AuthLayout from "../Layout/AuthLayout";
 import StyledLink from "../Atoms/StyledLink/StyledLink";
+import ROUTES from "../../routes/routesLink";
+import routes from "../../routes/routesLink";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address").required("Required"),
@@ -46,7 +48,9 @@ function LoginPage() {
           localStorage.setItem("token", userData.data.token);
           localStorage.setItem("role", userData.data.user.role); 
           toast.success("Login successful!");
-          navigate("/dashboard");
+          console.log("role======== ",role);
+          if(role === "admin") navigate(routes.adminDashboard.link);
+          if(role==="client") navigate(routes.userDashboard.link);
         } else {
           toast.error("Failed to login. Please try again.");
         }
@@ -74,7 +78,7 @@ function LoginPage() {
       <AuthLayout>
         <div className="flex flex-col gap-2 justify-center items-center">
         <h2 className="text-3xl font-semibold text-center mb-1">Login</h2>
-        <StyledLink to="/register">Register</StyledLink>
+        <StyledLink to={routes.register.link}>{routes.register.title}</StyledLink>
         </div>
      
         <LoginForm formik={formik} isLoading={isLoading} />

@@ -3,8 +3,8 @@ import { Box, Laptop, MapPinIcon, DockIcon, Users, Home } from "lucide-react"; /
 import SidebarMenuItem from "../../Atoms/SidebarMenuItem/SidebarMenuItem"; // Import the SidebarMenuItem component
 import routes from "../../../routes/routesLink";
 
-const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
-  const iconClass = "w-5 h-5 mr-3";
+const UserDashboardSidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
+  const iconClass ="w-5 h-5 mr-3";
   return (
     <aside
       ref={sidebarRef}
@@ -15,44 +15,40 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
     >
       <div className="p-4">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-xl font-semibold">Admin Dashboard</h2>
+          <h2 className="text-xl font-semibold">Client Dashboard</h2>
         </div>
         <nav>
-          <SidebarMenuItem
-            to={routes.adminDashboard.link}
+        <SidebarMenuItem
+            to={routes.userDashboard.link}
             title="Dashboard"
             icon={<Home className={iconClass} />}
           />
           <SidebarMenuItem
-            to={routes.adminDashboardUsers.link}
-            title="Users"
-            icon={<Users className={iconClass} />}
-          />
-          <SidebarMenuItem
-            to={routes.adminDashboardUsers.link}
+            to={routes.userDashboard.link}
             title="Devices"
             icon={<Laptop className={iconClass} />}
           />
           <SidebarMenuItem
-            to={routes.adminDashboardUsers.link}
+            to={routes.userDashboard.link}
             title="Device Clusters"
             icon={<Box className={iconClass} />}
           />
           <SidebarMenuItem
-            to={routes.adminDashboardUsers.link}
+            to={routes.userDashboard.link}
             title="Client Device Mappings"
             icon={<MapPinIcon className={iconClass} />}
           />
           <SidebarMenuItem
-            to={routes.adminDashboardUsers.link}
+            to={routes.userDashboard.link}
             title="Invoices"
             icon={<DockIcon className={iconClass} />}
           />
           {/* Add more links as needed */}
         </nav>
+         
       </div>
     </aside>
   );
 };
 
-export default Sidebar;
+export default UserDashboardSidebar;

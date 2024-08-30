@@ -1,11 +1,11 @@
 // DashboardLayout.jsx
 import { useState, useRef, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
-import Sidebar from '../Molecules/Sidebar/Sidebar';
 import Header from '../Molecules/Header/Header';
-import BreadCrumbs from '../Atoms/BreadCrumbs/BreadCrumbs';
+import UserDashboardSidebar from '../Molecules/Sidebar/UserDashBoardSidebar';
+import UserHeader from '../Molecules/Header/UserHeader';
 
-const DashboardLayout = () => {
+const UserDashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
 
@@ -28,23 +28,22 @@ const DashboardLayout = () => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <Sidebar
+      <UserDashboardSidebar
         isSidebarOpen={isSidebarOpen}
         toggleSidebar={toggleSidebar}
         sidebarRef={sidebarRef}
-    />
+      />
       <div className={`w-[100vw] flex-1 flex flex-col ${isSidebarOpen ? 'ml-64' : 'ml-0'} transition-all duration-300`} >
-        <Header isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-        <main className="flex-1 sm:p-2 md:p-2 lg:p-2 bg-gray-100 overflow-x-auto">
-          <BreadCrumbs/>
+        <UserHeader isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+        <main className="flex-1 sm:p-2 md:p-2 lg:p-2 bg-gray-100 overflow-x-auto ">
           <Outlet />
         </main>
         <footer className="bg-white p-4 text-center shadow">
-          <p>© 2024 Admin Dashboard</p>
+          <p>© 2024 User Dashboard</p>
         </footer>
       </div>
     </div>
   );
 };
 
-export default DashboardLayout;
+export default UserDashboardLayout;

@@ -2,10 +2,9 @@ import { useState } from 'react';
 import { useRegisterMutation } from '../../services/registerApi';
 import { toast } from 'react-toastify';
 import RegisterForm from '../Molecules/RegisterForm/RegisterForm';
-import Loader from '../Atoms/Loader/Loader';
-import { Link } from 'react-router-dom';
 import AuthLayout from '../Layout/AuthLayout';
 import StyledLink from '../Atoms/StyledLink/StyledLink';
+import routes from '../../routes/routesLink';
 
 function RegisterPage() {
   const [name, setName] = useState('');
@@ -39,7 +38,7 @@ function RegisterPage() {
     <AuthLayout>
     <div className="flex flex-col gap-2 justify-center items-center">
     <h2 className="text-3xl font-semibold text-center mb-1">Register</h2>
-    <StyledLink to="/">Login</StyledLink>
+    <StyledLink to={routes.login.link}>{routes.login.title}</StyledLink>
       </div>
 
         <RegisterForm

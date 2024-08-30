@@ -41,12 +41,25 @@ export const usersApi = createApi({
     }),
     updateProfile: builder.mutation({
       query: (data) => ({
-        url: `/admin/profile`,
+        url: `/user/profile`,
         method: 'PUT',
         data,
+      }),
+    }),
+    resetPassword: builder.mutation({
+      query: ({ id, data }) => ({
+        url: `/users/${id}/password`,
+        method: 'PUT',
+        data,
+      }),
+    }),
+    getProfile: builder.query({
+      query: (id) => ({
+        url: id ? `/users/profile/${id}` : `/user/profile`,
+        method: 'GET',
       }),
     }),
   }),
 });
 
-export const { useGetUsersQuery, useEditUserMutation, useDeleteUserMutation, useUpdateProfileMutation } = usersApi;
+export const { useGetUsersQuery, useEditUserMutation, useDeleteUserMutation, useUpdateProfileMutation,  useResetPasswordMutation , useGetProfileQuery } = usersApi;

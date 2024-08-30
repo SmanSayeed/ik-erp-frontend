@@ -1,5 +1,8 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
+import StyledLink from "../../Atoms/StyledLink/StyledLink";
+import routes from "../../../routes/routesLink";
 
 const UsersTable = ({ data, onEdit, onDelete }) => {
   return (
@@ -19,7 +22,12 @@ const UsersTable = ({ data, onEdit, onDelete }) => {
         <tbody className="bg-white divide-y divide-gray-200">
           {data?.data?.data.map((user, index) => (
             <tr key={user.id} className={index % 2 === 0 ? "bg-gray-50" : "bg-white"}>
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{user.id}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <StyledLink to={routes.adminDashboardUserProfile(user.id).link}>
+                {user.id}
+                </StyledLink>
+              
+                </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.name}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.email}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{user.role}</td>

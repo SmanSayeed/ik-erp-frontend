@@ -1,20 +1,33 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { LogOut, User, Edit, Lock } from 'lucide-react'; // Icons
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout as logoutAction } from '../../../features/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useLogoutMutation } from '@/services/authApi';
+import routes from '../../../routes/routesLink';
 
 const ProfileDropdown = ({ profileImage }) => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  const { user, token, role } = useSelector((state) => state.auth);
+  const id = user?.id;
   const [logout, { isLoading }] = useLogoutMutation();
 
-  // Default profile image if none is provided
+  const links = role === 'admin'
+    ? [
+        { name: 'Profile', icon: <User className="w-5 h-5 mr-2" />, link: routes.adminDashboardProfile.link },
+        { name: 'Edit Profile', icon: <Edit className="w-5 h-5 mr-2" />, link: routes.adminDashboardEditProfile?.link },
+        { name: 'Change Password', icon: <Lock className="w-5 h-5 mr-2" />, link: routes.adminDashboardResetPassword?.link }
+      ]
+    : [
+        { name: 'Profile', icon: <User className="w-5 h-5 mr-2" />, link: routes.userDashboardProfile.link },
+        { name: 'Edit Profile', icon: <Edit className="w-5 h-5 mr-2" />, link: routes.userDashboardEditProfile?.link },
+        { name: 'Reset Password', icon: <Lock className="w-5 h-5 mr-2" />, link: routes.userDashboardResetPassword?.link }
+      ];
+
   const defaultImage =
     'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
 
@@ -47,15 +60,15 @@ const ProfileDropdown = ({ profileImage }) => {
       </Button>
       {isOpen && (
         <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg">
-          <Link to="/profile" className="flex items-center p-2 hover:bg-gray-100">
-            <User className="w-5 h-5 mr-2" /> Profile
-          </Link>
-          <Link to="/dashboard/edit-profile" className="flex items-center p-2 hover:bg-gray-100">
-            <Edit className="w-5 h-5 mr-2" /> Edit Profile
-          </Link>
-          <Link to="/profile/change-password" className="flex items-center p-2 hover:bg-gray-100">
-            <Lock className="w-5 h-5 mr-2" /> Change Password
-          </Link>
+          {links.map((item, index) => (
+            <Link
+              key={index}
+              to={item.link}
+              className="flex items-center p-2 hover:bg-gray-100"
+            >
+              {item.icon} {item.name}
+            </Link>
+          ))}
           <button
             onClick={handleLogout}
             className="w-full text-left flex items-center p-2 hover:bg-gray-100"
