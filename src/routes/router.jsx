@@ -21,6 +21,8 @@ import Profile from "../Components/Molecules/Profile/Profile";
 import NotFoundPage from "../Components/Organism/NotFoundPage";
 import { useSelector } from "react-redux";
 import UserDashboardPage from "../Components/Organism/UserDashboardPage";
+import ClientProfilePage from "../Components/Organism/Client/ClientProfilePage";
+import ClientEditOwnProfileForm from "../Components/Molecules/ClientEditOwnProfileForm/ClientEditOwnProfileForm";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -30,9 +32,9 @@ const ResetPasswordWrapper = () => {
 const userRoutes = {
   path: "/user",
   element: (
-    <ProtectedDashboardUserRoute>
+    <ProtectedDashboardRoute>
       <UserDashboardLayout />
-    </ProtectedDashboardUserRoute>
+    </ProtectedDashboardRoute>
   ),
   children: [
     {
@@ -41,11 +43,11 @@ const userRoutes = {
     },
     {
       path: "profile",
-      element: <Profile />,
+      element: <ClientProfilePage />,
     },
     {
       path: "edit-profile",
-      element: <Profile />,
+      element: <ClientEditOwnProfileForm />,
     },
     {
       path: "reset-password",

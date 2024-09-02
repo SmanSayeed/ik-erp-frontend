@@ -1,42 +1,30 @@
-// src/Components/Auth/ProtectedRoute.jsx
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { toast } from 'react-toastify'; // Import toast for error messages
+import { showErrorToast } from '../../helpers/toastHelper';
 
 const ProtectedRoute = ({ children }) => {
   const token = useSelector((state) => state.auth.token) || localStorage.getItem('token');
   const role = useSelector((state) => state.auth.role) || localStorage.getItem('role');
   const location = useLocation();
 
-  // Function to show toast messages
-  const showToast = (message) => {
-    toast.error(message);
-  };
+  // if (!token) {
+  //   return <Navigate to="/login" />;
+  // }
 
-  // Handle unauthorized access
-  if (token && role) {
-    if (role === 'admin') {
-      if (location.pathname.startsWith('/user/dashboard')) {
-        showToast('404 not valid page');
-        // return <Navigate to="/" />;
-      }
-      return children;
-    } 
-    
-    if (role === 'client') {
-      if (location.pathname.startsWith('/admin/dashboard')) {
-        showToast('404 not valid page');
-        // return <Navigate to="/" />;
-      }
-      return children;
+  // Handle unauthorized access to specific dashboards
+  if(token){
+    if (role === 'admin' && location.pathname.startsWith('/user')) {
+      showErrorToast('404 not valid page');
+      return <Navigate to="/" />;
+    }
+  
+    if (role === 'client' && location.pathname.startsWith('/admin')) {
+      showErrorToast('404 not valid page');
+      return <Navigate to="/" />;
     }
   }
-
-  // Handle cases where the token exists but the route is not valid
-  // if (!token) {
-  //   return <Navigate to="/" />;
-  // }
+ 
 
   return children;
 };
