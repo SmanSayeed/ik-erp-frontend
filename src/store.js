@@ -9,12 +9,14 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import { clientsApi } from './services/clientsApi';
 
 const rootReducer = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
   [passwordApi.reducerPath]: passwordApi.reducer,
   [registerApi.reducerPath]: registerApi.reducer,
   [usersApi.reducerPath]: usersApi.reducer,
+  [clientsApi.reducerPath]: clientsApi.reducer,
   auth: authReducer,
   userData: userDataReducer, // Add the userData reducer
 });
@@ -38,7 +40,8 @@ export const store = configureStore({
       authApi.middleware,
       registerApi.middleware,
       usersApi.middleware,
-      passwordApi.middleware
+      passwordApi.middleware,
+      clientsApi.middleware
     ),
 });
 
