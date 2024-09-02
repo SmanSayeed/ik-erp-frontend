@@ -30,9 +30,9 @@ const ResetPasswordWrapper = () => {
 const userRoutes = {
   path: "/user",
   element: (
-    <ProtectedDashboardUserRoute>
+    <ProtectedDashboardRoute>
       <UserDashboardLayout />
-    </ProtectedDashboardUserRoute>
+    </ProtectedDashboardRoute>
   ),
   children: [
     {
