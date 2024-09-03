@@ -3,12 +3,13 @@ import { Dialog, DialogContent, DialogOverlay } from '@radix-ui/react-dialog'; /
 
 function Modal({ isOpen, onClose, title, children }) {
   return (
+    <>
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogOverlay className="fixed inset-0 bg-black bg-opacity-50 transition-opacity" />
       <DialogContent className="fixed inset-0 flex items-center justify-center p-4">
-        <div className="bg-white rounded-lg shadow-lg w-full max-w-lg">
+        <div className="bg-white rounded-lg shadow-lg w-full max-w-lg h-[500px] overflow-auto">
           {/* Modal Header */}
-          <div className="flex justify-between items-center p-4 border-b border-gray-200">
+          <div className="flex justify-between items-center p-4 border-b border-gray-200 ">
             <h2 className="text-xl font-semibold">{title}</h2>
             <button onClick={onClose} className="text-gray-500 hover:text-gray-800">
               <X className="w-5 h-5" />
@@ -29,6 +30,8 @@ function Modal({ isOpen, onClose, title, children }) {
         </div>
       </DialogContent>
     </Dialog>
+    </>
+    
   );
 }
 
