@@ -14,7 +14,7 @@ import ProtectedRoute from './Components/Auth/ProtectedRoute';
 import { loginLoader } from './loaders/loginloader';
 import { registerLoader } from './loaders/registerloader';
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify
-import RegisterPage from './Components/Organism/RegisterPage';
+import RegisterPage from './Components/Organism/ClientRegisterPage.jsx';
 import EmailVerificationPage from './Components/Organism/EmailVerificationPage';
 import UsersListPage from './Components/Organism/Admin/UsersListPage';
 import router from './routes/router.jsx';

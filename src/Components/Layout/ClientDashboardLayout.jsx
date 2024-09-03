@@ -2,10 +2,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 import Header from '../Molecules/Header/Header';
-import UserDashboardSidebar from '../Molecules/Sidebar/UserDashBoardSidebar';
+import ClientDashboardSidebar from '../Molecules/Sidebar/ClientDashboardSidebar';
 import UserHeader from '../Molecules/Header/UserHeader';
 
-const UserDashboardLayout = () => {
+const ClientDashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
 
@@ -28,7 +28,7 @@ const UserDashboardLayout = () => {
 
   return (
     <div className="flex h-screen overflow-hidden">
-      <UserDashboardSidebar
+      <ClientDashboardSidebar
         isSidebarOpen={isSidebarOpen}
         toggleSidebar={toggleSidebar}
         sidebarRef={sidebarRef}
@@ -46,4 +46,4 @@ const UserDashboardLayout = () => {
   );
 };
 
-export default UserDashboardLayout;
+export default ClientDashboardLayout;

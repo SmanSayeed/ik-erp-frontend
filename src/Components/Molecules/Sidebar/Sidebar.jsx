@@ -29,6 +29,11 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
             icon={<Users className={iconClass} />}
           />
           <SidebarMenuItem
+            to={routes.adminDashboardClients.link}
+            title="Clients"
+            icon={<Users className={iconClass} />}
+          />
+          <SidebarMenuItem
             to={routes.adminDashboardUsers.link}
             title="Devices"
             icon={<Laptop className={iconClass} />}

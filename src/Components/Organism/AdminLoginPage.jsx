@@ -1,19 +1,17 @@
 import {
-  useLoginMutation,
+  useAdminLoginMutation,
   useResendEmailMutation,
 } from "../../services/authApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../features/authSlice";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { toast } from "react-toastify";
 import LoginForm from "../Molecules/LoginForm/LoginForm";
-import Loader from "../Atoms/Loader/Loader";
 import { useState } from "react";
 import AuthLayout from "../Layout/AuthLayout";
 import StyledLink from "../Atoms/StyledLink/StyledLink";
-import ROUTES from "../../routes/routesLink";
 import routes from "../../routes/routesLink";
 
 const validationSchema = Yup.object({
@@ -21,9 +19,9 @@ const validationSchema = Yup.object({
   password: Yup.string().required("Required"),
 });
 
-function LoginPage() {
+function AdminLoginPage() {
   const [resendLink, setResendLink] = useState(false);
-  const [login, { isLoading }] = useLoginMutation();
+  const [login, { isLoading }] = useAdminLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [resendEmail] = useResendEmailMutation();
@@ -50,7 +48,7 @@ function LoginPage() {
           toast.success("Login successful!");
           console.log("role======== ",role);
           if(role === "admin") navigate(routes.adminDashboard.link);
-          if(role==="client") navigate(routes.userDashboard.link);
+          if(role==="client") navigate(routes.ClientDashboard.link);
         } else {
           toast.error("Failed to login. Please try again.");
         }
@@ -77,7 +75,7 @@ function LoginPage() {
     <>
       <AuthLayout>
         <div className="flex flex-col gap-2 justify-center items-center">
-        <h2 className="text-3xl font-semibold text-center mb-1">Login</h2>
+        <h2 className="text-3xl font-semibold text-center mb-1">Admin Login</h2>
         <StyledLink to={routes.register.link}>{routes.register.title}</StyledLink>
         </div>
      
@@ -100,4 +98,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default AdminLoginPage;

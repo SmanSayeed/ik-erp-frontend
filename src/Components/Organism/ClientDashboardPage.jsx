@@ -1,6 +1,6 @@
 // src/Components/Pages/Dashboard.jsx
 
-function UserDashboardPage() {
+function ClientDashboardPage() {
   return (
     <div>
       <h2 className="text-2xl font-bold">Welcome to the Client Dashboard</h2>
@@ -9,4 +9,4 @@ function UserDashboardPage() {
   );
 }
 
-export default UserDashboardPage;
+export default ClientDashboardPage;

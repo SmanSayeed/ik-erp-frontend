@@ -23,9 +23,9 @@ const ProfileDropdown = ({ profileImage }) => {
         { name: 'Change Password', icon: <Lock className="w-5 h-5 mr-2" />, link: routes.adminDashboardResetPassword?.link }
       ]
     : [
-        { name: 'Profile', icon: <User className="w-5 h-5 mr-2" />, link: routes.userDashboardProfile.link },
-        { name: 'Edit Profile', icon: <Edit className="w-5 h-5 mr-2" />, link: routes.userDashboardEditProfile?.link },
-        { name: 'Reset Password', icon: <Lock className="w-5 h-5 mr-2" />, link: routes.userDashboardResetPassword?.link }
+        { name: 'Profile', icon: <User className="w-5 h-5 mr-2" />, link: routes.ClientDashboardProfile.link },
+        { name: 'Edit Profile', icon: <Edit className="w-5 h-5 mr-2" />, link: routes.ClientDashboardEditProfile?.link },
+        { name: 'Reset Password', icon: <Lock className="w-5 h-5 mr-2" />, link: routes.ClientDashboardResetPassword?.link }
       ];
 
   const defaultImage =

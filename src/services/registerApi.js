@@ -9,7 +9,17 @@ export const registerApi = createApi({
     baseUrl: apiConfig.baseUrl,
   }),
   endpoints: (builder) => ({
-    register: builder.mutation({
+    clientRegister: builder.mutation({
+      query: (userData) => {
+        console.log(userData);
+        return {
+          url: '/client/register',
+          method: 'POST',
+          data: userData, // Change `body` to `data`
+        };
+      },
+    }),
+    userRegister: builder.mutation({
       query: (userData) => {
         console.log(userData);
         return {
@@ -22,4 +32,4 @@ export const registerApi = createApi({
   }),
 });
 
-export const { useRegisterMutation } = registerApi;
+export const { useUserRegisterMutation, useClientRegisterMutation } = registerApi;

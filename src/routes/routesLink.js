@@ -1,8 +1,8 @@
 
 
 const routes = {
-  userDashboard: {
-    link: '/user/dashboard',
+  ClientDashboard: {
+    link: '/client/dashboard',
     title: 'Dashboard',
   },
   login: {
@@ -26,16 +26,16 @@ const routes = {
     title: 'Verify Email',
   },
   // -------------- User -----------------
-  userDashboardProfile: {
-    link: `/user/profile`,
+  ClientDashboardProfile: {
+    link: `/client/profile`,
     title: `User Profile`,
   },
-  userDashboardEditProfile: {
-    link: '/user/edit-profile',
+  ClientDashboardEditProfile: {
+    link: '/client/edit-profile',
     title: 'Edit Profile',
   },
-  userDashboardResetPassword: {
-    link: '/user/reset-password',
+  ClientDashboardResetPassword: {
+    link: '/client/reset-password',
     title: 'Reset Password',
   },
   
@@ -48,13 +48,21 @@ const routes = {
     link: `/admin/profile`,
     title: `Admin Profile`,
   },
-  adminDashboardUserProfile: (userId) => ({
-    link: `/admin/users/${userId}`,
-    title: `Admin User Profile ${userId}`,
+  adminDashboardUserProfile: (clientId) => ({
+    link: `/admin/users/${clientId}`,
+    title: `Admin User Profile ${clientId}`,
   }),
   adminDashboardUsers: {
     link: '/admin/users',
     title: 'Users',
+  },
+  adminDashboardClientProfile: (clientId) => ({
+    link: `/admin/clients/${clientId}`,
+    title: `Admin User Profile ${clientId}`,
+  }),
+  adminDashboardClients: {
+    link: '/admin/clients',
+    title: 'Clients',
   },
   adminDashboardEditProfile: {
     link: '/admin/edit-profile',

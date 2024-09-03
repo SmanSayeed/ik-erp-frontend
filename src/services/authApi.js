@@ -9,9 +9,16 @@ export const authApi = createApi({
     baseUrl: apiConfig.baseUrl,
   }),
   endpoints: (builder) => ({
-    login: builder.mutation({
+    adminLogin: builder.mutation({
       query: (credentials) => ({
         url: '/login',
+        method: 'POST',
+        data: credentials,
+      }),
+    }),
+    clientLogin: builder.mutation({
+      query: (credentials) => ({
+        url: '/client/login',
         method: 'POST',
         data: credentials,
       }),
@@ -32,4 +39,4 @@ export const authApi = createApi({
   }),
 });
 
-export const { useLoginMutation, useResendEmailMutation, useLogoutMutation } = authApi;
+export const {useLogoutMutation, useAdminLoginMutation, useResendEmailMutation, useClientLoginMutation } = authApi;

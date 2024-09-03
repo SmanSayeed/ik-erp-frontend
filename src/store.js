@@ -10,6 +10,9 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import { clientsApi } from './services/clientsApi';
+import { clientAuthReducer } from './features/clientAuthSlice';
+import { clientDataReducer } from './features/clientDataSlice';
+import { adminManagesClientsApi } from './services/adminManagesClientsApi';
 
 const rootReducer = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
@@ -17,14 +20,17 @@ const rootReducer = combineReducers({
   [registerApi.reducerPath]: registerApi.reducer,
   [usersApi.reducerPath]: usersApi.reducer,
   [clientsApi.reducerPath]: clientsApi.reducer,
+  [adminManagesClientsApi.reducerPath]: adminManagesClientsApi.reducer,
   auth: authReducer,
-  userData: userDataReducer, // Add the userData reducer
+  clientAuth:clientAuthReducer,
+  userData: userDataReducer, 
+  clientData: clientDataReducer, 
 });
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'userData'], // Whitelist both slices
+  whitelist: ['auth', 'userData','clientData','clientAuth'], // Whitelist both slices
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -41,7 +47,8 @@ export const store = configureStore({
       registerApi.middleware,
       usersApi.middleware,
       passwordApi.middleware,
-      clientsApi.middleware
+      clientsApi.middleware,
+      adminManagesClientsApi.middleware
     ),
 });
 

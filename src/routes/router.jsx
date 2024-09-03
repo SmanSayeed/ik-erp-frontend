@@ -7,7 +7,6 @@ import DashboardLayout from "../Components/Layout/DashboardLayout";
 import ProtectedRoute from "../Components/Auth/ProtectedRoute";
 import { loginLoader } from "../loaders/loginloader";
 import { registerLoader } from "../loaders/registerloader";
-import RegisterPage from "../Components/Organism/RegisterPage";
 import EmailVerificationPage from "../Components/Organism/EmailVerificationPage";
 import UsersListPage from "../Components/Organism/Admin/UsersListPage";
 import ProtectedDashboardRoute from "../Components/Auth/ProtectedDashboardRoute";
@@ -15,14 +14,18 @@ import EditProfile from "../Components/Molecules/EditProfile/EditProfile";
 import ResetPassword from "../Components/Molecules/ResetPassword/ResetPassword";
 import ForgotPassword from "../Components/Molecules/ResetPassword/ForgotPassword";
 import ResetPasswordByEmail from "../Components/Molecules/ResetPassword/ResetPasswordByEmail";
-import ProtectedDashboardUserRoute from "../Components/Auth/ProtectedDashboardUserRoute";
-import UserDashboardLayout from "../Components/Layout/UserDashboardLayout";
+import ClientDashboardLayout from "../Components/Layout/ClientDashboardLayout";
 import Profile from "../Components/Molecules/Profile/Profile";
 import NotFoundPage from "../Components/Organism/NotFoundPage";
 import { useSelector } from "react-redux";
-import UserDashboardPage from "../Components/Organism/UserDashboardPage";
+import ClientDashboardPage from "../Components/Organism/ClientDashboardPage";
 import ClientProfilePage from "../Components/Organism/Client/ClientProfilePage";
 import ClientEditOwnProfileForm from "../Components/Molecules/ClientEditOwnProfileForm/ClientEditOwnProfileForm";
+import ClientRegisterPage from "../Components/Organism/ClientRegisterPage";
+import AdminProtectedRoute from "../Components/Auth/AdminProtectedRoute";
+import ClientLoginPage from "../Components/Organism/CLientLoginPage";
+import AdminLoginPage from "../Components/Organism/AdminLoginPage";
+import ClientsListPage from "../Components/Organism/Admin/ClientsListPage";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -30,16 +33,16 @@ const ResetPasswordWrapper = () => {
 };
 
 const userRoutes = {
-  path: "/user",
+  path: "/client",
   element: (
     <ProtectedDashboardRoute>
-      <UserDashboardLayout />
+      <ClientDashboardLayout />
     </ProtectedDashboardRoute>
   ),
   children: [
     {
       path: "dashboard",
-      element: <UserDashboardPage />,
+      element: <ClientDashboardPage />,
     },
     {
       path: "profile",
@@ -81,6 +84,10 @@ const adminDashboardRoutes = {
       element: <UsersListPage />,
     },
     {
+      path: "clients",
+      element: <ClientsListPage />,
+    },
+    {
       path: "edit-profile",
       element: <EditProfile />,
     },
@@ -106,15 +113,25 @@ const router = createBrowserRouter([
     path: "/login",
     element: (
       <ProtectedRoute>
-        <App />
+        <ClientLoginPage />
       </ProtectedRoute>
     ),
     loader: loginLoader,
     errorElement: <ErrorPage />,
   },
   {
+    path: "/login/admin",
+    element: (
+      <AdminProtectedRoute>
+        <AdminLoginPage />
+      </AdminProtectedRoute>
+    ),
+    loader: loginLoader,
+    errorElement: <ErrorPage />,
+  },
+  {
     path: "/register",
-    element: <RegisterPage />,
+    element: <ClientRegisterPage />,
     loader: registerLoader,
     errorElement: <ErrorPage />,
   },

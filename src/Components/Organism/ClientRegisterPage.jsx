@@ -1,18 +1,18 @@
 import { useState } from 'react';
-import { useRegisterMutation } from '../../services/registerApi';
+import { useClientRegisterMutation } from '../../services/registerApi';
 import { toast } from 'react-toastify';
 import RegisterForm from '../Molecules/RegisterForm/RegisterForm';
 import AuthLayout from '../Layout/AuthLayout';
 import StyledLink from '../Atoms/StyledLink/StyledLink';
 import routes from '../../routes/routesLink';
 
-function RegisterPage() {
+function ClientRegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [errors, setErrors] = useState({});
-  const [register, { isLoading }] = useRegisterMutation();
+  const [register, { isLoading }] = useClientRegisterMutation();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -61,4 +61,4 @@ function RegisterPage() {
   );
 }
 
-export default RegisterPage;
+export default ClientRegisterPage;

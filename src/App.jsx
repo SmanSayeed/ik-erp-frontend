@@ -1,13 +1,13 @@
 import './App.css';
-import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
-import LoginPage from './Components/Organism/LoginPage';
+import 'react-toastify/dist/ReactToastify.css'; 
+import ClientLoginPage from './Components/Organism/CLientLoginPage';
 
 function App() {
 
   return (
     <>
       <div className=''>
-        <LoginPage />
+        <ClientLoginPage />
       </div>
     </>
   );

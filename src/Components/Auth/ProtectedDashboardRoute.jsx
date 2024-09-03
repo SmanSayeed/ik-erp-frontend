@@ -17,7 +17,7 @@ if(token){
   if (role === 'admin' && location.pathname.startsWith('/admin')) {
     return children;
   }
-  else if (role === 'client' && location.pathname.startsWith('/user')) {
+  else if (role === 'client' && location.pathname.startsWith('/client')) {
     return children;
   }
   else{
@@ -25,7 +25,7 @@ if(token){
     if(role=='admin'){
       return <Navigate to={routes.adminDashboard.link} />;
     }else if(role=='client'){
-      return <Navigate to={routes.userDashboard.link} />;
+      return <Navigate to={routes.ClientDashboard.link} />;
     }else{
       return <Navigate to="/" />;
     }
