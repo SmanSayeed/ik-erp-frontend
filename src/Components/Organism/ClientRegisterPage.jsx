@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import RegisterForm from '../Molecules/RegisterForm/RegisterForm';
 import AuthLayout from '../Layout/AuthLayout';
 import StyledLink from '../Atoms/StyledLink/StyledLink';
-import routes from '../../routes/routesLink';
+import routes from '../../routes/routes';
 
 function ClientRegisterPage() {
   const [name, setName] = useState('');

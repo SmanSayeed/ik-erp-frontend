@@ -25,10 +25,10 @@ const routes = {
     link: '/verify-email',
     title: 'Verify Email',
   },
-  // -------------- User -----------------
+  // -------------- Client -----------------
   ClientDashboardProfile: {
     link: `/client/profile`,
-    title: `User Profile`,
+    title: `Client Profile`,
   },
   ClientDashboardEditProfile: {
     link: '/client/edit-profile',
@@ -37,6 +37,10 @@ const routes = {
   ClientDashboardResetPassword: {
     link: '/client/reset-password',
     title: 'Reset Password',
+  },
+  ClientBecomeASeller:{
+    link: '/client/become-seller',
+    title: 'Become A Seller',
   },
   
   // --------------- Admin -----------------

@@ -2,8 +2,9 @@
 import { Menu, Bell } from 'lucide-react'; // Icons
 import { Button } from '@/components/ui/button';
 import ProfileDropdown from '../ProfileDropdown/ProfileDropdown';
-
-const UserHeader = ({ isSidebarOpen, toggleSidebar }) => {
+import { Link } from 'react-router-dom';
+import routes from '../../../routes/routes';
+const ClientHeader = ({ isSidebarOpen, toggleSidebar }) => {
   return (
     <header className="bg-blue-200 shadow p-4 flex justify-between items-center">
       <Button variant="ghost" className="md:hidden" onClick={toggleSidebar}>
@@ -11,6 +12,12 @@ const UserHeader = ({ isSidebarOpen, toggleSidebar }) => {
       </Button>
       <h1 className="text-xl font-semibold hidden md:block">Client Dashboard</h1>
       <div className="flex items-center space-x-4">
+        <Link to='/client/become-seller'>
+          <Button>
+            Become a seller
+          </Button>
+        </Link>
+      
         <Button variant="ghost" className="relative md:block hidden">
           <Bell className="w-6 h-6" />
           <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-600" />
@@ -21,4 +28,4 @@ const UserHeader = ({ isSidebarOpen, toggleSidebar }) => {
   );
 };
 
-export default UserHeader;
+export default ClientHeader;

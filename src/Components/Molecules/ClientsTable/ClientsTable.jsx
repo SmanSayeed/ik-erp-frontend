@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import StyledLink from "../../Atoms/StyledLink/StyledLink";
-import routes from "../../../routes/routesLink";
+import routes from "../../../routes/routes";
 
 const ClientsTable = ({ data, onEdit, onDelete }) => {
   return (

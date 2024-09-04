@@ -6,7 +6,7 @@ import { logout as logoutAction } from '../../../features/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useLogoutMutation } from '@/services/authApi';
-import routes from '../../../routes/routesLink';
+import routes from '../../../routes/routes';
 
 const ProfileDropdown = ({ profileImage }) => {
   const [isOpen, setIsOpen] = useState(false);

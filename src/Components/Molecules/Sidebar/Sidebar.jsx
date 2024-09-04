@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Laptop, MapPinIcon, DockIcon, Users, Home } from "lucide-react"; // Icons
 import SidebarMenuItem from "../../Atoms/SidebarMenuItem/SidebarMenuItem"; // Import the SidebarMenuItem component
-import routes from "../../../routes/routesLink";
+import routes from "../../../routes/routes";
 
 const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
   const iconClass = "w-5 h-5 mr-3";

@@ -2,15 +2,15 @@ import React from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { toast } from 'react-toastify';
-import { useResetPasswordMutation } from '@/services/usersApi';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
 import StyledLink from '../../Atoms/StyledLink/StyledLink';
 import routes from '../../../routes/routes';
+import { useClientResetPasswordMutation } from '../../../services/clientsApi';
 
-const ResetPassword = ({ userId }) => {
-  const [resetPassword, { isLoading }] = useResetPasswordMutation();
+const ClientResetPassword = () => {
+  const [resetPassword, { isLoading }] = useClientResetPasswordMutation();
 
   const formik = useFormik({
     initialValues: {
@@ -29,7 +29,7 @@ const ResetPassword = ({ userId }) => {
     }),
     onSubmit: async (values) => {
       try {
-        const response = await resetPassword({ id: userId, data: values }).unwrap();
+        const response = await resetPassword({ data: values }).unwrap();
         toast.success(response.message || 'Password updated successfully');
       } catch (err) {
         if (err.status_code === 422) {
@@ -108,4 +108,4 @@ const ResetPassword = ({ userId }) => {
   );
 };
 
-export default ResetPassword;
+export default ClientResetPassword;

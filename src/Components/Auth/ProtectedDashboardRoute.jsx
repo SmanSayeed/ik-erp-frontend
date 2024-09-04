@@ -2,7 +2,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { showErrorToast } from '../../helpers/toastHelper';
-import routes from '../../routes/routesLink';
+import routes from '../../routes/routes';
 
 function ProtectedDashboardRoute({ children }) {
   const token = useSelector((state) => state.auth.token) || localStorage.getItem('token');

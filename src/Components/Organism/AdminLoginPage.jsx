@@ -12,7 +12,7 @@ import LoginForm from "../Molecules/LoginForm/LoginForm";
 import { useState } from "react";
 import AuthLayout from "../Layout/AuthLayout";
 import StyledLink from "../Atoms/StyledLink/StyledLink";
-import routes from "../../routes/routesLink";
+import routes from "../../routes/routes";
 
 const validationSchema = Yup.object({
   email: Yup.string().email("Invalid email address").required("Required"),

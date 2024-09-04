@@ -26,13 +26,19 @@ import AdminProtectedRoute from "../Components/Auth/AdminProtectedRoute";
 import ClientLoginPage from "../Components/Organism/CLientLoginPage";
 import AdminLoginPage from "../Components/Organism/AdminLoginPage";
 import ClientsListPage from "../Components/Organism/Admin/ClientsListPage";
+import ClientResetPassword from "../Components/Molecules/ResetPassword/ClientResetPassword";
+import ClientBecomeASeller from "../Components/Molecules/ClientBecomeASeller/ClientBecomeASeller";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
   return <ResetPassword userId={user?.id} />;
 };
 
-const userRoutes = {
+const ResetClientPasswordWrapper = () => {
+  return <ClientResetPassword />;
+};
+
+const clientRoutes = {
   path: "/client",
   element: (
     <ProtectedDashboardRoute>
@@ -54,7 +60,11 @@ const userRoutes = {
     },
     {
       path: "reset-password",
-      element: <ResetPasswordWrapper />,
+      element: <ResetClientPasswordWrapper />,
+    },
+    {
+      path: "become-seller",
+      element: <ClientBecomeASeller />,
     },
   ],
 };
@@ -150,7 +160,7 @@ const router = createBrowserRouter([
     path: "/verify-email",
     element: <EmailVerificationPage />,
   },
-  userRoutes,
+  clientRoutes,
   adminDashboardRoutes,
   {
     path: "/not-found",

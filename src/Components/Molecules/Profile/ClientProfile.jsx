@@ -1,15 +1,12 @@
 import React from 'react';
-import { useGetProfileQuery } from '../../../services/usersApi';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../ui/card';
-import {Skeleton} from '../../ui/skeleton';
+import { Skeleton } from '../../ui/skeleton';
+import { useClientGetProfileQuery } from '../../../services/clientsApi';
 
 export default function ClientProfile() {
-  const { id } = useParams(); // Get the user ID from the URL (if viewing another user's profile)
-  const { user } = useSelector((state) => state.auth); // Get the authenticated user's info
-
-  const { data, error, isLoading } = useGetProfileQuery(id);
+  const { client } = useSelector((state) => state.clientAuth); // Get the authenticated client's info
+  const { data, error, isLoading } = useClientGetProfileQuery();
 
   if (isLoading) {
     return <Skeleton className="h-48" />;
@@ -19,7 +16,7 @@ export default function ClientProfile() {
     return <div>Error loading profile</div>;
   }
 
-  const profileData = data?.data || user?.user;
+  const profileData = data?.data?.client || client;
 
   return (
     <div className="max-w-lg mx-auto p-4">
@@ -30,10 +27,14 @@ export default function ClientProfile() {
         </CardHeader>
         <CardContent>
           <div>
-            <p><strong>Role:</strong> {profileData.role}</p>
+            <p><strong>Address:</strong> {profileData.address || 'N/A'}</p>
+            <p><strong>Phone:</strong> {profileData.phone || 'N/A'}</p>
+            <p><strong>VIP Status:</strong> {profileData.is_vip ? 'Yes' : 'No'}</p>
+            <p><strong>VAT Slab:</strong> {profileData.vat_slab || 'N/A'}</p>
+            <p><strong>GBS Information:</strong> {profileData.gbs_information || 'N/A'}</p>
             <p><strong>Status:</strong> {profileData.status ? 'Active' : 'Inactive'}</p>
-            <p><strong>Email Verified:</strong> {profileData.email_verified_at ? 'Yes' : 'No'}</p>
             <p><strong>Created At:</strong> {new Date(profileData.created_at).toLocaleDateString()}</p>
+            <p><strong>Updated At:</strong> {new Date(profileData.updated_at).toLocaleDateString()}</p>
           </div>
         </CardContent>
       </Card>

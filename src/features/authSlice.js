@@ -4,16 +4,20 @@ import storage from 'redux-persist/lib/storage';
 
 const authSlice = createSlice({
   name: 'auth',
-  initialState: { user: null, token: null, role: null },
+  initialState: { user: null,client:null,seller:null, token: null, role: null },
   reducers: {
     setCredentials: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      state.role = action.payload.role;
+      state.user = action.payload.user || state.user;
+      state.client = action.payload.client || state.client;
+      state.seller = action.payload.seller || state.seller;
+      state.token = action.payload.token || state.token;
+      state.role = action.payload.role || state.role;
       console.log('Credentials set: sss', state.user, state.token, state.role);
     },
     logout: (state) => {
       state.user = null;
+      state.client = null;
+      state.seller = null;
       state.token = null;
       state.role = null;
     },
@@ -23,7 +27,7 @@ const authSlice = createSlice({
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['user', 'token'], // Ensure both `user` and `token` are persisted
+  whitelist: ['user','token','client'], // Ensure both `user` and `token` are persisted
 };
 
 export const { setCredentials, logout } = authSlice.actions;

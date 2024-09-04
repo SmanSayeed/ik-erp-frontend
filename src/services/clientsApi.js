@@ -16,20 +16,48 @@ export const clientsApi = createApi({
         data,
       }),
     }),
-    resetPassword: builder.mutation({
-      query: ({ id, data }) => ({
-        url: `/client/${id}/password`,
+    clientResetPassword: builder.mutation({
+      query: ({ data }) => ({
+        url: `/client/reset-password`,
         method: 'PUT',
         data,
       }),
     }),
-    getProfile: builder.query({
+    clientGetProfile: builder.query({
       query: () => ({
         url: `/client/profile`,
         method: 'GET',
       }),
     }),
+   
+    becomeSeller: builder.mutation({
+      query: (data) => ({
+        url: `/client/become-seller/${data.clientId}`,
+        method: 'POST',
+        data,
+      }),
+    }),
+    getSellerInfo: builder.query({
+      query: (clientId) => ({
+        url: `/client/seller/${clientId}`,
+        method: 'GET',
+      }),
+    }),
+    updateSellerInfo: builder.mutation({
+      query: ({ clientId, data }) => ({
+        url: `/client/seller/${clientId}`,
+        method: 'PUT',
+        data,
+      }),
+    }),
   }),
 });
 
-export const { useGetUsersQuery, useEditUserMutation, useDeleteUserMutation, useUpdateProfileMutation,  useResetPasswordMutation , useGetProfileQuery } = clientsApi;
+export const {
+  useUpdateProfileMutation,
+  useClientResetPasswordMutation,
+  useClientGetProfileQuery,
+  useBecomeSellerMutation,
+  useGetSellerInfoQuery,
+  useUpdateSellerInfoMutation,
+} = clientsApi;
