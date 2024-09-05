@@ -3,19 +3,20 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 const EditClientForm = ({ client, onSubmit }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const updatedClient = Object.fromEntries(formData.entries());
+    // Convert checkbox values to boolean
+    updatedClient.email_verified_at = formData.get('email_verified_at') === 'on';
+    updatedClient.status = formData.get('status') === 'on';
+    updatedClient.is_seller = formData.get('is_seller') === 'on';
+    updatedClient.is_vip = formData.get('is_vip') === 'on';
+    onSubmit(updatedClient);
+  };
+
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        const formData = new FormData(e.target);
-        const updatedClient = Object.fromEntries(formData.entries());
-        // Convert checkbox values to boolean
-        updatedClient.email_verified_at = formData.get('email_verified_at') === 'on';
-        updatedClient.status = formData.get('status') === 'on';
-        onSubmit(updatedClient);
-      }}
-      className="space-y-4"
-    >
+    <form onSubmit={handleSubmit} className="space-y-4">
       <div>
         <label>Email: {client.email}</label>
       </div>
@@ -145,8 +146,8 @@ const EditClientForm = ({ client, onSubmit }) => {
           />
         </div>
       </div>
-      <div className="flex justify-end">
-        <Button type="submit">Save</Button>
+      <div className="flex items-center justify-end">
+        <Button type="submit" className="ml-3">Save</Button>
       </div>
     </form>
   );

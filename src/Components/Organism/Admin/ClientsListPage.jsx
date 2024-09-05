@@ -71,15 +71,9 @@ const ClientsListPage = () => {
 
   const handleSubmitEdit = async (updatedClient) => {
     try {
-      const { name, role, email_verified_at, status } = updatedClient;
       const res = await updateClientInfo({
         id: selectedClient.id,
-        data: { 
-            name, 
-            role, 
-            email_verified_at: email_verified_at === "on" ? true : false, 
-            status: status === "on" ? true : false 
-        },
+        data: updatedClient, // Send the entire updatedClient object
       }).unwrap();
       toast.success(res?.message || "Client updated successfully!");
       closeModal();
