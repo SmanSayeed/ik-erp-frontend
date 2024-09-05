@@ -28,6 +28,7 @@ import AdminLoginPage from "../Components/Organism/AdminLoginPage";
 import ClientsListPage from "../Components/Organism/Admin/ClientsListPage";
 import ClientResetPassword from "../Components/Molecules/ResetPassword/ClientResetPassword";
 import ClientBecomeASeller from "../Components/Molecules/ClientBecomeASeller/ClientBecomeASeller";
+import AdminManageSellerProfile from "../Components/Organism/Admin/AdminManageSellerProfile";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -96,6 +97,10 @@ const adminDashboardRoutes = {
     {
       path: "clients",
       element: <ClientsListPage />,
+    },
+    {
+      path: "manage-seller/:clientId",
+      element: <AdminManageSellerProfile />,
     },
     {
       path: "edit-profile",

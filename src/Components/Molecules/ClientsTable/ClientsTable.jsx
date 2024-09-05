@@ -13,10 +13,11 @@ const ClientsTable = ({ data, onEdit, onDelete }) => {
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
-            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Role</th>
+           
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>       
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email verified</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Seller Profile</th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
@@ -30,7 +31,7 @@ const ClientsTable = ({ data, onEdit, onDelete }) => {
                 </td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.name}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.email}</td>
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.role}</td>
+              
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.email_verified_at ? "Yes" : "No"}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.status ? "Active" : "Inactive"}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -42,6 +43,23 @@ const ClientsTable = ({ data, onEdit, onDelete }) => {
                   Delete
                 </Button>
               </td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.is_seller ? 
+              (
+              <>
+               <Link to={`/admin/manage-seller/${client.id}`} className="mr-2">
+               <Button
+                  variant=""
+                >
+                   Manage Seller
+                </Button>
+              
+               </Link>
+
+              </>
+              ) : 
+              (<>
+              No
+              </>)}</td>
             </tr>
           ))}
         </tbody>
