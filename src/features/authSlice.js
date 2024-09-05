@@ -27,7 +27,7 @@ const authSlice = createSlice({
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['user','token','client'], // Ensure both `user` and `token` are persisted
+  whitelist: ['user','token','client','seller'], // Ensure both `user` and `token` are persisted
 };
 
 export const { setCredentials, logout } = authSlice.actions;

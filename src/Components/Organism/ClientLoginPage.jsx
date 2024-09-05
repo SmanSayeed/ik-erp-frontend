@@ -38,7 +38,11 @@ function ClientLoginPage() {
         const token = clientData.data.token;
         const role = clientData.data?.client?.role || "client"; // this role is important to check if user is admin or not
         const client = clientData.data?.client;
-        const toRedux = { token, role, client };
+        const seller = clientData.data?.client?.seller || null;
+        let toRedux = { token, role, client };
+        if(seller){
+          toRedux = { token, role, client, seller };
+        }
         console.log('clientData',toRedux);
        
         if (clientData.data.token) {
@@ -48,7 +52,9 @@ function ClientLoginPage() {
           toast.success("Login successful!");
           console.log("role======== ",role);
           if(role === "admin") navigate(routes.adminDashboard.link);
-          if(role==="client") navigate(routes.ClientDashboard.link);
+          if(role==="client"){       
+            navigate(routes.ClientDashboard.link);
+          }
         } else {
           toast.error("Failed to login. Please try again.");
         }
