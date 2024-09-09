@@ -29,6 +29,7 @@ import ClientsListPage from "../Components/Organism/Admin/ClientsListPage";
 import ClientResetPassword from "../Components/Molecules/ResetPassword/ClientResetPassword";
 import ClientBecomeASeller from "../Components/Molecules/ClientBecomeASeller/ClientBecomeASeller";
 import AdminManageSellerProfile from "../Components/Organism/Admin/AdminManageSellerProfile";
+import DeviceList from "../Components/Organism/Device/DeviceList";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -109,6 +110,10 @@ const adminDashboardRoutes = {
     {
       path: "reset-password",
       element: <ResetPasswordWrapper />,
+    },
+    {
+      path: "devices",
+      element: <DeviceList />,
     },
   ],
 };

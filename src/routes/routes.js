@@ -76,6 +76,10 @@ const routes = {
     link: '/admin/reset-password',
     title: 'Reset Password',
   },
+  deviceList:{
+    link:'/admin/devices',
+    title:'Device List'
+  }
 };
 
 export default routes;

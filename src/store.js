@@ -13,6 +13,7 @@ import { clientsApi } from './services/clientsApi';
 import { clientAuthReducer } from './features/clientAuthSlice';
 import { clientDataReducer } from './features/clientDataSlice';
 import { adminManagesClientsApi } from './services/adminManagesClientsApi';
+import { deviceApi } from './services/deviceApi';
 
 const rootReducer = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   [usersApi.reducerPath]: usersApi.reducer,
   [clientsApi.reducerPath]: clientsApi.reducer,
   [adminManagesClientsApi.reducerPath]: adminManagesClientsApi.reducer,
+  [deviceApi.reducerPath]: deviceApi.reducer,
   auth: authReducer,
   clientAuth:clientAuthReducer,
   userData: userDataReducer, 
@@ -48,6 +50,7 @@ export const store = configureStore({
       usersApi.middleware,
       passwordApi.middleware,
       clientsApi.middleware,
+      deviceApi.middleware,
       adminManagesClientsApi.middleware
     ),
 });
