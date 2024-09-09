@@ -4,13 +4,12 @@ import { Button } from '@/components/ui/button';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { useGetClientByIdQuery } from '../../../services/adminManagesClientsApi';
-import { useUpdateSellerInfoMutation } from '../../../services/clientsApi';
+import { useAdminUpdateSellerInfoMutation } from '../../../services/adminManagesClientsApi';
 
 export default function AdminManageSellerProfile() {
   const { clientId } = useParams();
-  const { data: data, isLoading, error } = useGetClientByIdQuery(clientId);
-  const [updateSellerInfo] = useUpdateSellerInfoMutation();
-  const [client,setClient] = useState(null);
+  const { data, isLoading, error } = useGetClientByIdQuery(clientId);
+  const [adminUpdateSellerInfo] = useAdminUpdateSellerInfoMutation();
   const [formData, setFormData] = useState({
     company_name: '',
     company_address: '',
@@ -18,24 +17,22 @@ export default function AdminManageSellerProfile() {
     company_vat_number: '',
     company_kvk_number: '',
     status: false,
+    client_id:clientId
   });
 
+  // Update formData when the data is fetched
   useEffect(() => {
-    console.log("client data = ",data)
-    if(data){
-        setClient(data.data);
-    }
-    if (client && client.seller) {
+    if (data && data.data && data.data.seller) {
       setFormData({
-        company_name: client.seller.company_name,
-        company_address: client.seller.company_address,
+        company_name: data.data.seller.company_name || '',
+        company_address: data.data.seller.company_address || '',
         company_logo: null,
-        company_vat_number: client.seller.company_vat_number,
-        company_kvk_number: client.seller.company_kvk_number,
-        status: client.seller.status,
+        company_vat_number: data.data.seller.company_vat_number || '',
+        company_kvk_number: data.data.seller.company_kvk_number || '',
+        status: data.data.seller.status===1? true: false,
       });
     }
-  }, [client]);
+  }, [data]);
 
   const handleChange = (e) => {
     const { name, value, type, files, checked } = e.target;
@@ -47,13 +44,19 @@ export default function AdminManageSellerProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const payload = new FormData();
-    for (const key in formData) {
-      payload.append(key, formData[key]);
-    }
-
+    console.log("formData - ",formData)
+    const payload = {
+        company_name: formData.company_name,
+        company_address: formData.company_address,
+        company_logo: formData.company_logo, // Handle file uploading separately if needed
+        company_vat_number: formData.company_vat_number,
+        company_kvk_number: formData.company_kvk_number,
+        status: formData.status?true:false,
+      };
+    console.log("payload - ",payload)
+  
     try {
-      await updateSellerInfo({ id: clientId, data: payload }).unwrap();
+      await adminUpdateSellerInfo({ clientId, data: payload }).unwrap(); // Pass 'clientId' instead of 'id'
       toast.success('Seller profile updated successfully!');
     } catch (err) {
       toast.error('Failed to update seller profile.');
@@ -66,7 +69,7 @@ export default function AdminManageSellerProfile() {
   return (
     <div className="p-4">
       <h2 className="text-xl font-semibold mb-4">Manage Seller Profile</h2>
-      {client && client.seller && (
+      {data && data.data && data.data.seller && (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="company_name" className="block text-sm font-medium text-gray-700">Company Name</label>

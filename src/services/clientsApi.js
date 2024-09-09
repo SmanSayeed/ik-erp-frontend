@@ -44,11 +44,13 @@ export const clientsApi = createApi({
       }),
     }),
     updateSellerInfo: builder.mutation({
-      query: ({ clientId, data }) => ({
+      query: ({ clientId, data }) => {
+        console.log("clientData ",clientId,data);
+        return({
         url: `/client/seller/${clientId}`,
         method: 'PUT',
         data,
-      }),
+      })},
     }),
   }),
 });
