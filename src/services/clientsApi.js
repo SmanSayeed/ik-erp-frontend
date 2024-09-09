@@ -59,5 +59,6 @@ export const {
   useClientGetProfileQuery,
   useBecomeSellerMutation,
   useGetSellerInfoQuery,
+  useLazyGetSellerInfoQuery,
   useUpdateSellerInfoMutation,
 } = clientsApi;

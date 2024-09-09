@@ -7,6 +7,7 @@ import routes from "../../../routes/routes";
 import { useSelector } from "react-redux";
 const ClientHeader = ({ isSidebarOpen, toggleSidebar }) => {
   const { client, seller } = useSelector((state) => state.clientAuth);
+  console.log("clientHeader = ",client,"seller ",seller);
   return (
     <header className="bg-blue-200 shadow p-4 flex justify-between items-center">
       <Button variant="ghost" className="md:hidden" onClick={toggleSidebar}>
@@ -16,11 +17,19 @@ const ClientHeader = ({ isSidebarOpen, toggleSidebar }) => {
         Client Dashboard
       </h1>
       <div className="flex items-center space-x-4">
-        {client?.is_seller === true && (
+        {client?.is_seller !== 1 ? (
           <Link to="/client/become-seller">
             <Button>Become a seller</Button>
           </Link>
-        )}
+        )
+        :
+        (
+          <Link to="/client/become-seller">
+          <Button>Seller Profile</Button>
+          </Link>
+        )
+      
+      }
 
         <Button variant="ghost" className="relative md:block hidden">
           <Bell className="w-6 h-6" />
