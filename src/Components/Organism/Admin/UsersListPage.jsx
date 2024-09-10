@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useGetUsersQuery, useEditUserMutation, useDeleteUserMutation } from "../../../services/usersApi";
 import Modal from "../../ui/Modal";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import UsersTable from "../../Molecules/UsersTable/UsersTable";
 import EditUserForm from "../../Molecules/EditUserForm/EditUserForm";
-import Filters from "../../Molecules/Filters/FIlters";// Adjust import path
+import Filters from "../../Molecules/Filters/Filters";// Adjust import path
 
 const UsersListPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
