@@ -23,7 +23,7 @@ import ClientProfilePage from "../Components/Organism/Client/ClientProfilePage";
 import ClientEditOwnProfileForm from "../Components/Molecules/ClientEditOwnProfileForm/ClientEditOwnProfileForm";
 import ClientRegisterPage from "../Components/Organism/ClientRegisterPage";
 import AdminProtectedRoute from "../Components/Auth/AdminProtectedRoute";
-import ClientLoginPage from "../Components/Organism/CLientLoginPage";
+import ClientLoginPage from "../Components/Organism/ClientLoginPage";
 import AdminLoginPage from "../Components/Organism/AdminLoginPage";
 import ClientsListPage from "../Components/Organism/Admin/ClientsListPage";
 import ClientResetPassword from "../Components/Molecules/ResetPassword/ClientResetPassword";

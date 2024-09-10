@@ -1,6 +1,6 @@
 import './App.css';
 import 'react-toastify/dist/ReactToastify.css'; 
-import ClientLoginPage from './Components/Organism/CLientLoginPage';
+import ClientLoginPage from './Components/Organism/ClientLoginPage';
 
 function App() {
 
