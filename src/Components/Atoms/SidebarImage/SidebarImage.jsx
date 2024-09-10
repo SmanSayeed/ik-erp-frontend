@@ -5,7 +5,7 @@ function SidebarImage(
   // { imageUrl }
 ) {
   
-  const imageUrl = '/public/images/network.jpg';
+  const imageUrl = '/images/network.jpg';
   return (
     <div className="hidden md:block w-1/2 bg-cover bg-center" style={{ backgroundImage: `url(${imageUrl})` }}>
       {/* Background image */}
