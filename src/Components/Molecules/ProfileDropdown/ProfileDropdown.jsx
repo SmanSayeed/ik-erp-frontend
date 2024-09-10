@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { Button } from '../../ui/button';
 import { LogOut, User, Edit, Lock } from 'lucide-react'; // Icons
 import { useDispatch, useSelector } from 'react-redux';
 import { logout as logoutAction } from '../../../features/authSlice';

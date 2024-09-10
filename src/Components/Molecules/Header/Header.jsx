@@ -1,6 +1,6 @@
 // Header.jsx
 import { Menu, Bell } from 'lucide-react'; // Icons
-import { Button } from '@/components/ui/button';
+import { Button } from '../../ui/button';
 import ProfileDropdown from '../ProfileDropdown/ProfileDropdown';
 import { useSelector } from 'react-redux';
 

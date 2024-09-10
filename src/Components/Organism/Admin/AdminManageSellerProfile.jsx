@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
+import { Input } from '../../ui/input';
+import { Button } from '../../ui/button';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 import { useGetClientByIdQuery } from '../../../services/adminManagesClientsApi';

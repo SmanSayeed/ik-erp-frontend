@@ -2,9 +2,9 @@ import { useState } from 'react';
 import { useUpdateProfileMutation } from '@/services/clientsApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
+import { Button } from '../../ui/button';
+import { Input } from '../../ui/input';
+import { Checkbox } from '../../ui/checkbox';
 import { setCredentials } from '../../../features/authSlice';
 
 const ClientEditOwnProfileForm = () => {

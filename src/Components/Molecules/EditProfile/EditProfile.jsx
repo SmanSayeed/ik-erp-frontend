@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { useUpdateProfileMutation } from '@/services/usersApi';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { Button } from '../../ui/button';
+import { Input } from '../../ui/input';
 import { setCredentials } from '../../../features/authSlice';
 
 const EditProfile = () => {
