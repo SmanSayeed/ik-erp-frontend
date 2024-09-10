@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
+import { Input } from "../../ui/input";
+import { Button } from "../../ui/button";
 const CreateDeviceForm = ({ onSubmit }) => {
   // Initialize status state to false
   const [status, setStatus] = useState(false);

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
+
 
 const EditDeviceForm = ({ device, onSubmit }) => {
   // Initialize checkbox state with the device's status

@@ -1,6 +1,6 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
-import StyledLink from "@/components/Atoms/StyledLink/StyledLink";
+import { Button } from "../../ui/button";
+import StyledLink from "../../Atoms/StyledLink/StyledLink";
 import routes from "@/routes/routes";
 
 const DeviceTable = ({ data, onEdit, onDelete }) => {
