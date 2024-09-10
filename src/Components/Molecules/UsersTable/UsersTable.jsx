@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "../../ui/button";
 import { Link } from "react-router-dom";
 import StyledLink from "../../Atoms/StyledLink/StyledLink";
 import routes from "../../../routes/routes";
