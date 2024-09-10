@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Modal from "../../ui/modal";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import Modal from "../../ui/Modal";
+import { Button } from "../../ui/button";
+import { Input } from "../../ui/input";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ClientsTable from "../../Molecules/ClientsTable/ClientsTable";
 import EditClientForm from "../../Molecules/EditClientForm/EditClientForm";
-import Filters from "../../Molecules/Filters/Filters"; // Adjust import path
+// import Filters from "../../Molecules/Filters/Filters";
+ // Adjust import path
 import {
   useGetClientsListQuery,
   useUpdateClientInfoMutation,
