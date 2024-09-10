@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useGetUsersQuery, useEditUserMutation, useDeleteUserMutation } from "../../../services/usersApi";
-import Modal from "@/components/ui/Modal";
+import Modal from "../../ui/Modal";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "react-toastify";
