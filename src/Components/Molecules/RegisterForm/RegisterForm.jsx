@@ -1,9 +1,17 @@
 import InputField from '../../Atoms/InputField/InputField';
 import PropTypes from 'prop-types';
 import CustomButton from '../../Atoms/CustomButton/CustomButton';
-function RegisterForm({ name, setName, email, setEmail, password, setPassword, passwordConfirmation, setPasswordConfirmation, errors, handleSubmit, isLoading }) {
+function RegisterForm({ name, setName, email, setEmail, password, setPassword, passwordConfirmation, setPasswordConfirmation, errors, handleSubmit, isLoading,setClient_remotik_id,client_remotik_id }) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+      <InputField
+        label="Client Remotik ID"
+        id="client_remotik_id"
+        type="text"
+        value={client_remotik_id}
+        onChange={(e) => setClient_remotik_id(e.target.value)}
+        error={errors.client_remotik_id}
+      />
       <InputField
         label="Name"
         id="name"
@@ -51,10 +59,13 @@ RegisterForm.propTypes = {
     setPassword: PropTypes.func.isRequired,
     passwordConfirmation: PropTypes.string.isRequired,
     setPasswordConfirmation: PropTypes.func.isRequired,
+    client_remotik_id:PropTypes.func.isRequired,
+    setClient_remotik_id:PropTypes.func.isRequired,
     errors: PropTypes.shape({
       name: PropTypes.string,
       email: PropTypes.string,
       password: PropTypes.string,
+      client_remotik_id: PropTypes.string,
       passwordConfirmation: PropTypes.string,
     }),
     handleSubmit: PropTypes.func.isRequired,

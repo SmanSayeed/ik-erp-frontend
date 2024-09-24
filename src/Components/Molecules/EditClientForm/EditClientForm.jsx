@@ -18,6 +18,15 @@ const EditClientForm = ({ client, onSubmit }) => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
+       <div>
+        <label htmlFor="name" className="block text-sm font-medium text-gray-700">Client Remotik ID</label>
+        <Input
+          id="client_remotik_id"
+          name="client_remotik_id"
+          defaultValue={client.client_remotik_id}
+          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+        />
+      </div>
       <div>
         <label>Email: {client.email}</label>
       </div>

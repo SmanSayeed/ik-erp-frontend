@@ -71,6 +71,7 @@ const ClientsListPage = () => {
   };
 
   const handleSubmitEdit = async (updatedClient) => {
+    console.log("updatedClient", updatedClient);
     try {
       const res = await updateClientInfo({
         id: selectedClient.id,

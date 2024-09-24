@@ -5,12 +5,14 @@ import StyledLink from "../../Atoms/StyledLink/StyledLink";
 import routes from "../../../routes/routes";
 
 const ClientsTable = ({ data, onEdit, onDelete }) => {
+
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full divide-y divide-gray-200 border border-gray-300 shadow-md rounded-lg">
         <thead className="bg-gray-50">
           <tr>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Id</th>
+            <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Remotik Id</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
             <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
            
@@ -29,6 +31,7 @@ const ClientsTable = ({ data, onEdit, onDelete }) => {
                 </StyledLink>
               
                 </td>
+                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.client_remotik_id}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.name}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.email}</td>
               

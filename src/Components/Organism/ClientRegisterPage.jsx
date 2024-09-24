@@ -10,6 +10,7 @@ function ClientRegisterPage() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [client_remotik_id, setClient_remotik_id] = useState('');
   const [passwordConfirmation, setPasswordConfirmation] = useState('');
   const [errors, setErrors] = useState({});
   const [register, { isLoading }] = useClientRegisterMutation();
@@ -23,6 +24,7 @@ function ClientRegisterPage() {
         name,
         email,
         password,
+        client_remotik_id,
         password_confirmation: passwordConfirmation,
         role: 'client'
       }).unwrap();
@@ -46,6 +48,8 @@ function ClientRegisterPage() {
       setName={setName}
       email={email}
       setEmail={setEmail}
+      client_remotik_id={client_remotik_id}
+      setClient_remotik_id={setClient_remotik_id}
       password={password}
       setPassword={setPassword}
       passwordConfirmation={passwordConfirmation}
