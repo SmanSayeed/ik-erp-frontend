@@ -53,6 +53,11 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
             title="Invoices"
             icon={<DockIcon className={iconClass} />}
           />
+          <SidebarMenuItem
+            to={routes.adminDashboardClientDevice.link}
+            title={routes.adminDashboardClientDevice.title}
+            icon={<DockIcon className={iconClass} />}
+          />
           {/* Add more links as needed */}
         </nav>
       </div>

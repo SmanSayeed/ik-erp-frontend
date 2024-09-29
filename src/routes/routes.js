@@ -60,6 +60,10 @@ const routes = {
     link: '/admin/users',
     title: 'Users',
   },
+  adminDashboardClientDevice: {
+    link: '/admin/clients-devices',
+    title: 'Clients Devices List',
+  },
   adminDashboardClientProfile: (clientId) => ({
     link: `/admin/clients/${clientId}`,
     title: `Admin User Profile ${clientId}`,

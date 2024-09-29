@@ -31,6 +31,8 @@ import ClientBecomeASeller from "../Components/Molecules/ClientBecomeASeller/Cli
 import AdminManageSellerProfile from "../Components/Organism/Admin/AdminManageSellerProfile";
 import DeviceList from "../Components/Organism/Device/DeviceList";
 
+import ClientsDevicesList from "../Components/Organism/ClientsDevicesList/ClientsDevicesList";
+
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
   return <ResetPassword userId={user?.id} />;
@@ -114,6 +116,10 @@ const adminDashboardRoutes = {
     {
       path: "devices",
       element: <DeviceList />,
+    },
+    {
+      path: "clients-devices",
+      element: <ClientsDevicesList />,
     },
   ],
 };
