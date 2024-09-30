@@ -1,5 +1,5 @@
 // src/components/InvoiceList.js
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGetInvoicesListQuery, useDeleteInvoiceMutation } from '../../../services/invoicesApi';
 import { Link, useNavigate } from 'react-router-dom';
 import apiConfig from '../../../config/apiConfig';
@@ -23,6 +23,12 @@ export default function InvoiceList() {
       }
     }
   };
+
+
+  useEffect(() => {
+    refetch(); // Refetch data when the component mounts
+  }, [refetch]);
+
 
   const handleView = (invoice_id) => {
     navigate(routes.adminViewInvoice.link(invoice_id));
