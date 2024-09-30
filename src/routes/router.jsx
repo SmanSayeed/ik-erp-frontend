@@ -32,6 +32,10 @@ import AdminManageSellerProfile from "../Components/Organism/Admin/AdminManageSe
 import DeviceList from "../Components/Organism/Device/DeviceList";
 
 import ClientsDevicesList from "../Components/Organism/ClientsDevicesList/ClientsDevicesList";
+import InvoiceList from "../Components/Pages/Invoice/InvoiceList";
+import ViewInvoice from "../Components/Pages/Invoice/ViewInvoice";
+import EditInvoice from "../Components/Pages/Invoice/EditInvoice";
+import CreateInvoice from "../Components/Pages/Invoice/CreateInvoice";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -120,6 +124,26 @@ const adminDashboardRoutes = {
     {
       path: "clients-devices",
       element: <ClientsDevicesList />,
+    },
+    // {
+    //   path: "invoices",
+    //   element: <ClientsDevicesList />,
+    // },
+    {
+      path: "invoices",
+      element: <InvoiceList />,
+    },
+    {
+      path: "create-invoice",
+      element: <CreateInvoice />,
+    },
+    {
+      path: "edit-invoice/:invoice_id",
+      element: <EditInvoice />,
+    },
+    {
+      path: "view-invoice/:invoice_id",
+      element: <ViewInvoice />,
     },
   ],
 };

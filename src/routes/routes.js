@@ -83,7 +83,23 @@ const routes = {
   deviceList:{
     link:'/admin/devices',
     title:'Device List'
-  }
+  },
+  adminInvoiceList:{
+    link:'/admin/invoices',
+    title:'Invoice List'
+  },
+  adminCreateInvoice:{
+    link:'/admin/create-invoice',
+    title:'Create Invoice'
+  },
+  adminEditInvoice:{
+    link:(invoice_id)=>`/admin/edit-invoice/${invoice_id}`,
+    title:'Edit Invoice'
+  },
+  adminViewInvoice:{
+    link:(invoice_id)=>`/admin/view-invoice/${invoice_id}`,
+    title:'View Invoice'
+  },
 };
 
 export default routes;

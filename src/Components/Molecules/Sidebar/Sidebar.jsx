@@ -49,8 +49,8 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
             icon={<MapPinIcon className={iconClass} />}
           />
           <SidebarMenuItem
-            to={routes.adminDashboardUsers.link}
-            title="Invoices"
+            to={routes.adminInvoiceList.link}
+            title={routes.adminInvoiceList.title}
             icon={<DockIcon className={iconClass} />}
           />
           <SidebarMenuItem
