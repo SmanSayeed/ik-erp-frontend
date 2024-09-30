@@ -1,5 +1,5 @@
 #!/bin/bash
-
+rm -rf dist
 # Run the build process
 npm run build
 
