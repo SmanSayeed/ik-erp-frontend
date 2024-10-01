@@ -109,29 +109,7 @@ const EditClientForm = ({ client, onSubmit }) => {
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
         />
       </div>
-      <div>
-        <label htmlFor="is_vip" className="block text-sm font-medium text-gray-700">Is VIP</label>
-        <div className="flex items-center">
-          <input
-            type="checkbox"
-            id="is_vip"
-            name="is_vip"
-            defaultChecked={client.is_vip}
-            className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
-          />
-        </div>
-      </div>
-      <div>
-        <label htmlFor="vip_discount" className="block text-sm font-medium text-gray-700">VIP Discount</label>
-        <Input
-          id="vip_discount"
-          name="vip_discount"
-          type="number"
-          step="0.01"
-          defaultValue={client.vip_discount || ''}
-          className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
-        />
-      </div>
+      
       <div>
         <label className="block text-sm font-medium text-gray-700">Email Verified</label>
         <div className="flex items-center">

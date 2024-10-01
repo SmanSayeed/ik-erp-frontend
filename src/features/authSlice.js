@@ -12,7 +12,7 @@ const authSlice = createSlice({
       state.seller = action.payload.seller || state.seller;
       state.token = action.payload.token || state.token;
       state.role = action.payload.role || state.role;
-      console.log('Credentials set: sss', state.user, state.token, state.role);
+      console.log('Credentials set: sss', state.user, state.token, state.role, state.seller);
     },
     logout: (state) => {
       state.user = null;

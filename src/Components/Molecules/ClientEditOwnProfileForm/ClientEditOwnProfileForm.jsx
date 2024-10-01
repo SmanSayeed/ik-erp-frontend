@@ -102,18 +102,6 @@ const ClientEditOwnProfileForm = () => {
       </div>
 
       <div>
-        <label htmlFor="payment_due_date" className="block text-sm font-medium text-gray-700">Payment Due Date</label>
-        <Input
-          id="payment_due_date"
-          name="payment_due_date"
-          type="date"
-          value={profileData.payment_due_date}
-          onChange={handleChange}
-          disabled={isLoading}
-        />
-      </div>
-
-      <div>
         <label htmlFor="vat_slab" className="block text-sm font-medium text-gray-700">VAT Slab</label>
         <Input
           id="vat_slab"
@@ -136,31 +124,6 @@ const ClientEditOwnProfileForm = () => {
           disabled={isLoading}
         />
       </div>
-
-      <div>
-        <label htmlFor="is_vip" className="block text-sm font-medium text-gray-700">VIP Status</label>
-        <Checkbox
-          id="is_vip"
-          name="is_vip"
-          checked={profileData.is_vip}
-          onChange={handleChange}
-          disabled={isLoading}
-        />
-      </div>
-
-      <div>
-        <label htmlFor="vip_discount" className="block text-sm font-medium text-gray-700">VIP Discount</label>
-        <Input
-          id="vip_discount"
-          name="vip_discount"
-          type="number"
-          value={profileData.vip_discount}
-          onChange={handleChange}
-          disabled={isLoading || !profileData.is_vip}
-        />
-      </div>
-      
-
      
 
       <Button type="submit" className="w-full" disabled={isLoading}>
