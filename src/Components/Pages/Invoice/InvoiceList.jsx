@@ -93,7 +93,7 @@ export default function InvoiceList() {
                       <button className="text-red-100 bg-red-500 rounded px-2 py-1 font-semibold" onClick={() => handleDelete(invoice.id)}>
                         Delete
                       </button>
-                      <Link to={routes.adminViewInvoice.link(invoice.id)}>View</Link>
+                      <Link className="text-blue-100 bg-blue-500 rounded px-2 py-1 font-semibold" to={routes.adminViewInvoice.link(invoice.id)}>View</Link>
                     </td>
                   </tr>
                 ))
