@@ -49,6 +49,13 @@ export const invoicesApi = createApi({
          // For handling file download
       }),
     }),
+    previewInvoice: builder.query({
+      query: (invoice_id) => ({
+        url: `/invoice/preview/${invoice_id}`,
+        method: 'GET',
+        responseType: 'blob',  // Return the response as a Blob for preview
+      }),
+    }),
   }),
 });
 
@@ -59,4 +66,5 @@ export const {
   useUpdateInvoiceMutation,
   useDeleteInvoiceMutation,
   useDownloadInvoiceQuery,
+  usePreviewInvoiceQuery,
 } = invoicesApi;

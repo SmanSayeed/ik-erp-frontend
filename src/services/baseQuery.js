@@ -1,8 +1,8 @@
 // src/services/baseQuery.js
 import axios from 'axios';
 
-const axiosBaseQuery = ({ baseUrl }) => async ({ url, method = 'GET', data, params }) => {
-  console.log('axiosBaseQuery called', { url, method, data, params });
+const axiosBaseQuery = ({ baseUrl }) => async ({ url, method = 'GET', data, params,responseType  }) => {
+  console.log('axiosBaseQuery called', { url, method, data, params,responseType  });
   
   try {
     // Retrieve token from local storage
@@ -13,6 +13,7 @@ const axiosBaseQuery = ({ baseUrl }) => async ({ url, method = 'GET', data, para
       method,
       data,
       params,
+      responseType ,
       headers: {
         Authorization: token ? `Bearer ${token}` : '',
       },
