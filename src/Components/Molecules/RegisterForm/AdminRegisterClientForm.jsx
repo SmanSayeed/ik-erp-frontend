@@ -12,10 +12,11 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
     // Convert checkbox values to boolean
     addedClientInfo.email_verified_at = formData.get('email_verified_at') === 'on';
     addedClientInfo.status = formData.get('status') === 'on';
-    setVip(addedClientInfo.status);
+
     addedClientInfo.is_seller = formData.get('is_seller') === 'on';
     addedClientInfo.is_vip = formData.get('is_vip') === 'on';
     onSubmit(addedClientInfo);
+    setVip(addedClientInfo.is_vip);
   };
 
   return (
@@ -123,7 +124,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
       </div>
      
       <div>
-        <label htmlFor="vip_discount" className="block text-sm font-medium text-gray-700">Vip Discount- {isVip ? 'Disabled' : 'Enabled'} </label>
+        <label htmlFor="vip_discount" className="block text-sm font-medium text-gray-700">Vip Discount </label>
 
         <Input
           disabled={!isVip}
