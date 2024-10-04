@@ -10,12 +10,12 @@ export const registerApi = createApi({
   }),
   endpoints: (builder) => ({
     clientRegister: builder.mutation({
-      query: (userData) => {
-        console.log(userData);
+      query: (clientData) => {
+        console.log('clientData from registerApi-',clientData.data);
         return {
           url: '/client/register',
           method: 'POST',
-          data: userData, // Change `body` to `data`
+          data: clientData.data, // Change `body` to `data`
         };
       },
     }),

@@ -14,6 +14,8 @@ import {
   useUpdateClientInfoMutation,
   useSoftDeleteClientMutation,
 } from "../../../services/adminManagesClientsApi";
+import AdminRegisterClientForm from "../../Molecules/RegisterForm/AdminRegisterClientForm";
+import { useClientRegisterMutation } from "../../../services/registerApi";
 
 const ClientsListPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -27,6 +29,18 @@ const ClientsListPage = () => {
   const [orderDirection, setOrderDirection] = useState("desc");
   const [perPage, setPerPage] = useState(10);
   const [selectedClient, setSelectedClient] = useState(null);
+  const [clientData, setClientData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    client_remotik_id: "",
+    password_confirmation: "",
+    email_verified_at: false,
+    status: false,
+    is_vip: false,
+    vip_discount: null,
+    is_seller: false,
+  });
 
   const { data, isLoading, error, refetch } = useGetClientsListQuery({
     keyword,
@@ -39,6 +53,7 @@ const ClientsListPage = () => {
     page,
   });
 
+  const [clientRegister] = useClientRegisterMutation();
   const [updateClientInfo] = useUpdateClientInfoMutation();
   const [softDeleteClient] = useSoftDeleteClientMutation();
   const auth = useSelector((state) => state.auth);
@@ -59,7 +74,7 @@ const ClientsListPage = () => {
   };
 
   const closeClientModal = () => {
-    setClientModalOpen(true);
+    setClientModalOpen(false);
   };
 
   const handleEdit = (client) => {
@@ -91,6 +106,21 @@ const ClientsListPage = () => {
       refetch();
     } catch (err) {
       toast.error(err?.data?.message || "Failed to update client.");
+    }
+  };
+
+  const handleSubmitAddClient = async (clientData) => {
+    console.log("Add client Info", clientData);
+    try {
+      const res = await clientRegister({
+        data: clientData, // Send the entire updatedClient object
+      }).unwrap();
+      toast.success(res?.message || "Client added successfully!");
+      setClientModalOpen(false);
+      refetch();
+    } catch (err) {
+      toast.error(err?.data?.message || "Failed to add client.");
+      setClientModalOpen(false);
     }
   };
 
@@ -140,7 +170,7 @@ const ClientsListPage = () => {
 
 
         <Modal isOpen={isClientModalOpen} onClose={closeClientModal} title="Add Client">
-          <EditClientForm client={selectedClient} onSubmit={handleSubmitEdit} />
+          <AdminRegisterClientForm client={clientData} onSubmit={handleSubmitAddClient} />
         </Modal>
       
     </div>
