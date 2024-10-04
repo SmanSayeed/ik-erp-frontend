@@ -34,9 +34,9 @@ const ClientsTable = ({ data, onEdit, onDelete }) => {
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.client_remotik_id}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.name}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.email}</td>
-              
-              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.email_verified_at ? "Yes" : "No"}</td>
               <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.status ? "Active" : "Inactive"}</td>
+              <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{client.email_verified_at ? "Yes" : "No"}</td>
+          
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                 <Button onClick={() => onEdit(client)} className="mr-2">Edit</Button>
                 <Button
