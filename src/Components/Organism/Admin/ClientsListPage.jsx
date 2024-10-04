@@ -17,6 +17,7 @@ import {
 
 const ClientsListPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isClientModalOpen, setClientModalOpen] = useState(false);
   const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState("");
   const [role, setRole] = useState("");
@@ -53,6 +54,14 @@ const ClientsListPage = () => {
     setModalOpen(false);
   };
 
+  const openClientRegisterModal = () => {
+    setClientModalOpen(true)
+  };
+
+  const closeClientModal = () => {
+    setClientModalOpen(true);
+  };
+
   const handleEdit = (client) => {
     setSelectedClient(client);
     openModal();
@@ -85,11 +94,22 @@ const ClientsListPage = () => {
     }
   };
 
+  
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error loading clients: {error.message}</p>;
 
   return (
     <div className="p-4">
+      <div className="flex justify-between items-center">
+        <h1 className="text-2xl font-bold mb-4">Clients List</h1>
+        <Button
+          onClick={() => openClientRegisterModal()}
+          className="mr-2 bgg-slate-400 hover:bg-blue-800"
+        >
+          Add Client
+        </Button>
+      </div>
       <div className="flex flex-col md:flex-row md:justify-between mb-4">
         <Input
           placeholder="Search by keyword"
@@ -117,6 +137,12 @@ const ClientsListPage = () => {
           <EditClientForm client={selectedClient} onSubmit={handleSubmitEdit} />
         </Modal>
       )}
+
+
+        <Modal isOpen={isClientModalOpen} onClose={closeClientModal} title="Add Client">
+          <EditClientForm client={selectedClient} onSubmit={handleSubmitEdit} />
+        </Modal>
+      
     </div>
   );
 };

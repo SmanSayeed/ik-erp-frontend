@@ -5,7 +5,7 @@ import { useResetPasswordByEmailMutation } from '../../../services/passwordApi';
 import { toast } from 'react-toastify';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import AuthLayout from '../../Layout/AuthLayout';
-import InputField from '../../Atoms/InputField/InputField';
+import InputField from '../../Atoms/Inputs/InputField/InputField';
 import { Button } from '../../ui/button';
 
 const ResetPasswordSchema = Yup.object().shape({

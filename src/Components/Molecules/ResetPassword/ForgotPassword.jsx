@@ -1,5 +1,5 @@
 import React from 'react';
-import InputField from '../../Atoms/InputField/InputField';
+import InputField from '../../Atoms/Inputs/InputField/InputField';
 import { Button } from '../../ui/button';
 import { useForgotPasswordMutation } from '../../../services/passwordApi';
 import { toast } from 'react-toastify';

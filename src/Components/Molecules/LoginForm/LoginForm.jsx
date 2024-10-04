@@ -1,4 +1,4 @@
-import InputField from '../../Atoms/InputField/InputField';
+import InputField from '../../Atoms/Inputs/InputField/InputField';
 
 import PropTypes from 'prop-types';
 import CustomButton from '../../Atoms/CustomButton/CustomButton';

@@ -7,8 +7,8 @@ import {
   SelectContent,
   SelectItem,
 } from "../../select"; // Adjust the import path based on your project structure
-import { Button } from "../../ui/button";
-import { Input } from "../../ui/input";
+import { Button } from "../../../ui/button";
+import { Input } from "../../../ui/input";
 
 const CustomSelectInput = ({ value, onChange, options, placeholder }) => {
   return (

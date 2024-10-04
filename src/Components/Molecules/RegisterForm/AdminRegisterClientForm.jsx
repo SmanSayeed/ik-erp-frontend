@@ -1,7 +1,24 @@
 import InputField from '../../Atoms/Inputs/InputField/InputField';
 import PropTypes from 'prop-types';
 import CustomButton from '../../Atoms/CustomButton/CustomButton';
-function RegisterForm({ name, setName, email, setEmail, password, setPassword, passwordConfirmation, setPasswordConfirmation, errors, handleSubmit, isLoading,setClient_remotik_id,client_remotik_id }) {
+function AdminRegisterClientForm({ 
+  name, 
+  setName, 
+  email, 
+  setEmail, 
+  password, 
+  setPassword, 
+  passwordConfirmation, 
+  setPasswordConfirmation, 
+  errors, 
+  handleSubmit, 
+  isLoading,
+  setClient_remotik_id,
+  client_remotik_id ,
+  address, setAddress,
+  phone, setPhone,
+
+}) {
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <InputField
@@ -43,18 +60,38 @@ function RegisterForm({ name, setName, email, setEmail, password, setPassword, p
         onChange={(e) => setPasswordConfirmation(e.target.value)}
         error={errors.passwordConfirmation}
       />
+       <InputField
+        label="Address"
+        id="address"
+        type="text"
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+        error={errors.passwordConfirmation}
+      />
+      <InputField
+        label="phone"
+        id="phone"
+        type="text"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        error={errors.passwordConfirmation}
+      />
       <CustomButton label="Register" isLoading={isLoading} />
     </form>
   );
 }
 
-export default RegisterForm;
+export default AdminRegisterClientForm;
 
-RegisterForm.propTypes = {
+AdminRegisterClientForm.propTypes = {
     name: PropTypes.string.isRequired,
     setName: PropTypes.func.isRequired,
     email: PropTypes.string.isRequired,
     setEmail: PropTypes.func.isRequired,
+    address: PropTypes.string.isRequired,
+    setAddress: PropTypes.func.isRequired,
+    phone: PropTypes.string.isRequired,
+    setPhone: PropTypes.func.isRequired,
     password: PropTypes.string.isRequired,
     setPassword: PropTypes.func.isRequired,
     passwordConfirmation: PropTypes.string.isRequired,
