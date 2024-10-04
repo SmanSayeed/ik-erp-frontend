@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 
 
 const AdminRegisterClientForm = ({ client, onSubmit }) => {
+  const [isVip,setVip] = useState(client.is_vip);
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -11,6 +12,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
     // Convert checkbox values to boolean
     addedClientInfo.email_verified_at = formData.get('email_verified_at') === 'on';
     addedClientInfo.status = formData.get('status') === 'on';
+    setVip(addedClientInfo.status);
     addedClientInfo.is_seller = formData.get('is_seller') === 'on';
     addedClientInfo.is_vip = formData.get('is_vip') === 'on';
     onSubmit(addedClientInfo);
@@ -113,6 +115,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
             type="checkbox"
             id="is_vip"
             name="is_vip"
+            onChange={() => setVip(!isVip)}
             defaultChecked={client.is_vip}
             className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
           />
@@ -120,12 +123,14 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
       </div>
      
       <div>
-        <label htmlFor="vip_discount" className="block text-sm font-medium text-gray-700">Vip Discount</label>
+        <label htmlFor="vip_discount" className="block text-sm font-medium text-gray-700">Vip Discount- {isVip ? 'Disabled' : 'Enabled'} </label>
+
         <Input
+          disabled={!isVip}
           id="vip_discount"
           name="vip_discount"
           type="number"
-          defaultValue={client.vip_discount ? client.vip_discount: 0}
+          defaultValue={client.vip_discount}
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
         />
       </div>

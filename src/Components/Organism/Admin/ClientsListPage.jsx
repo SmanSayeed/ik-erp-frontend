@@ -6,7 +6,6 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ClientsTable from "../../Molecules/ClientsTable/ClientsTable";
-import EditClientForm from "../../Molecules/EditClientForm/EditClientForm";
 // import Filters from "../../Molecules/Filters/Filters";
  // Adjust import path
 import {
@@ -16,6 +15,7 @@ import {
 } from "../../../services/adminManagesClientsApi";
 import AdminRegisterClientForm from "../../Molecules/RegisterForm/AdminRegisterClientForm";
 import { useClientRegisterMutation } from "../../../services/registerApi";
+import AdminEditClientForm from "../../Molecules/AdminEditClientForm/AdminEditClientForm";
 
 const ClientsListPage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -164,7 +164,7 @@ const ClientsListPage = () => {
 
       {selectedClient && (
         <Modal isOpen={isModalOpen} onClose={closeModal} title="Edit Client">
-          <EditClientForm client={selectedClient} onSubmit={handleSubmitEdit} />
+          <AdminEditClientForm client={selectedClient} onSubmit={handleSubmitEdit} />
         </Modal>
       )}
 

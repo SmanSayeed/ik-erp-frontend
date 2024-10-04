@@ -3,7 +3,7 @@ import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 
 
-const EditClientForm = ({ client, onSubmit }) => {
+const AdminEditClientForm = ({ client, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -141,4 +141,4 @@ const EditClientForm = ({ client, onSubmit }) => {
   );
 };
 
-export default EditClientForm;
+export default AdminEditClientForm;
