@@ -28,6 +28,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
           name="client_remotik_id"
           defaultValue={client.client_remotik_id}
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+          required="true"
         />
       </div>
       <div>
@@ -38,6 +39,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
           name="email"
           defaultValue={client.email}
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            required="true"
         />
       </div>
       </div>
@@ -48,6 +50,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
           name="name"
           defaultValue={client.name}
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            required="true"
         />
       </div>
       <div>
@@ -57,6 +60,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
           name="address"
           defaultValue={client.address || ''}
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            required="true"
         />
       </div>
       <div>
@@ -66,6 +70,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
           name="phone"
           defaultValue={client.phone || ''}
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            required="true"
         />
       </div>
       <div>
@@ -76,6 +81,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
           type="password"
           placeholder="Password"
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            required="true"
         />
       </div>
       <div>
@@ -86,6 +92,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
           type="password"
           placeholder="Re-type password"
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            required="true"
         />
       </div>
     
@@ -98,6 +105,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
           step="0.01"
           defaultValue={client.vat_slab || ''}
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            required="true"
         />
       </div>
       <div>
@@ -119,6 +127,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
             onChange={() => setVip(!isVip)}
             defaultChecked={client.is_vip}
             className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+              required="true"
           />
         </div>
       </div>
@@ -133,6 +142,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
           type="number"
           defaultValue={client.vip_discount}
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            required="true"
         />
       </div>
       
@@ -145,6 +155,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
             name="email_verified_at"
             defaultChecked={client.email_verified_at !== null}
             className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+              required="true"
           />
         </div>
       </div>
@@ -157,6 +168,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
             name="status"
             defaultChecked={client.status}
             className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+              required="true"
           />
         </div>
         <div>
@@ -168,6 +180,7 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
             name="is_seller"
             defaultChecked={client.is_seller}
             className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
+              required="true"
           />
         </div>
       </div>
