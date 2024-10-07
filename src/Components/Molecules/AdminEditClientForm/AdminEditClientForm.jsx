@@ -1,10 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 
 
-const AdminEditClientForm = ({ client, onSubmit }) => {
+const AdminEditClientForm = ({ client,setClient, onSubmit }) => {
   const [isVip,setVip] = useState(client.is_vip);
+  const [vipDiscount, setVipDiscount] = useState(client.vip_discount || 0);
+ 
+  useEffect(() => {
+    setVip(client.is_vip); // Update isVip state when client.is_vip changes
+    setVipDiscount(client.is_vip ? client.vip_discount || 0 : 0); // Set vip_discount to 0 if is_vip is false
+  }, [client]);
+
+    // Sync vipDiscount when isVip changes
+    useEffect(() => {
+      if (!isVip) {
+        setVipDiscount(0); // Set vip_discount to 0 if VIP is unchecked
+      }
+    }, [isVip]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -14,9 +28,32 @@ const AdminEditClientForm = ({ client, onSubmit }) => {
     updatedClient.status = formData.get('status') === 'on';
     updatedClient.is_seller = formData.get('is_seller') === 'on';
     updatedClient.is_vip = formData.get('is_vip') === 'on';
+    // Handle VIP discount based on isVip state
+    if (!isVip) {
+      updatedClient.vip_discount = 0; // Set vip_discount to 0 if VIP is unchecked
+    } else {
+      updatedClient.vip_discount = formData.get('vip_discount') || 0;
+    }
     onSubmit(updatedClient);
-    setVip(updatedClient.is_vip);
   };
+
+  const handleIsVipChange = () => {
+   
+    setVip((prevIsVip) => {
+    
+      const newIsVip = !prevIsVip;
+      console.log(newIsVip?"Yes":"no");
+      if (!newIsVip) {
+        console.log("set to 0");
+        setVipDiscount(0); // If not VIP, set the vip_discount to 0
+      } else {
+        setVipDiscount(client.vip_discount || 0); // If VIP, retain the client’s vip_discount or set default 0
+      }
+      
+      return newIsVip;
+    });
+  };
+  
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -118,7 +155,7 @@ const AdminEditClientForm = ({ client, onSubmit }) => {
             type="checkbox"
             id="is_vip"
             name="is_vip"
-            onChange={() => setVip(!isVip)}
+            onChange={() => handleIsVipChange()}
             defaultChecked={client.is_vip}
             className="h-4 w-4 text-indigo-600 border-gray-300 rounded"
           />
@@ -126,14 +163,15 @@ const AdminEditClientForm = ({ client, onSubmit }) => {
       </div>
      
       <div>
-        <label htmlFor="vip_discount" className="block text-sm font-medium text-gray-700">Vip Discount- {isVip ? 'Disabled' : 'Enabled'} </label>
+        <label htmlFor="vip_discount" className="block text-sm font-medium text-gray-700">Vip Discount- {isVip ? 'true' : 'false'} </label>
 
         <Input
           disabled={!isVip}
           id="vip_discount"
           name="vip_discount"
           type="number"
-          defaultValue={client.vip_discount}
+          value={vipDiscount || 0}
+          onChange={(e) => setVipDiscount(e.target.value)}
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
         />
       </div>

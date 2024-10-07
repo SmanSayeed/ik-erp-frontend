@@ -164,7 +164,7 @@ const ClientsListPage = () => {
 
       {selectedClient && (
         <Modal isOpen={isModalOpen} onClose={closeModal} title="Edit Client">
-          <AdminEditClientForm client={selectedClient} onSubmit={handleSubmitEdit} />
+          <AdminEditClientForm client={selectedClient} setClient={setSelectedClient} onSubmit={handleSubmitEdit} />
         </Modal>
       )}
 
