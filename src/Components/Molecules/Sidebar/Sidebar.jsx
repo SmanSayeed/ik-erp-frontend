@@ -43,11 +43,11 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
             title="Device Clusters"
             icon={<Box className={iconClass} />}
           />
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             to={routes.adminDashboardUsers.link}
             title="Client Device Mappings"
             icon={<MapPinIcon className={iconClass} />}
-          />
+          /> */}
           <SidebarMenuItem
             to={routes.adminInvoiceList.link}
             title={routes.adminInvoiceList.title}

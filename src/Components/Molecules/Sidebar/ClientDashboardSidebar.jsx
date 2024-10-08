@@ -33,11 +33,11 @@ const ClientDashboardSidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) =>
             title="Device Clusters"
             icon={<Box className={iconClass} />}
           />
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             to={routes.ClientDashboard.link}
             title="Client Device Mappings"
             icon={<MapPinIcon className={iconClass} />}
-          />
+          /> */}
           <SidebarMenuItem
             to={routes.ClientDashboard.link}
             title="Invoices"
