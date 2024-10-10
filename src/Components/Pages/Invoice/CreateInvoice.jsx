@@ -13,7 +13,7 @@ export default function CreateInvoice() {
     from: '',
     to: '',
     due_date: '',
-    client_id: '',
+    client_remotik_id: '',
   });
 
   const handleChange = (e) => {
@@ -82,8 +82,8 @@ export default function CreateInvoice() {
             <label className="block font-semibold mb-1">Client ID</label>
             <input
               type="text"
-              name="client_id"
-              value={formData.client_id}
+              name="client_remotik_id"
+              value={formData.client_remotik_id}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2"
               required
