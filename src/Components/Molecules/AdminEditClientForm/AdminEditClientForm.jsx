@@ -102,7 +102,7 @@ const AdminEditClientForm = ({ client,setClient, onSubmit }) => {
           id="password"
           name="password"
           type="password"
-          placeholder="Leave blank to keep current password"
+          placeholder="Retype password"
           className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
         />
       </div>
