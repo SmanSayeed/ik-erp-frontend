@@ -80,6 +80,12 @@ export const adminManagesClientsApi = createApi({
         data,
       }),
     }),
+    adminGetSellerInfo: builder.query({
+      query: (clientId) => ({
+        url: `/seller/${clientId}`,
+        method: 'GET',
+      }),
+    }),
     adminUpdateSellerInfo: builder.mutation({
       query: ({ clientId, data }) => {
         console.log("cleint id ",clientId,data);
@@ -105,5 +111,6 @@ export const {
   useSoftDeleteClientMutation,
   useHardDeleteClientMutation,
   useUpdateClientPasswordMutation,
-  useAdminUpdateSellerInfoMutation
+  useAdminUpdateSellerInfoMutation,
+  useAdminGetSellerInfoQuery
 } = adminManagesClientsApi;

@@ -20,6 +20,7 @@ const ClientBecomeASeller = () => {
     company_logo: null,
     company_vat_number: sellerData?.company_vat_number || '',
     company_kvk_number: sellerData?.company_kvk_number || '',
+    company_iban_number: sellerData?.company_iban_number || '',
     client_id: client?.id,
   });
 
@@ -39,10 +40,12 @@ const ClientBecomeASeller = () => {
     try {
       const response = await becomeSeller({ clientId: client.id, ...sellerFormData }).unwrap();
       toast.success(response.message || 'Successfully registered as a seller');
-      
+      console.log(response);
       // Update the client with the seller status
       dispatch(setCredentials({
-        client: { ...client, is_seller: 1 } // Assuming `is_seller` flag will be set to 1 after registration
+        client: { ...client, is_seller: 1 }, // Assuming `is_seller` flag will be set to 1 after registration
+        seller: {...response.data }, // Assuming `status` flag will be set to 1 after registration
+
       }));
     } catch (error) {
       if (error?.status === 422) {
@@ -118,6 +121,24 @@ const ClientBecomeASeller = () => {
         />
         {errors.company_kvk_number && (
           <p className="text-red-600 text-sm">{errors.company_kvk_number[0]}</p>
+        )}
+      </div>
+
+      <div>
+        <label htmlFor="company_iban_number" className="block text-sm font-medium text-gray-700 my-2">
+          Company IBAN Number
+        </label>
+        <Input
+          id="company_iban_number"
+          name="company_iban_number"
+          type="text"
+          value={sellerFormData.company_iban_number}
+          onChange={handleChange}
+          required
+          disabled={isLoading}
+        />
+        {errors.company_iban_number && (
+          <p className="text-red-600 text-sm">{errors.company_iban_number[0]}</p>
         )}
       </div>
 

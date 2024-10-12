@@ -36,6 +36,7 @@ import InvoiceList from "../Components/Pages/Invoice/InvoiceList";
 import ViewInvoice from "../Components/Pages/Invoice/ViewInvoice";
 import EditInvoice from "../Components/Pages/Invoice/EditInvoice";
 import CreateInvoice from "../Components/Pages/Invoice/CreateInvoice";
+import SellerProfile from "../Components/Organism/Seller/SellerProfile";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -73,6 +74,10 @@ const clientRoutes = {
     {
       path: "become-seller",
       element: <ClientBecomeASeller />,
+    },
+    {
+      path: "seller-profile",
+      element: <SellerProfile />,
     },
   ],
 };

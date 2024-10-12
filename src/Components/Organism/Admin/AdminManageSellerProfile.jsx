@@ -3,12 +3,14 @@ import { Input } from '../../ui/input';
 import { Button } from '../../ui/button';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
-import { useGetClientByIdQuery } from '../../../services/adminManagesClientsApi';
-import { useAdminUpdateSellerInfoMutation } from '../../../services/adminManagesClientsApi';
+// import { useAdminGetSellerInfoQuery, useGetClientByIdQuery } from '../../../services/adminManagesClientsApi';
+import { useAdminGetSellerInfoQuery, useAdminUpdateSellerInfoMutation } from '../../../services/adminManagesClientsApi';
 
 export default function AdminManageSellerProfile() {
   const { clientId } = useParams();
-  const { data, isLoading, error } = useGetClientByIdQuery(clientId);
+  const { data, isLoading, error } = useAdminGetSellerInfoQuery(clientId);
+
+  console.log("seller data",data);
   const [adminUpdateSellerInfo] = useAdminUpdateSellerInfoMutation();
   const [formData, setFormData] = useState({
     company_name: '',
@@ -16,20 +18,23 @@ export default function AdminManageSellerProfile() {
     company_logo: null,
     company_vat_number: '',
     company_kvk_number: '',
+    company_iban_number: '',
     status: false,
     client_id:clientId
   });
 
   // Update formData when the data is fetched
   useEffect(() => {
-    if (data && data.data && data.data.seller) {
+    if (data && data.data ) {
+      const sellerData = data.data;
       setFormData({
-        company_name: data.data.seller.company_name || '',
-        company_address: data.data.seller.company_address || '',
+        company_name: sellerData.company_name || '',
+        company_address: sellerData.company_address || '',
         company_logo: null,
-        company_vat_number: data.data.seller.company_vat_number || '',
-        company_kvk_number: data.data.seller.company_kvk_number || '',
-        status: data.data.seller.status===1? true: false,
+        company_vat_number: sellerData.company_vat_number || '',
+        company_kvk_number: sellerData.company_kvk_number || '',
+        company_iban_number: sellerData.company_iban_number || '',
+        status: sellerData.status===1? true: false,
       });
     }
   }, [data]);
@@ -69,7 +74,7 @@ export default function AdminManageSellerProfile() {
   return (
     <div className="p-4">
       <h2 className="text-xl font-semibold mb-4">Manage Seller Profile</h2>
-      {data && data.data && data.data.seller && (
+      {data && data.data && (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label htmlFor="company_name" className="block text-sm font-medium text-gray-700">Company Name</label>
@@ -117,6 +122,16 @@ export default function AdminManageSellerProfile() {
               id="company_kvk_number"
               name="company_kvk_number"
               value={formData.company_kvk_number}
+              onChange={handleChange}
+              className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            />
+          </div>
+          <div>
+            <label htmlFor="company_iban_number" className="block text-sm font-medium text-gray-700">Company IBAN Number</label>
+            <Input
+              id="company_iban_number"
+              name="company_iban_number"
+              value={formData.company_iban_number}
               onChange={handleChange}
               className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
             />

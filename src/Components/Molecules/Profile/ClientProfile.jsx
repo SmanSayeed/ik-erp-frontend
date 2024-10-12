@@ -5,8 +5,8 @@ import { Skeleton } from '../../ui/skeleton';
 import { useClientGetProfileQuery } from '../../../services/clientsApi';
 
 export default function ClientProfile() {
-  const { client,seller } = useSelector((state) => state.clientAuth); // Get the authenticated client's info
-console.log('seller',seller);
+  const { client } = useSelector((state) => state.auth); 
+  const {seller} = useSelector((state) => state.auth);
   // Fetch profile data including seller info
   const { data, error, isLoading } = useClientGetProfileQuery();
 
@@ -19,7 +19,8 @@ console.log('seller',seller);
   }
 
   const profileData = data?.data?.client || client;
-  const sellerData = data?.data?.seller || seller;
+  const sellerData = seller;
+  console.log("sellerData",sellerData);
 
   return (
     <>
@@ -45,18 +46,18 @@ console.log('seller',seller);
         </Card>
       </div>
 
-      {sellerData && (
+      {client?.is_seller && (
         <div className="max-w-lg mx-auto p-4 my-2">
           <h2 className="my-2 font-bold">Client As Seller Info</h2>
           <Card>
             <CardHeader>
               <CardTitle>{sellerData.company_name}</CardTitle>
-              <CardDescription>{sellerData.company_vat_number}</CardDescription>
+          
             </CardHeader>
             <CardContent>
               <div>
                 <p><strong>Company Address:</strong> {sellerData.company_address || 'N/A'}</p>
-                <p><strong>Company Logo:</strong> {sellerData.company_logo || 'N/A'}</p>
+                {/* <p><strong>Company Logo:</strong> {sellerData.company_logo || 'N/A'}</p> */}
                 <p><strong>KVK Number:</strong> {sellerData.company_kvk_number || 'N/A'}</p>
                 <p><strong>Status:</strong> {sellerData.status ? 'Active' : 'Inactive'}</p>
                 <p><strong>Created At:</strong> {new Date(sellerData.created_at).toLocaleDateString()}</p>

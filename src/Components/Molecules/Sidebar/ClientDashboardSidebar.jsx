@@ -38,6 +38,11 @@ const ClientDashboardSidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) =>
             title="Client Device Mappings"
             icon={<MapPinIcon className={iconClass} />}
           /> */}
+           <SidebarMenuItem
+            to={routes.ClientSellerProfile.link}
+            title="Seller Profile"
+            icon={<DockIcon className={iconClass} />}
+          />
           <SidebarMenuItem
             to={routes.ClientDashboard.link}
             title="Invoices"

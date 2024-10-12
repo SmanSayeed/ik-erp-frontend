@@ -42,6 +42,10 @@ const routes = {
     link: '/client/become-seller',
     title: 'Become A Seller',
   },
+  ClientSellerProfile:{
+    link: '/client/seller-profile',
+    title: 'Seller Profile',
+  },
   
   // --------------- Admin -----------------
   adminDashboard: {
