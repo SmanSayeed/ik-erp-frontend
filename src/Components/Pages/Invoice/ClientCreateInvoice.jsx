@@ -1,14 +1,27 @@
-import React, { useState } from 'react';
-import { useCreateChildClientInvoiceMutation, useCreateInvoiceMutation } from '../../../services/invoicesApi';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useCreateChildClientInvoiceMutation } from '../../../services/invoicesApi';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import PreviewInvoice from '../../Molecules/Invoice/PreviewInvoice'; // Import the PreviewInvoice component
+import { useGetChildClientsQuery } from '../../../services/childClientsApi';
+import { useSelector } from 'react-redux';
+import routes from '../../../routes/routes';
 
 export default function ClientCreateInvoice() {
   const { client_remotik_id } = useParams();
-  const [createChildClientInvoice, { isLoading, error }] = useCreateChildClientInvoiceMutation();
+
+  const {client} = useSelector((state) => state.auth);
+
+  if(!client.is_seller){
+    return <Navigate to={routes.ClientBecomeASeller.link} />;
+  }
+
+  const [createChildClientInvoice, { isLoading }] = useCreateChildClientInvoiceMutation();
   const [invoiceId, setInvoiceId] = useState(null); // Store invoice ID for preview
   const navigate = useNavigate();
+
+  const { data: childClients, error: childClientError, isLoading: childClientLoading } = useGetChildClientsQuery(client_remotik_id);
+  const [childClientData, setChildClientData] = useState([]);
 
   const [formData, setFormData] = useState({
     from: '',
@@ -18,6 +31,14 @@ export default function ClientCreateInvoice() {
     child_client_remotik_id: '',
   });
 
+  const [formErrors, setFormErrors] = useState({}); // Store validation errors
+
+  useEffect(() => {
+    if (!childClientLoading && !childClientError) {
+      setChildClientData(childClients);
+    }
+  }, [childClientLoading, childClientError, childClients]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -25,21 +46,21 @@ export default function ClientCreateInvoice() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data, error } = await createChildClientInvoice(formData,true).unwrap();
+      const { data } = await createChildClientInvoice(formData).unwrap();
 
-      if(data.id){
-      // Alert user
-      toast.success('Invoice created successfully');
-      // Set the invoice ID for preview
-      setInvoiceId(data.id); // Assuming `data` contains the invoice ID
-      }else{
-        console.log("Invoice create error-- ",error);
+      if (data.id) {
+        setFormErrors({}); // Clear previous errors
+        toast.success('Invoice created successfully');
+        setInvoiceId(data.id); // Set invoice ID for preview
       }
-      // Optional: Navigate to another route if needed
-      // navigate(routes.adminInvoiceList.link);
     } catch (err) {
       console.error('Failed to create invoice:', err);
-      alert('Failed to create invoice');
+
+      if (err?.status === 422 && err?.data?.data) {
+        setFormErrors(err.data.data); // Set validation errors
+      } else {
+        toast.error('Failed to create invoice');
+      }
     }
   };
 
@@ -58,6 +79,9 @@ export default function ClientCreateInvoice() {
               className="w-full border border-gray-300 rounded px-3 py-2"
               required
             />
+            {formErrors?.from && (
+              <p className="text-red-500 mt-1">{formErrors.from[0]}</p> // Show from date error if exists
+            )}
           </div>
           <div>
             <label className="block font-semibold mb-1">To Date</label>
@@ -69,6 +93,9 @@ export default function ClientCreateInvoice() {
               className="w-full border border-gray-300 rounded px-3 py-2"
               required
             />
+            {formErrors?.to && (
+              <p className="text-red-500 mt-1">{formErrors.to[0]}</p> // Show to date error if exists
+            )}
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -81,6 +108,9 @@ export default function ClientCreateInvoice() {
               onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
+            {formErrors?.due_date && (
+              <p className="text-red-500 mt-1">{formErrors.due_date[0]}</p> // Show due date error if exists
+            )}
           </div>
           <div>
             <label className="block font-semibold mb-1">Parent Client Remotik ID</label>
@@ -89,7 +119,6 @@ export default function ClientCreateInvoice() {
               readOnly
               name="parent_client_remotik_id"
               value={formData.parent_client_remotik_id}
-              onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2"
               required
             />
@@ -97,16 +126,26 @@ export default function ClientCreateInvoice() {
 
           <div>
             <label className="block font-semibold mb-1">Child Client Remotik ID</label>
-            <input
-              type="text"
+            <select
               name="child_client_remotik_id"
               value={formData.child_client_remotik_id}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2"
               required
-            />
+            >
+              <option value="">Select Client</option>
+              {childClientData.map((client, index) => (
+                <option key={index} value={client.client_remotik_id}>
+                  {client.name}
+                </option>
+              ))}
+            </select>
+            {formErrors?.child_client_remotik_id && (
+              <p className="text-red-500 mt-1">{formErrors.child_client_remotik_id[0]}</p> // Show error for child client Remotik ID
+            )}
           </div>
         </div>
+
         <div>
           <button
             type="submit"
@@ -116,14 +155,12 @@ export default function ClientCreateInvoice() {
             {isLoading ? 'Creating Invoice...' : 'Create Invoice'}
           </button>
         </div>
-        {error && <p className="text-red-500 mt-2">Failed to create invoice</p>}
       </form>
 
       {invoiceId && (
         <div className="mt-8">
           <h2 className="text-xl font-semibold mb-4">Invoice Preview</h2>
-          {/* Pass the invoice ID to the PreviewInvoice component */}
-          <PreviewInvoice invoice_id={invoiceId} />
+          <PreviewInvoice invoice_id={invoiceId} /> {/* Pass the invoice ID to the PreviewInvoice component */}
         </div>
       )}
     </div>

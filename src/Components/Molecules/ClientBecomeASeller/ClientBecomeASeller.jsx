@@ -58,6 +58,10 @@ const ClientBecomeASeller = () => {
   };
 
   return (
+  <>
+  <div>
+    <p className='text-4xl font-extrabold'>Complete Seller Profile</p>
+  </div>
     <form onSubmit={handleSubmit} className="space-y-4 p-4 border rounded">
       <div>
         <label htmlFor="company_name" className="block text-sm font-medium text-gray-700 my-2">
@@ -151,6 +155,7 @@ const ClientBecomeASeller = () => {
         {isLoading || isFetching ? 'Submitting...' : 'Become a Seller'}
       </Button>
     </form>
+  </>
   );
 };
 
