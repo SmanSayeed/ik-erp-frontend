@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../..
 import { Skeleton } from '../../ui/skeleton';
 import { useGetChildClientProfileQuery  } from '../../../services/childClientsApi'; // Import the RTK query hook
 import SellerProfileCard from '../SellerProfileCard/SellerProfileCard'; // Assuming you have a SellerProfileCard for seller info
+import routes from '../../../routes/routes';
 
 const ChildClientProfile = () => {
   const { client_remotik_id, child_client_remotik_id } = useParams(); // Extracting route params
@@ -15,7 +16,8 @@ console.log('data >>>>>>>>',data);
   // Redirect to the create page if no profile is found
   useEffect(() => {
     if (!isLoading && !data?.data) {
-      navigate(`/create-child-client/${client_remotik_id}/${child_client_remotik_id}`);
+    
+      navigate(routes.ClientRegisterChildClientPage.link(client_remotik_id,child_client_remotik_id));
     }
   }, [isLoading, data, navigate, client_remotik_id, child_client_remotik_id]);
 
