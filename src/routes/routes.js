@@ -63,7 +63,7 @@ const routes = {
     title: 'Create Invoice',
   },
   ClientViewInvoice:{
-    link: '/client/view-invoice',
+    link: (invoice_id)=>'/client/view-invoice/'+invoice_id,
     title: 'View Invoice',
   },
   // --------------- Admin -----------------
