@@ -76,7 +76,7 @@ function AdminLoginPage() {
       <AuthLayout>
         <div className="flex flex-col gap-2 justify-center items-center">
         <h2 className="text-3xl font-semibold text-center mb-1">Admin Login</h2>
-        <StyledLink to={routes.register.link}>{routes.register.title}</StyledLink>
+        {/* <StyledLink to={routes.register.link}>{routes.register.title}</StyledLink> */}
         </div>
      
         <LoginForm formik={formik} isLoading={isLoading} />

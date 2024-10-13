@@ -43,6 +43,12 @@ export const clientsApi = createApi({
         method: 'GET',
       }),
     }),
+    getClientsFromNodeJs: builder.query({
+      query: () => ({
+        url: `/clients/nodejs`,
+        method: 'GET',
+      }),
+    }),
     updateSellerInfo: builder.mutation({
       query: ({ clientId, data }) => {
         console.log("clientData ",clientId,data);
@@ -63,4 +69,5 @@ export const {
   useGetSellerInfoQuery,
   useLazyGetSellerInfoQuery,
   useUpdateSellerInfoMutation,
+  useGetClientsFromNodeJsQuery
 } = clientsApi;

@@ -3,9 +3,15 @@ import { useCreateInvoiceMutation } from '../../../services/invoicesApi';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import PreviewInvoice from '../../Molecules/Invoice/PreviewInvoice'; // Import the PreviewInvoice component
+import { useGetClientsFromNodeJsQuery } from '../../../services/clientsApi';
 
 export default function CreateInvoice() {
   const [createInvoice, { isLoading, error }] = useCreateInvoiceMutation();
+
+  const {data:clients, isLoading: isLoadingClients, error: errorClients} = useGetClientsFromNodeJsQuery();
+
+  console.log("clients from node js ",clients?.data);
+
   const [invoiceId, setInvoiceId] = useState(null); // Store invoice ID for preview
   const navigate = useNavigate();
 
@@ -80,14 +86,22 @@ export default function CreateInvoice() {
           </div>
           <div>
             <label className="block font-semibold mb-1">Client ID</label>
-            <input
+            <select required    name="client_remotik_id"  onChange={handleChange}  className="w-full border border-gray-300 rounded px-3 py-2">
+              <option value="">Select Client</option>
+              {clients?.data.map((client,index) => (
+                <option key={index} value={client}>
+                  {client}
+                </option>
+              ))}
+            </select>
+            {/* <input
               type="text"
               name="client_remotik_id"
               value={formData.client_remotik_id}
               onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2"
               required
-            />
+            /> */}
           </div>
         </div>
         <div>

@@ -19,7 +19,7 @@ function Login() {
     <div className="flex h-screen">
       <div className="w-full md:w-1/2 flex flex-col justify-center p-8 bg-white">
         <h2 className="text-3xl font-semibold text-center mb-6">Login</h2>
-        <Link href="/register">Register</Link>
+        {/* <Link href="/register">Register</Link> */}
         <LoginPage />
       </div>
       <SidebarImage imageUrl="https://ucarecdn.com/a9ed82c6-14f1-462e-849e-3b007c2aae87/" />
