@@ -22,6 +22,7 @@ const ClientBecomeASeller = () => {
     company_kvk_number: sellerData?.company_kvk_number || '',
     company_iban_number: sellerData?.company_iban_number || '',
     client_id: client?.id,
+    client_remotik_id:client?.client_remotik_id
   });
 
   const [errors, setErrors] = useState({});

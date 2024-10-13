@@ -20,7 +20,8 @@ export default function AdminManageSellerProfile() {
     company_kvk_number: '',
     company_iban_number: '',
     status: false,
-    client_id:clientId
+    client_id:clientId,
+    client_remotik_id:''
   });
 
   // Update formData when the data is fetched
@@ -35,6 +36,7 @@ export default function AdminManageSellerProfile() {
         company_kvk_number: sellerData.company_kvk_number || '',
         company_iban_number: sellerData.company_iban_number || '',
         status: sellerData.status===1? true: false,
+        client_remotik_id:sellerData?.client_remotik_id
       });
     }
   }, [data]);

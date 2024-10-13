@@ -46,7 +46,26 @@ const routes = {
     link: '/client/seller-profile',
     title: 'Seller Profile',
   },
-  
+  ClientRegisterChildClientPage:{
+    link: (client_remotik_id,child_client_remotik_id)=>`/client/create-child-client/${client_remotik_id}/${child_client_remotik_id}`,
+    title: 'Seller Profile',
+  },
+  childClientProfile:{
+    link: (client_remotik_id,child_client_remotik_id)=>`/client/child-client-profile/${client_remotik_id}/${child_client_remotik_id}`,
+    title: 'Child Client Profile',
+  },
+  ClientInvoices:{
+    link: (client_remotik_id)=>'/client/invoices/'+client_remotik_id,
+    title: 'Invoices',
+  },
+  ClientCreateInvoice:{
+    link:(client_remotik_id)=> '/client/create-invoice/'+client_remotik_id,
+    title: 'Create Invoice',
+  },
+  ClientViewInvoice:{
+    link: '/client/view-invoice',
+    title: 'View Invoice',
+  },
   // --------------- Admin -----------------
   adminDashboard: {
     link: '/admin/dashboard',

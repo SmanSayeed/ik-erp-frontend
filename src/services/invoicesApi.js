@@ -15,6 +15,12 @@ export const invoicesApi = createApi({
         method: 'GET',
       }),
     }),
+    getChildClientInvoicesList: builder.query({
+      query: (client_remotik_id) => ({
+        url: `/client/invoice/child-client-invoice-list/${client_remotik_id}`,
+        method: 'GET',
+      }),
+    }),
     viewInvoice: builder.query({
       query: (invoice_id) => ({
         url: `/invoice/view/${invoice_id}`,
@@ -22,12 +28,21 @@ export const invoicesApi = createApi({
       }),
     }),
     createInvoice: builder.mutation({
-      query: (data) => ({
-        url: `/invoice/generate`,
+      query: (data) =>( {
+        url:  `/invoice/generate`,
         method: 'POST',
         data,
       }),
     }),
+
+    createChildClientInvoice: builder.mutation({
+      query: (data) =>( {
+        url:  `/client/invoice/generate`,
+        method: 'POST',
+        data,
+      }),
+    }),
+    
     updateInvoice: builder.mutation({
       query: ({ invoice_id, data }) => ({
         url: `/invoice/update/${invoice_id}`,
@@ -63,8 +78,10 @@ export const {
   useGetInvoicesListQuery,
   useViewInvoiceQuery,
   useCreateInvoiceMutation,
+  useCreateChildClientInvoiceMutation,
   useUpdateInvoiceMutation,
   useDeleteInvoiceMutation,
   useDownloadInvoiceQuery,
   usePreviewInvoiceQuery,
+  useGetChildClientInvoicesListQuery
 } = invoicesApi;

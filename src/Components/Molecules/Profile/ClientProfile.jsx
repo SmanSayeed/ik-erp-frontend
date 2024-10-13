@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../ui/card';
 import { Skeleton } from '../../ui/skeleton';
 import { useClientGetProfileQuery } from '../../../services/clientsApi';
+import SellerProfileCard from '../SellerProfileCard/SellerProfileCard';
 
 export default function ClientProfile() {
   const { client } = useSelector((state) => state.auth); 
@@ -45,27 +46,8 @@ export default function ClientProfile() {
           </CardContent>
         </Card>
       </div>
-
       {client?.is_seller && (
-        <div className="max-w-lg mx-auto p-4 my-2">
-          <h2 className="my-2 font-bold">Client As Seller Info</h2>
-          <Card>
-            <CardHeader>
-              <CardTitle>{sellerData.company_name}</CardTitle>
-          
-            </CardHeader>
-            <CardContent>
-              <div>
-                <p><strong>Company Address:</strong> {sellerData.company_address || 'N/A'}</p>
-                {/* <p><strong>Company Logo:</strong> {sellerData.company_logo || 'N/A'}</p> */}
-                <p><strong>KVK Number:</strong> {sellerData.company_kvk_number || 'N/A'}</p>
-                <p><strong>Status:</strong> {sellerData.status ? 'Active' : 'Inactive'}</p>
-                <p><strong>Created At:</strong> {new Date(sellerData.created_at).toLocaleDateString()}</p>
-                <p><strong>Updated At:</strong> {new Date(sellerData.updated_at).toLocaleDateString()}</p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+     <SellerProfileCard sellerData={sellerData} />
       )}
     </>
   );

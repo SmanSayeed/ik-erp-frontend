@@ -37,6 +37,11 @@ import ViewInvoice from "../Components/Pages/Invoice/ViewInvoice";
 import EditInvoice from "../Components/Pages/Invoice/EditInvoice";
 import CreateInvoice from "../Components/Pages/Invoice/CreateInvoice";
 import SellerProfile from "../Components/Organism/Seller/SellerProfile";
+import ClientRegisterChildClient from "../Components/Molecules/RegisterForm/ClientRegisterChildClient";
+import ChildClientProfile from "../Components/Molecules/Profile/ChildClientProfile";
+import ClientInvoiceList from "../Components/Pages/Invoice/ClientInvoiceList";
+import ClientCreateInvoice from "../Components/Pages/Invoice/ClientCreateInvoice";
+import ClientViewInvoice from "../Components/Pages/Invoice/ClientViewInvoice";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -79,8 +84,37 @@ const clientRoutes = {
       path: "seller-profile",
       element: <SellerProfile />,
     },
+    {
+      path: "create-child-client/:client_remotik_id/:child_client_remotik_id",
+      element: <ClientRegisterChildClient />,
+    },
+    {
+      path: "child-client-profile/:client_remotik_id/:child_client_remotik_id",
+      element: <ChildClientProfile />,
+    },
+
+    {
+      path: "invoices/:client_remotik_id",
+      element: <ClientInvoiceList />,
+    },
+
+    {
+      path: "create-invoice/:client_remotik_id",
+      element: <ClientCreateInvoice />,
+    },
+    {
+      path: "edit-invoice/:invoice_id",
+      element: <EditInvoice />,
+    },
+    {
+      path: "view-invoice/:invoice_id",
+      element: <ClientViewInvoice />,
+    },
   ],
 };
+
+
+// ADMIN STARTS
 
 const adminDashboardRoutes = {
   path: "/admin",
@@ -130,6 +164,7 @@ const adminDashboardRoutes = {
       path: "clients-devices",
       element: <ClientsDevicesList />,
     },
+   
     // {
     //   path: "invoices",
     //   element: <ClientsDevicesList />,
