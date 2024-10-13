@@ -85,7 +85,7 @@ export default function CreateInvoice() {
             />
           </div>
           <div>
-            <label className="block font-semibold mb-1">Client ID</label>
+            <label className="block font-semibold mb-1">Client Remotik ID</label>
             <select required    name="client_remotik_id"  onChange={handleChange}  className="w-full border border-gray-300 rounded px-3 py-2">
               <option value="">Select Client</option>
               {clients?.data.map((client,index) => (
