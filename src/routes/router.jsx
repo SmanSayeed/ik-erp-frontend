@@ -43,6 +43,7 @@ import ClientInvoiceList from "../Components/Pages/Invoice/ClientInvoiceList";
 import ClientCreateInvoice from "../Components/Pages/Invoice/ClientCreateInvoice";
 import ClientViewInvoice from "../Components/Pages/Invoice/ClientViewInvoice";
 import NodesComponent from "../Components/Organism/Nodes/NodesComponent";
+import ClientNodesComponent from "../Components/Organism/Nodes/ClientNodesComponent";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -110,6 +111,10 @@ const clientRoutes = {
     {
       path: "view-invoice/:invoice_id",
       element: <ClientViewInvoice />,
+    },
+    {
+      path: "nodes/:client_remotik_id",
+      element: <ClientNodesComponent />,
     },
   ],
 };

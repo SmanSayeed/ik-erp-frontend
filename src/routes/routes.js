@@ -66,6 +66,10 @@ const routes = {
     link: (invoice_id)=>'/client/view-invoice/'+invoice_id,
     title: 'View Invoice',
   },
+  clientNodes:{
+    link:(client_remotik_id)=>`/client/nodes/${client_remotik_id}`,
+    title:' Nodes'
+  },
   // --------------- Admin -----------------
   adminDashboard: {
     link: '/admin/dashboard',

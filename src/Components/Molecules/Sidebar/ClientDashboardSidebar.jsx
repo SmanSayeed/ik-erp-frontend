@@ -50,6 +50,11 @@ const ClientDashboardSidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) =>
             title="Invoices"
             icon={<DockIcon className={iconClass} />}
           />
+           <SidebarMenuItem
+            to={routes.clientNodes.link(client.client_remotik_id)}
+            title="Nodes"
+            icon={<DockIcon className={iconClass} />}
+          />
           {/* Add more links as needed */}
         </nav>
          
