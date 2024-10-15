@@ -11,7 +11,7 @@ export default function ChildClients({ client_remotik_id }) {
 
   return (
     <div className="max-w-lg mx-auto p-4 my-2">
-      <h2 className="my-2 font-bold text-lg">Child Clients</h2>
+      <h2 className="my-2 font-bold text-lg">Clients</h2>
       
       {/* Loading and Error States */}
       {isLoading && (
