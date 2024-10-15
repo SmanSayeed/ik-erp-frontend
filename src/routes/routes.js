@@ -123,6 +123,10 @@ const routes = {
     link:(invoice_id)=>`/admin/view-invoice/${invoice_id}`,
     title:'View Invoice'
   },
+  adminNodes:{
+    link:`/admin/nodes`,
+    title:' Nodes'
+  },
 };
 
 export default routes;

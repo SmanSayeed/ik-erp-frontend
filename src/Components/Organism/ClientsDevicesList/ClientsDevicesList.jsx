@@ -8,7 +8,7 @@ const ClientsDevicesList = () => {
     // Fetch data from API
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/api/sqlite/power");
+        const response = await axios.get("");
         setDevicesData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);

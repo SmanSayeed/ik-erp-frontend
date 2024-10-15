@@ -58,6 +58,11 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
             title={routes.adminDashboardClientDevice.title}
             icon={<DockIcon className={iconClass} />}
           />
+            <SidebarMenuItem
+            to={routes.adminNodes.link}
+            title={routes.adminNodes.title}
+            icon={<DockIcon className={iconClass} />}
+          />
           {/* Add more links as needed */}
         </nav>
       </div>

@@ -42,6 +42,7 @@ import ChildClientProfile from "../Components/Molecules/Profile/ChildClientProfi
 import ClientInvoiceList from "../Components/Pages/Invoice/ClientInvoiceList";
 import ClientCreateInvoice from "../Components/Pages/Invoice/ClientCreateInvoice";
 import ClientViewInvoice from "../Components/Pages/Invoice/ClientViewInvoice";
+import NodesComponent from "../Components/Organism/Nodes/NodesComponent";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -184,6 +185,10 @@ const adminDashboardRoutes = {
     {
       path: "view-invoice/:invoice_id",
       element: <ViewInvoice />,
+    },
+    {
+      path: "nodes",
+      element: <NodesComponent />,
     },
   ],
 };
