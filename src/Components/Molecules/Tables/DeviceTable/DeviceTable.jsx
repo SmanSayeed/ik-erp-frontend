@@ -1,7 +1,6 @@
 import React from "react";
-import { Button } from "../../ui/button";
-import StyledLink from "../../Atoms/StyledLink/StyledLink";
-import routes from "@/routes/routes";
+import { Button } from "@/Components/ui/button";
+
 
 const DeviceTable = ({ data, onEdit, onDelete }) => {
   const devices = data?.data || [];

@@ -4,7 +4,7 @@ import { Button } from "../../ui/button";
 import { Input } from "../../ui/input";
 import { toast } from "react-toastify";
 import Modal from "../../ui/Modal";
-import DeviceTable from "../../Molecules/DeviceTable/DeviceTable";
+import DeviceTable from "../../Molecules/Tables/DeviceTable/DeviceTable";
 import EditDeviceForm from "../../Molecules/EditDeviceForm/EditDeviceForm";
 import CreateDeviceForm from "../../Molecules/CreateDeviceFrom/CreateDeviceFrom";
 
