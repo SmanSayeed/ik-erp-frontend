@@ -1,8 +1,8 @@
 import React from "react";
-import { Button } from "../../ui/button";
+import { Button } from "@/Components/ui/button";
 import { Link } from "react-router-dom";
-import StyledLink from "../../Atoms/StyledLink/StyledLink";
-import routes from "../../../routes/routes";
+import StyledLink from "@/Components/Atoms/StyledLink/StyledLink";
+import routes from "@/routes/routes";
 
 const ClientsTable = ({ data, onEdit, onDelete }) => {
 

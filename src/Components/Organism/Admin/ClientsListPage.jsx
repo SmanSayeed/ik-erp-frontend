@@ -5,7 +5,7 @@ import { Input } from "../../ui/input";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import ClientsTable from "../../Molecules/ClientsTable/ClientsTable";
+import ClientsTable from "../../Molecules/Clients/ClientsTable/ClientsTable";
 // import Filters from "../../Molecules/Filters/Filters";
  // Adjust import path
 import {

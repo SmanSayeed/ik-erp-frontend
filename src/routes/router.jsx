@@ -20,7 +20,7 @@ import NotFoundPage from "../Components/Organism/NotFoundPage";
 import { useSelector } from "react-redux";
 import ClientDashboardPage from "../Components/Organism/ClientDashboardPage";
 import ClientProfilePage from "../Components/Organism/Client/ClientProfilePage";
-import ClientEditOwnProfileForm from "../Components/Molecules/ClientEditOwnProfileForm/ClientEditOwnProfileForm";
+import ClientEditOwnProfileForm from "../Components/Molecules/Clients/ClientEditOwnProfileForm/ClientEditOwnProfileForm";
 import ClientRegisterPage from "../Components/Organism/ClientRegisterPage";
 import AdminProtectedRoute from "../Components/Auth/AdminProtectedRoute";
 import ClientLoginPage from "../Components/Organism/ClientLoginPage";
