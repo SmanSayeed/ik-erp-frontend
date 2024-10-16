@@ -25,6 +25,15 @@ export const childClientsApi = createApi({
         data: newClientData, // Send form data as request body
       }),
     }),
+
+    updateChildClient: builder.mutation({
+      query: ({newClientData,client_remotik_id,child_client_remotik_id}) => ({
+        url: `/client/update-child-client/${client_remotik_id}/${child_client_remotik_id}`,
+        method: 'PUT',
+        data: newClientData, // Send form data as request body
+      }),
+    }),
+
     getChildClientProfile: builder.query({
       query: ({ client_remotik_id, child_client_remotik_id }) => ({
         url: `/client/child/profile/${client_remotik_id}/${child_client_remotik_id}`,
@@ -34,4 +43,4 @@ export const childClientsApi = createApi({
   }),
 });
 
-export const { useGetChildClientsQuery,useRegisterChildClientMutation , useGetChildClientProfileQuery  } = childClientsApi; // Export the auto-generated hook for the query
+export const { useGetChildClientsQuery,useRegisterChildClientMutation , useGetChildClientProfileQuery, useUpdateChildClientMutation  } = childClientsApi; // Export the auto-generated hook for the query

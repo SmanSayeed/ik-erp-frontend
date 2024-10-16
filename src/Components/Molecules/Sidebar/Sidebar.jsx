@@ -23,26 +23,26 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
             title="Dashboard"
             icon={<Home className={iconClass} />}
           />
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             to={routes.adminDashboardUsers.link}
             title="Users"
             icon={<Users className={iconClass} />}
-          />
+          /> */}
           <SidebarMenuItem
             to={routes.adminDashboardClients.link}
             title="Clients"
             icon={<Users className={iconClass} />}
           />
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             to={routes.deviceList.link}
             title={routes.deviceList.title}
             icon={<Laptop className={iconClass} />}
-          />
-          <SidebarMenuItem
+          /> */}
+          {/* <SidebarMenuItem
             to={routes.adminDashboardUsers.link}
             title="Device Clusters"
             icon={<Box className={iconClass} />}
-          />
+          /> */}
           {/* <SidebarMenuItem
             to={routes.adminDashboardUsers.link}
             title="Client Device Mappings"
@@ -53,15 +53,15 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
             title={routes.adminInvoiceList.title}
             icon={<DockIcon className={iconClass} />}
           />
-          <SidebarMenuItem
+          {/* <SidebarMenuItem
             to={routes.adminDashboardClientDevice.link}
             title={routes.adminDashboardClientDevice.title}
             icon={<DockIcon className={iconClass} />}
-          />
+          /> */}
             <SidebarMenuItem
             to={routes.adminNodes.link}
             title={routes.adminNodes.title}
-            icon={<DockIcon className={iconClass} />}
+            icon={<Laptop className={iconClass} />}
           />
           {/* Add more links as needed */}
         </nav>

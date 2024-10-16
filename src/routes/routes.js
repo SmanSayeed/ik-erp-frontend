@@ -54,6 +54,10 @@ const routes = {
     link: (client_remotik_id,child_client_remotik_id)=>`/client/child-client-profile/${client_remotik_id}/${child_client_remotik_id}`,
     title: 'Child Client Profile',
   },
+  updateChildClient:{
+    link: (client_remotik_id,child_client_remotik_id)=>`/client/update-child-client/${client_remotik_id}/${child_client_remotik_id}`,
+    title: 'Update Child Client',
+  },
   ClientInvoices:{
     link: (client_remotik_id)=>'/client/invoices/'+client_remotik_id,
     title: 'Invoices',

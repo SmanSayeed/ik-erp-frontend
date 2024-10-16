@@ -44,6 +44,7 @@ import ClientCreateInvoice from "../Components/Pages/Invoice/ClientCreateInvoice
 import ClientViewInvoice from "../Components/Pages/Invoice/ClientViewInvoice";
 import NodesComponent from "../Components/Organism/Nodes/NodesComponent";
 import ChildNodesComponent from "../Components/Organism/Nodes/ChildNodesComponent";
+import ClientUpdateChildClient from "../Components/Molecules/RegisterForm/ClientUpdateChildClient";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -93,6 +94,10 @@ const clientRoutes = {
     {
       path: "child-client-profile/:client_remotik_id/:child_client_remotik_id",
       element: <ChildClientProfile />,
+    },
+    {
+      path: "update-child-client/:client_remotik_id/:child_client_remotik_id",
+      element: <ClientUpdateChildClient />,
     },
 
     {

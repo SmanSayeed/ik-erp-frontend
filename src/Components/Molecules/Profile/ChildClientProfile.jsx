@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom'; // Add useNavigate for redirection
+import { useParams, useNavigate, Link } from 'react-router-dom'; // Add useNavigate for redirection
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../../ui/card';
 import { Skeleton } from '../../ui/skeleton';
 import { useGetChildClientProfileQuery  } from '../../../services/childClientsApi'; // Import the RTK query hook
 import SellerProfileCard from '../SellerProfileCard/SellerProfileCard'; // Assuming you have a SellerProfileCard for seller info
 import routes from '../../../routes/routes';
+import { Button } from '../../ui/button';
 
 const ChildClientProfile = () => {
   const { client_remotik_id, child_client_remotik_id } = useParams(); // Extracting route params
@@ -34,7 +35,17 @@ console.log('data >>>>>>>>',data);
   return (
     <>
       <div className="max-w-lg mx-auto p-4 my-2">
+        <div className='flex justify-between items-center my-6'>
         <h2 className="my-2 font-bold">Client Info</h2>
+        <Link to={routes.updateChildClient.link(client_remotik_id,child_client_remotik_id)}>
+        <Button>
+        Update Profile
+        </Button>
+      
+        </Link>
+        </div>
+    
+
         <Card>
           <CardHeader>
             <CardTitle>{profileData?.name}</CardTitle>
