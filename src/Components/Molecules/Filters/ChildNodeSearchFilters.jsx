@@ -24,7 +24,7 @@ const ChildNodeSearchFilters = ({
             <option value="">Select Child Client</option>
             {childClients?.map((client, index) => (
               <option key={index} value={client.name}>
-                {client.name}
+                {client.client_remotik_id}
               </option>
             ))}
           </select>

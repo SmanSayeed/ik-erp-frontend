@@ -40,8 +40,8 @@ export default function CreateInvoice() {
       // Optional: Navigate to another route if needed
       // navigate(routes.adminInvoiceList.link);
     } catch (err) {
-      console.error('Failed to create invoice:', err);
-      alert('Failed to create invoice');
+      console.error('Failed to create invoice for child client:', err?.data?.message);
+      toast.error('Failed. '+err?.data?.message);
     }
   };
 

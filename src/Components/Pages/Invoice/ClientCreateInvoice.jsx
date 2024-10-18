@@ -54,13 +54,11 @@ export default function ClientCreateInvoice() {
         setInvoiceId(data.id); // Set invoice ID for preview
       }
     } catch (err) {
-      console.error('Failed to create invoice:', err);
-
+      console.error('Failed to create invoice for child client:', err?.data?.message);
+      toast.error('Failed. '+err?.data?.message);
       if (err?.status === 422 && err?.data?.data) {
-        setFormErrors(err.data.data); // Set validation errors
-      } else {
-        toast.error('Failed to create invoice');
-      }
+        setFormErrors(err.data.data); // Set validation errors  
+      } 
     }
   };
 
@@ -136,7 +134,7 @@ export default function ClientCreateInvoice() {
               <option value="">Select Client</option>
               {childClientData.map((client, index) => (
                 <option key={index} value={client.client_remotik_id}>
-                  {client.name}
+                  {client.client_remotik_id}
                 </option>
               ))}
             </select>

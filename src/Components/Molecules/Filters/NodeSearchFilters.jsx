@@ -27,7 +27,7 @@ const NodeSearchFilters = ({
           name="child_client_remotik_id"
           value={filters.child_client_remotik_id}
           onChange={handleInputChange}
-          options={childClients?.map((client) => client.name)}
+          options={childClients?.map((client) => client.client_remotik_id)}
           isLoading={childClientLoading}
           label="Child Client"
         />

@@ -30,7 +30,7 @@ export default function ClientProfile() {
         <Card>
           <CardHeader>
             <CardTitle>{profileData.name}</CardTitle>
-            <CardDescription>{profileData.email}</CardDescription>
+            <CardDescription>{profileData.email || "Email not provided"}</CardDescription>
           </CardHeader>
           <CardContent>
             <div>
