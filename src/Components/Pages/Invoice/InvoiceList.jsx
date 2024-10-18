@@ -15,9 +15,9 @@ export default function InvoiceList() {
   const [invoiceData, setInvoiceData] = useState([]);
 
   useEffect(() => {
-   
-    if (data) {
-      setInvoiceData(data.data); // Avoid setting the whole data object, just the invoice list
+  
+    if (data && data?.data) {
+      setInvoiceData(data?.data?.data); // Access 'data' array from the response
     }
   }, [data]);
 
@@ -93,7 +93,7 @@ export default function InvoiceList() {
               </tr>
             </thead>
             <tbody>
-              {invoiceData && invoiceData?.length > 0 ? (
+              {invoiceData && invoiceData.length > 0 ? (
                 invoiceData.map((invoice) => (
                   <tr key={invoice.id}>
                     <td className="py-2 px-4 border-b">{invoice.id}</td>
@@ -126,10 +126,10 @@ export default function InvoiceList() {
       )}
 
       {/* Pagination */}
-      {!isLoading && invoiceData?.total > 0 && (
+      {!isLoading && data?.meta && (
         <Pagination
-          currentPage={invoiceData.current_page}
-          totalPages={invoiceData.last_page}
+          currentPage={data.meta.current_page}
+          totalPages={data.meta.last_page}
           onPageChange={setCurrentPage}
         />
       )}
