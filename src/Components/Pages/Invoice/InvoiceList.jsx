@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import apiConfig from '../../../config/apiConfig';
 import routes from '../../../routes/routes';
 import Pagination from '../../Atoms/Pagination/Pagination';
-// Adjust the path accordingly
 
 export default function InvoiceList() {
   const [currentPage, setCurrentPage] = useState(1); // State for pagination
@@ -12,19 +11,19 @@ export default function InvoiceList() {
   const [deleteInvoice] = useDeleteInvoiceMutation();
   const navigate = useNavigate(); // For navigation
 
-
-const [invoiceData,setInvoiceData]=useState([]);
-
-useEffect(()=>{
-  console.log("invoice data",data)
-  if(data){
-    setInvoiceData(data);
-  }
-},[data])
+  // Set up invoice data only when it's available
+  const [invoiceData, setInvoiceData] = useState([]);
 
   useEffect(() => {
-    refetch(); // Refetch data when the component mounts or page changes
-  }, [refetch, currentPage]);
+   
+    if (data) {
+      setInvoiceData(data.data); // Avoid setting the whole data object, just the invoice list
+    }
+  }, [data]);
+
+  useEffect(() => {
+    refetch(); // Refetch data on mount or page change
+  }, [currentPage, refetch]);
 
   const handleDelete = async (invoice_id) => {
     if (window.confirm('Are you sure you want to delete this invoice?')) {
@@ -56,7 +55,7 @@ useEffect(()=>{
     }
   };
 
-  const thStyle = "py-2 px-4 border-b text-left text-sm font-medium"; 
+  const thStyle = "py-2 px-4 border-b text-left text-sm font-medium";
 
   return (
     <div className="container mx-auto px-2 py-8">
@@ -94,15 +93,13 @@ useEffect(()=>{
               </tr>
             </thead>
             <tbody>
-              {invoiceData && invoiceData.data.length > 0 ? (
-                data.data.data.map((invoice) => (
+              {invoiceData && invoiceData?.length > 0 ? (
+                invoiceData.map((invoice) => (
                   <tr key={invoice.id}>
                     <td className="py-2 px-4 border-b">{invoice.id}</td>
                     <td className="py-2 px-4 border-b">{invoice.client_name}</td>
                     <td className="py-2 px-4 border-b">{invoice.client_email}</td>
-                    <td className='py-2 px-4 border-b'>
-                      {invoice.invoice_generated_by_name}
-                    </td>
+                    <td className="py-2 px-4 border-b">{invoice.invoice_generated_by_name}</td>
                     <td className="py-2 px-4 border-b">€{invoice.total_cost}</td>
                     <td className="py-2 px-4 border-b">{invoice.invoice_status}</td>
                     <td className="py-2 px-4 border-b flex gap-2">
@@ -129,10 +126,10 @@ useEffect(()=>{
       )}
 
       {/* Pagination */}
-      {!isLoading && data?.data?.total > 0 && (
+      {!isLoading && invoiceData?.total > 0 && (
         <Pagination
-          currentPage={data.data.current_page}
-          totalPages={data.data.last_page}
+          currentPage={invoiceData.current_page}
+          totalPages={invoiceData.last_page}
           onPageChange={setCurrentPage}
         />
       )}
