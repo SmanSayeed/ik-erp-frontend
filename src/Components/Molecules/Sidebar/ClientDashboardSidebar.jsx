@@ -45,6 +45,11 @@ const ClientDashboardSidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) =>
             title="Seller Profile"
             icon={<DockIcon className={iconClass} />}
           />
+            <SidebarMenuItem
+            to={routes.OwnInvoicesList.link(client.client_remotik_id)}
+            title="Own Invoices"
+            icon={<DockIcon className={iconClass} />}
+          />
           <SidebarMenuItem
             to={routes.ClientInvoices.link(client.client_remotik_id)}
             title="Invoices"

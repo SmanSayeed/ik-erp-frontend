@@ -72,6 +72,15 @@ export const invoicesApi = createApi({
         responseType: 'blob',  // Return the response as a Blob for preview
       }),
     }),
+
+    getOwnInvoicesList: builder.query({
+      query: ({ client_remotik_id, page = 1, perPage = 10 }) => ({
+        url: `/client/invoice/invoice-for/${client_remotik_id}`,
+        method: 'GET',
+        params: { page, perPage }, // Pass pagination parameters as query params
+      }),
+    }),
+
   }),
 });
 
@@ -84,5 +93,6 @@ export const {
   useDeleteInvoiceMutation,
   useDownloadInvoiceQuery,
   usePreviewInvoiceQuery,
-  useGetChildClientInvoicesListQuery
+  useGetChildClientInvoicesListQuery,
+  useGetOwnInvoicesListQuery
 } = invoicesApi;

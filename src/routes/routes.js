@@ -62,6 +62,10 @@ const routes = {
     link: (client_remotik_id)=>'/client/invoices/'+client_remotik_id,
     title: 'Invoices',
   },
+  OwnInvoicesList:{
+    link: (client_remotik_id)=>'/client/own-invoices/'+client_remotik_id,
+    title: 'Invoices',
+  },
   ClientCreateInvoice:{
     link:(client_remotik_id)=> '/client/create-invoice/'+client_remotik_id,
     title: 'Create Invoice',

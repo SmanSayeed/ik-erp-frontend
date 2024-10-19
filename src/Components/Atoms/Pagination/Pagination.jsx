@@ -115,19 +115,20 @@ const Pagination = ({ currentPage, totalPages, onPageChange, itemsPerPage, setIt
       >
         Go
       </button>
-
-      {/* Show Per Page */}
-      <select
-        value={itemsPerPage}
-        onChange={handleItemsPerPageChange}
-        className="px-2 py-1 border rounded w-28 text-center"
-      >
-        {perPageArray && perPageArray.length > 0 && perPageArray.map((num) => (
-          <option key={num} value={num}>
-            {num}
-          </option>
-        ))}
-      </select>
+{
+  itemsPerPage &&
+  <select
+  value={itemsPerPage}
+  onChange={handleItemsPerPageChange}
+  className="px-2 py-1 border rounded w-28 text-center"
+>
+  {perPageArray && perPageArray.length > 0 && perPageArray.map((num) => (
+    <option key={num} value={num}>
+      {num}
+    </option>
+  ))}
+</select>
+}
     </div>
   );
 };

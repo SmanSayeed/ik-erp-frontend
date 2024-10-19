@@ -49,6 +49,7 @@ import ClientUpdateChildClient from "../Components/Molecules/RegisterForm/Client
 import PowerUsagePage from "../Components/Organism/Admin/PowerUsagePage";
 
 import PowerDataSyncLogPage from "../Components/Organism/Admin/PowerDataSyncLogPage";
+import OwnInvoiceList from "../Components/Pages/Invoice/OwnInvoiceList";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -104,6 +105,12 @@ const clientRoutes = {
       element: <ClientUpdateChildClient />,
     },
 
+    
+    {
+      path: "own-invoices/:client_remotik_id",
+      element: <OwnInvoiceList />,
+    },
+
     {
       path: "invoices/:client_remotik_id",
       element: <ClientInvoiceList />,
@@ -117,6 +124,9 @@ const clientRoutes = {
       path: "edit-invoice/:invoice_id",
       element: <EditInvoice />,
     },
+
+    
+
     {
       path: "view-invoice/:invoice_id",
       element: <ClientViewInvoice />,

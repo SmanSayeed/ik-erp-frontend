@@ -7,14 +7,16 @@ import { useGetDevicesQuery } from '../../services/deviceApi';
 import { Link } from 'react-router-dom';
 import routes from '../../routes/routes';
 import Spinner from '../Atoms/Loader/Spinner';
+import { useGetInvoicesListQuery } from '../../services/invoicesApi';
 
 function Dashboard() {
   const { data: clientsData, isLoading: loadingClients } = useGetClientsFromNodeJsQuery();
   const { data: nodesData, isLoading: loadingNodes } = useGetNodesQuery();
-  const { data: devicesData, isLoading: loadingDevices } = useGetDevicesQuery();
+  const { data: invoicesData, isLoading: loadingInvoices } = useGetInvoicesListQuery();
+console.log("nodes ",nodesData);
+  const totalNodes = (nodesData && nodesData?.data && nodesData?.data?.total) || 0;
 
-  const totalNodes = (nodesData && nodesData?.data && nodesData?.data?.length && nodesData?.data?.length) || 0;
-  const totalDevices = devicesData?.data?.length || 0;
+  const totalInvoices =(invoicesData && invoicesData?.data && invoicesData?.data?.pagination && invoicesData?.data?.pagination?.total) || 0;
 
   const totalClients = clientsData?.data?.length || 0;
 
@@ -40,7 +42,7 @@ function Dashboard() {
         <div className="w-full md:w-1/3 p-4">
           <div className="flex flex-col items-center justify-center p-6 border rounded-lg shadow-md bg-green-100">
             <h3 className="text-xl font-semibold">Total Invoices</h3>
-            <p className="text-3xl font-bold">{loadingDevices ? <Spinner /> : totalDevices}</p>
+            <p className="text-3xl font-bold">{loadingInvoices ? <Spinner /> : totalInvoices}</p>
             <Link to={routes.adminInvoiceList.link} className="mt-2 text-green-500 hover:underline">
               View Invoices
             </Link>
