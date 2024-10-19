@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PowerDataTable = ({ data }) => {
+const PowerUsageTable = ({ data }) => {
   return (
     <div className="overflow-x-auto">
       <table className="min-w-full bg-white rounded-lg shadow-md overflow-hidden">
@@ -31,4 +31,4 @@ const PowerDataTable = ({ data }) => {
   );
 };
 
-export default PowerDataTable;
+export default PowerUsageTable;

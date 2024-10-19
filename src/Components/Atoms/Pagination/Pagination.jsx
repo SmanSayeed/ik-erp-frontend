@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination = ({ currentPage, totalPages, onPageChange, itemsPerPage, setItemsPerPage, perPageArray }) => {
   const [inputPage, setInputPage] = useState('');
 
   // Handle page input change
@@ -8,15 +8,25 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     setInputPage(e.target.value);
   };
 
+  // Handle items per page input change
+  const handleItemsPerPageChange = (e) => {
+    setItemsPerPage(parseInt(e.target.value, 10)); // Use parseInt to convert string to number
+  };
+
   // Handle page jump on enter key press
   const handlePageJump = (e) => {
     if (e.key === 'Enter') {
-      const pageNumber = Math.max(1, Math.min(totalPages, parseInt(inputPage, 10))); // Ensure valid page number
-      if (!isNaN(pageNumber)) {
-        onPageChange(pageNumber);
-      }
-      setInputPage('');
+      goToPage();
     }
+  };
+
+  // Function to handle the page change when the "Go" button is clicked
+  const goToPage = () => {
+    const pageNumber = Math.max(1, Math.min(totalPages, parseInt(inputPage, 10))); // Ensure valid page number
+    if (!isNaN(pageNumber)) {
+      onPageChange(pageNumber);
+    }
+    setInputPage('');
   };
 
   // Generate page numbers to display
@@ -42,7 +52,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   };
 
   return (
-    <div className="flex items-center justify-center space-x-2">
+    <div className="flex items-center justify-center space-x-2 my-2">
       {/* First Page and Previous Page */}
       <button
         onClick={() => onPageChange(1)}
@@ -98,6 +108,26 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         placeholder="Jump"
         className="px-2 py-1 border rounded w-20 text-center"
       />
+      {/* Go Button for page jump */}
+      <button
+        onClick={goToPage}
+        className="px-2 py-1 border text-blue-600"
+      >
+        Go
+      </button>
+
+      {/* Show Per Page */}
+      <select
+        value={itemsPerPage}
+        onChange={handleItemsPerPageChange}
+        className="px-2 py-1 border rounded w-28 text-center"
+      >
+        {perPageArray && perPageArray.length > 0 && perPageArray.map((num) => (
+          <option key={num} value={num}>
+            {num}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };
