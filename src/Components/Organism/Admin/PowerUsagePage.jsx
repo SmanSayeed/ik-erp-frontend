@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useGetPowerUsageQuery } from "../../../services/powerApi";
 import Pagination from "../../Atoms/Pagination/Pagination"; // Adjust import path as necessary
 import { Input } from "../../ui/input";
-import { Button } from "../../ui/Button"; // Adjust import path for UI components
+import { Button } from "../../ui/button"; // Adjust import path for UI components
 import PowerUsageTable from "../../Molecules/Tables/PowerUsageTable";
 import ClientSelectInput from "../../Molecules/Clients/ClientSelectInput/ClientSelectInput"; // Import ClientSelectInput
 import { useGetClientsFromNodeJsQuery } from "@/services/clientsApi"; // Adjust import paths for your services
