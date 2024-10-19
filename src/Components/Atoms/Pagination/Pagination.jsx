@@ -95,7 +95,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         value={inputPage}
         onChange={handleInputChange}
         onKeyDown={handlePageJump}
-        placeholder="Jump to page"
+        placeholder="Jump"
         className="px-2 py-1 border rounded w-20 text-center"
       />
     </div>
