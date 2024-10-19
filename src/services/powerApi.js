@@ -17,7 +17,15 @@ export const powerApi = createApi({
         // Send filters as query parameters for the GET request
       }),
     }),
+    getLogPowerUsage: builder.query({
+      query: (filters) => ({
+        url: '/admin/power-data-sync-log',
+        method: 'GET',
+        params: filters || '',  
+        // Send filters as query parameters for the GET request
+      }),
+    }),
   }),
 });
 
-export const { useGetPowerUsageQuery } = powerApi;
+export const { useGetPowerUsageQuery,useGetLogPowerUsageQuery } = powerApi;

@@ -140,6 +140,10 @@ const routes = {
     link:`/admin/power-usage`,
     title:' Power Usage'
   },
+  powerDataSyncLog:{
+    link:`/admin/power-data-sync-log`,
+    title:' Power Data Sync Log'
+  },
 };
 
 export default routes;

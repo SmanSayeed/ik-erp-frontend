@@ -6,23 +6,25 @@ import routes from '../../../routes/routes';
 import Pagination from '../../Atoms/Pagination/Pagination';
 
 export default function InvoiceList() {
+  const [pagination,setPagination] = useState({})
   const [currentPage, setCurrentPage] = useState(1); // State for pagination
-  const { data, error, isLoading, refetch } = useGetInvoicesListQuery(currentPage); // Pass current page to the query
+  const { data, error, isLoading, refetch } = useGetInvoicesListQuery({ page: currentPage }); // Pass current page to the query
   const [deleteInvoice] = useDeleteInvoiceMutation();
   const navigate = useNavigate(); // For navigation
 
   // Set up invoice data only when it's available
   const [invoiceData, setInvoiceData] = useState([]);
 
+  console.log("invoice ata", data);
   useEffect(() => {
-  
-    if (data && data?.data) {
-      setInvoiceData(data?.data?.data); // Access 'data' array from the response
+    if (data) {
+      setInvoiceData(data?.data?.data || []); // Access 'data' array from the response
+      setPagination(data?.data?.pagination || {})
     }
   }, [data]);
 
   useEffect(() => {
-    refetch(); // Refetch data on mount or page change
+    refetch(); // Refetch data when currentPage changes
   }, [currentPage, refetch]);
 
   const handleDelete = async (invoice_id) => {
@@ -30,7 +32,7 @@ export default function InvoiceList() {
       try {
         await deleteInvoice(invoice_id).unwrap();
         alert('Invoice deleted successfully');
-        refetch();
+        refetch(); // Refetch to get updated list after deletion
       } catch (err) {
         console.error('Failed to delete invoice:', err);
         alert('Failed to delete invoice');
@@ -93,7 +95,7 @@ export default function InvoiceList() {
               </tr>
             </thead>
             <tbody>
-              {invoiceData && invoiceData.length > 0 ? (
+              {invoiceData.length > 0 ? (
                 invoiceData.map((invoice) => (
                   <tr key={invoice.id}>
                     <td className="py-2 px-4 border-b">{invoice.id}</td>
@@ -125,13 +127,18 @@ export default function InvoiceList() {
         </div>
       )}
 
-      {/* Pagination */}
-      {!isLoading && data?.meta && (
-        <Pagination
-          currentPage={data.meta.current_page}
-          totalPages={data.meta.last_page}
-          onPageChange={setCurrentPage}
-        />
+      {/* Pagination and total counts */}
+      {!isLoading && pagination && (
+        <div className="mt-4">
+          <p className="text-sm mb-2">
+            Total Invoices: {pagination.total} | Total Pages: {pagination.last_page}
+          </p>
+          <Pagination
+            currentPage={pagination.current_page}
+            totalPages={pagination.last_page}
+            onPageChange={setCurrentPage}
+          />
+        </div>
       )}
     </div>
   );

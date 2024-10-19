@@ -1,6 +1,6 @@
 const ClientSelectInput = ({ name, value, onChange, options, isLoading, label }) => {
     return (
-      <div className="w-full md:w-1/4 px-4">
+      <div className="w-full md:w-1/4 pr-4">
         <select
           name={name}
           onChange={onChange}

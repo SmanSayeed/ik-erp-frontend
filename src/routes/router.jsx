@@ -45,8 +45,10 @@ import ClientViewInvoice from "../Components/Pages/Invoice/ClientViewInvoice";
 import NodesComponent from "../Components/Organism/Nodes/NodesComponent";
 import ChildNodesComponent from "../Components/Organism/Nodes/ChildNodesComponent";
 import ClientUpdateChildClient from "../Components/Molecules/RegisterForm/ClientUpdateChildClient";
-import { Power } from "lucide-react";
+
 import PowerUsagePage from "../Components/Organism/Admin/PowerUsagePage";
+
+import PowerDataSyncLogPage from "../Components/Organism/Admin/PowerDataSyncLogPage";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -206,6 +208,10 @@ const adminDashboardRoutes = {
     {
       path: "power-usage",
       element: <PowerUsagePage />,
+    },
+    {
+      path: "power-data-sync-log",
+      element: <PowerDataSyncLogPage />,
     },
   ],
 };

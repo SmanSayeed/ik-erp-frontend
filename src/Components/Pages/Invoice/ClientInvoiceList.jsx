@@ -3,30 +3,30 @@ import { useDeleteInvoiceMutation, useGetChildClientInvoicesListQuery } from '..
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import apiConfig from '../../../config/apiConfig';
 import routes from '../../../routes/routes';
-import Pagination from '../../Atoms/Pagination/Pagination'; // Assume you have a reusable Pagination component
+import Pagination from '../../Atoms/Pagination/Pagination';
 
 export default function ClientInvoiceList() {
   const { client_remotik_id } = useParams();
-  const [page, setPage] = useState(1); // Current page
-  const [pageSize] = useState(10); // Items per page (can be dynamic if needed)
+  const [currentPage, setCurrentPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
 
-  // Pass page and pageSize as query params to the API request
-  const { data, error, isLoading, refetch } = useGetChildClientInvoicesListQuery(client_remotik_id);
+  const { data, error, isLoading, refetch } = useGetChildClientInvoicesListQuery({ client_remotik_id, page: currentPage, perPage });
   const [deleteInvoice] = useDeleteInvoiceMutation();
   const navigate = useNavigate();
 
   const [invoiceData, setInvoiceData] = useState([]);
+  const [pagination, setPagination] = useState({});
 
   useEffect(() => {
-    console.log("data ",data)
-    if (data) {
-      setInvoiceData(data.data); // Ensure you're accessing the 'data' key correctly
+    if (data && data.data) {
+      setInvoiceData(data.data.data);
+      setPagination(data.data.pagination); // Update pagination state
     }
   }, [data]);
 
   useEffect(() => {
-    refetch(); // Refetch data when the component mounts or page changes
-  }, [refetch, page]);
+    refetch(); // Refetch data when currentPage changes
+  }, [refetch, currentPage]);
 
   const handleDelete = async (invoice_id) => {
     if (window.confirm('Are you sure you want to delete this invoice?')) {
@@ -73,7 +73,7 @@ export default function ClientInvoiceList() {
       {error && <p className="text-red-500">Error loading invoices: {error.message}</p>}
 
       {/* Invoice Table */}
-      {!isLoading && !error && invoiceData.length > 0 && (
+      {(!isLoading && !error && invoiceData.length > 0) ? (
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white border border-gray-300">
             <thead>
@@ -112,14 +112,22 @@ export default function ClientInvoiceList() {
             </tbody>
           </table>
 
-          {/* Pagination Component */}
-          <Pagination
-            currentPage={page}
-            totalCount={data?.total} // Assuming API returns total count of items
-            pageSize={pageSize}
-            onPageChange={(newPage) => setPage(newPage)}
-          />
+          {/* Pagination and total counts */}
+          {!isLoading && pagination && (
+            <div className="mt-4">
+              <p className="text-sm mb-2">
+                Total Invoices: {pagination.total} | Total Pages: {pagination.last_page}
+              </p>
+              <Pagination
+                currentPage={pagination.current_page}
+                totalPages={pagination.last_page}
+                onPageChange={setCurrentPage}
+              />
+            </div>
+          )}
         </div>
+      ) : (
+        <p className="text-center py-4">No invoices found.</p>
       )}
 
       {/* No Invoices */}

@@ -16,9 +16,10 @@ export const invoicesApi = createApi({
       }),
     }),
     getChildClientInvoicesList: builder.query({
-      query: (client_remotik_id) => ({
+      query: ({ client_remotik_id, page = 1, perPage = 10 }) => ({
         url: `/client/invoice/child-client-invoice-list/${client_remotik_id}`,
         method: 'GET',
+        params: { page, perPage }, // Pass pagination parameters as query params
       }),
     }),
     viewInvoice: builder.query({

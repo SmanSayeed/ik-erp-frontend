@@ -68,6 +68,12 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
             title={routes.powerUsage.title}
             icon={<Laptop className={iconClass} />}
           />
+
+<SidebarMenuItem
+            to={routes.powerDataSyncLog.link}
+            title={routes.powerDataSyncLog.title}
+            icon={<Laptop className={iconClass} />}
+          />
           {/* Add more links as needed */}
         </nav>
       </div>
