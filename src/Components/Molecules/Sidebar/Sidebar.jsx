@@ -63,6 +63,11 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
             title={routes.adminNodes.title}
             icon={<Laptop className={iconClass} />}
           />
+            <SidebarMenuItem
+            to={routes.powerUsage.link}
+            title={routes.powerUsage.title}
+            icon={<Laptop className={iconClass} />}
+          />
           {/* Add more links as needed */}
         </nav>
       </div>

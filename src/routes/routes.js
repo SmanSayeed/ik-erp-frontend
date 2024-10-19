@@ -74,6 +74,7 @@ const routes = {
     link:(client_remotik_id)=>`/client/nodes/${client_remotik_id}`,
     title:' Nodes'
   },
+  
   // --------------- Admin -----------------
   adminDashboard: {
     link: '/admin/dashboard',
@@ -134,6 +135,10 @@ const routes = {
   adminNodes:{
     link:`/admin/nodes`,
     title:' Nodes'
+  },
+  powerUsage:{
+    link:`/admin/power-usage`,
+    title:' Power Usage'
   },
 };
 

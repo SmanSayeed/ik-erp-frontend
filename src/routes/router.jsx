@@ -45,6 +45,8 @@ import ClientViewInvoice from "../Components/Pages/Invoice/ClientViewInvoice";
 import NodesComponent from "../Components/Organism/Nodes/NodesComponent";
 import ChildNodesComponent from "../Components/Organism/Nodes/ChildNodesComponent";
 import ClientUpdateChildClient from "../Components/Molecules/RegisterForm/ClientUpdateChildClient";
+import { Power } from "lucide-react";
+import PowerUsagePage from "../Components/Organism/Admin/PowerUsagePage";
 
 const ResetPasswordWrapper = () => {
   const user = useSelector((state) => state.auth.user);
@@ -121,6 +123,7 @@ const clientRoutes = {
       path: "nodes/:client_remotik_id",
       element: <ChildNodesComponent />,
     },
+    
   ],
 };
 
@@ -199,6 +202,10 @@ const adminDashboardRoutes = {
     {
       path: "nodes",
       element: <NodesComponent />,
+    },
+    {
+      path: "power-usage",
+      element: <PowerUsagePage />,
     },
   ],
 };

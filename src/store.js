@@ -17,6 +17,7 @@ import { deviceApi } from './services/deviceApi';
 import { invoicesApi } from './services/invoicesApi';
 import { childClientsApi } from './services/childClientsApi';
 import { nodesApi } from './services/nodesApi';
+import { powerApi } from './services/powerApi';
 
 const rootReducer = combineReducers({
   [authApi.reducerPath]: authApi.reducer,
@@ -29,6 +30,7 @@ const rootReducer = combineReducers({
   [invoicesApi.reducerPath]: invoicesApi.reducer,
   [adminManagesClientsApi.reducerPath]: adminManagesClientsApi.reducer,
   [deviceApi.reducerPath]: deviceApi.reducer,
+  [powerApi.reducerPath]: powerApi.reducer,
   auth: authReducer,
   clientAuth:clientAuthReducer,
   userData: userDataReducer, 
@@ -60,6 +62,7 @@ export const store = configureStore({
       deviceApi.middleware,
       nodesApi.middleware,
       invoicesApi.middleware,
+      powerApi.middleware,
       adminManagesClientsApi.middleware
     ),
 });
