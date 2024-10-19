@@ -45,7 +45,8 @@ export const clientsApi = createApi({
     }),
     getClientsFromNodeJs: builder.query({
       query: () => ({
-        url: `/clients/nodejs`,
+        // url: `/clients/nodejs`,
+        url: `/clients/array`, // getting from laravel
         method: 'GET',
       }),
     }),
