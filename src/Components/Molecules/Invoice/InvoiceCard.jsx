@@ -4,13 +4,13 @@ import apiConfig from "../../../config/apiConfig";
 import routes from "../../../routes/routes";
 import { Download, Trash2, Maximize } from "lucide-react";
 import StatusBadge from "../../Atoms/StatusBadge/StatusBadge";
-export default function InvoiceCard({ invoice, onDelete, onDownload }) {
+export default function InvoiceCard({ invoice, onDelete, onDownload, onMaximize }) {
   const buttonStyle =
     "text-white rounded px-1 py-1 font-semibold hover:bg-gray-700 ";
 
   return (
     <>
-      <div className="bg-white shadow-lg rounded-lg flex flex-col">
+      <div className="my-4 bg-white shadow-lg rounded-lg flex flex-col">
         <div className="flex p-1 justify-between items-center bg-yellow-500 rounded-t-lg">
           <div className="font-semibold text-white">
             Invoice # {invoice.id}{" "}
@@ -29,12 +29,12 @@ export default function InvoiceCard({ invoice, onDelete, onDownload }) {
             >
               <Trash2 />
             </button>
-            <Link
+            <butto
               className={`${buttonStyle} bg-green-500`}
-              to={routes.ClientViewInvoice.link(invoice.id)}
+              onClick={() => onMaximize(invoice.id)}
             >
               <Maximize />
-            </Link>
+            </butto>
           </div>
         </div>
         <div className="flex flex-row justify-between  w-full px-2 py-1 bg-gray-100">
