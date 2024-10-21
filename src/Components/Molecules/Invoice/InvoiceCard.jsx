@@ -4,7 +4,7 @@ import apiConfig from "../../../config/apiConfig";
 import routes from "../../../routes/routes";
 import { Download, Trash2, Maximize } from "lucide-react";
 import StatusBadge from "../../Atoms/StatusBadge/StatusBadge";
-export default function InvoiceCard({ invoice, onDelete, onDownload, onMaximize }) {
+export default function InvoiceCard({ invoice, onDelete, onDownload, onMaximize, viewOnly=false }) {
   const buttonStyle =
     "text-white rounded px-1 py-1 font-semibold hover:bg-gray-700 ";
 
@@ -23,12 +23,16 @@ export default function InvoiceCard({ invoice, onDelete, onDownload, onMaximize 
             >
               <Download />
             </button>
-            <button
-              className={`${buttonStyle} bg-red-500`}
-              onClick={() => onDelete(invoice.id)}
-            >
-              <Trash2 />
-            </button>
+          
+            {
+                !viewOnly && (<button
+                className={`${buttonStyle} bg-red-500`}
+                onClick={() => onDelete(invoice.id)}
+              >
+                <Trash2 />
+              </button>)
+            }
+           
             <butto
               className={`${buttonStyle} bg-green-500`}
               onClick={() => onMaximize(invoice.id)}
