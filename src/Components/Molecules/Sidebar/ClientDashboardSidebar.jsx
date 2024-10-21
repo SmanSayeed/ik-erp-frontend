@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Laptop, MapPinIcon, DockIcon, Users, Home } from "lucide-react"; // Icons
+import { Box, Laptop,MonitorSmartphone, MapPinIcon, DockIcon,FileText,BookUser, Users, User,Home } from "lucide-react"; // Icons
 import SidebarMenuItem from "../../Atoms/SidebarMenuItem/SidebarMenuItem"; // Import the SidebarMenuItem component
 import routes from "../../../routes/routes";
 import { useSelector } from "react-redux";
@@ -43,22 +43,22 @@ const ClientDashboardSidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) =>
            <SidebarMenuItem
             to={routes.ClientSellerProfile.link}
             title="Seller Profile"
-            icon={<DockIcon className={iconClass} />}
+            icon={<User className={iconClass} />}
           />
             <SidebarMenuItem
             to={routes.OwnInvoicesList.link(client.client_remotik_id)}
-            title="Own Invoices"
-            icon={<DockIcon className={iconClass} />}
+            title="My Invoices"
+            icon={<FileText className={iconClass} />}
           />
           <SidebarMenuItem
             to={routes.ClientInvoices.link(client.client_remotik_id)}
-            title="Invoices"
-            icon={<DockIcon className={iconClass} />}
+            title="Client Invoices"
+            icon={<BookUser className={iconClass} />}
           />
            <SidebarMenuItem
             to={routes.clientNodes.link(client.client_remotik_id)}
             title="Nodes"
-            icon={<DockIcon className={iconClass} />}
+            icon={<MonitorSmartphone className={iconClass} />}
           />
           {/* Add more links as needed */}
         </nav>

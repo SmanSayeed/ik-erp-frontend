@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Laptop, MapPinIcon, DockIcon, Users, Home } from "lucide-react"; // Icons
+import { Box, Laptop, MapPinIcon,MonitorSmartphone,BookUser, DockIcon, FileText,Users,User,ChartNoAxesCombined ,Home, FileClock } from "lucide-react"; // Icons
 import SidebarMenuItem from "../../Atoms/SidebarMenuItem/SidebarMenuItem"; // Import the SidebarMenuItem component
 import routes from "../../../routes/routes";
 
@@ -51,7 +51,7 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
           <SidebarMenuItem
             to={routes.adminInvoiceList.link}
             title={routes.adminInvoiceList.title}
-            icon={<DockIcon className={iconClass} />}
+            icon={<BookUser className={iconClass} />}
           />
           {/* <SidebarMenuItem
             to={routes.adminDashboardClientDevice.link}
@@ -61,18 +61,18 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar, sidebarRef }) => {
             <SidebarMenuItem
             to={routes.adminNodes.link}
             title={routes.adminNodes.title}
-            icon={<Laptop className={iconClass} />}
+            icon={<MonitorSmartphone className={iconClass} />}
           />
             <SidebarMenuItem
             to={routes.powerUsage.link}
             title={routes.powerUsage.title}
-            icon={<Laptop className={iconClass} />}
+            icon={<ChartNoAxesCombined className={iconClass} />}
           />
 
 <SidebarMenuItem
             to={routes.powerDataSyncLog.link}
             title={routes.powerDataSyncLog.title}
-            icon={<Laptop className={iconClass} />}
+            icon={<FileClock className={iconClass} />}
           />
           {/* Add more links as needed */}
         </nav>
