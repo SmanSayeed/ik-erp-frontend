@@ -40,7 +40,6 @@ const AdminRegisterClientForm = ({ client, onSubmit }) => {
     setVip((prevIsVip) => {
     
       const newIsVip = !prevIsVip;
-      console.log(newIsVip?"Yes":"no");
       if (!newIsVip) {
         console.log("set to 0");
         setVipDiscount(0); // If not VIP, set the vip_discount to 0

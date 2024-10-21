@@ -42,7 +42,6 @@ const AdminEditClientForm = ({ client,setClient, onSubmit }) => {
     setVip((prevIsVip) => {
     
       const newIsVip = !prevIsVip;
-      console.log(newIsVip?"Yes":"no");
       if (!newIsVip) {
         console.log("set to 0");
         setVipDiscount(0); // If not VIP, set the vip_discount to 0
@@ -163,7 +162,7 @@ const AdminEditClientForm = ({ client,setClient, onSubmit }) => {
       </div>
      
       <div>
-        <label htmlFor="vip_discount" className="block text-sm font-medium text-gray-700">Vip Discount- {isVip ? 'true' : 'false'} </label>
+        <label htmlFor="vip_discount" className="block text-sm font-medium text-gray-700">Vip Discount </label>
 
         <Input
           disabled={!isVip}
