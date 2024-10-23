@@ -55,7 +55,7 @@ export default function ClientCreateInvoice() {
       }
     } catch (err) {
       console.error('Failed to create invoice for child client:', err?.data?.message);
-      toast.error('Failed. '+err?.data?.message);
+      toast.error(err?.data?.message);
       if (err?.status === 422 && err?.data?.data) {
         setFormErrors(err.data.data); // Set validation errors  
       } 
