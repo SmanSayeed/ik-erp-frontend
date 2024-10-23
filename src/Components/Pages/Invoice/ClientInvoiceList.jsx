@@ -110,9 +110,7 @@ export default function ClientInvoiceList() {
             </div>
           )}
         </div>
-      ) : (
-        <p className="text-center py-4">No invoices found.</p>
-      )}
+      ) : null}
 
       {/* No Invoices */}
       {!isLoading && !error && invoiceData.length === 0 && (
