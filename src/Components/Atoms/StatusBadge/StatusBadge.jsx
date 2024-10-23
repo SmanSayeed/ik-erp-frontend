@@ -25,7 +25,7 @@ export default function StatusBadge({status}) {
       }
   return (
     <>
-<span className={`${statusStyle}`}>{status}</span>
+<span className={`${statusStyle} flex justify-center items-center`}>{status}</span>
     </>
   )
 }

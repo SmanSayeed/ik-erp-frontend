@@ -10,9 +10,9 @@ export default function InvoiceCard({ invoice, onDelete, onDownload, onMaximize,
 
   return (
     <>
-      <div className="my-4 bg-white shadow-lg rounded-lg flex flex-col">
+      <div className="my-8 bg-white shadow-lg rounded-lg flex flex-col">
         <div className="flex p-1 justify-between items-center bg-yellow-500 rounded-t-lg">
-          <div className="font-semibold text-white">
+          <div className="font-semibold text-white flex justify-center items-center gap-2 ml-4">
             Invoice # {invoice.id}{" "}
             <StatusBadge status={invoice.invoice_status} />
           </div>
@@ -41,7 +41,7 @@ export default function InvoiceCard({ invoice, onDelete, onDownload, onMaximize,
             </button>
           </div>
         </div>
-        <div className="flex flex-row justify-between  w-full px-2 py-1 bg-gray-100">
+        <div className="flex flex-row justify-between  w-full px-2 py-1 bg-gray-100 rounded-b-lg">
           <div className="flex flex-col justify-start items-start gap-2">
             <p className="text-md font-semibold"> {invoice.client_name} </p>
             <p className="text-sm text-gray-700">
@@ -58,7 +58,7 @@ export default function InvoiceCard({ invoice, onDelete, onDownload, onMaximize,
 
          
 
-          <div className="flex flex-col p-1 justify-start items-start">
+          <div className="flex flex-col p-1 justify-start items-start ">
             <p className="text-gray-700">
               <strong>Due Date:</strong> {invoice.due_date}
             </p>
