@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useCreateInvoiceMutation } from '../../../services/invoicesApi';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -7,20 +7,19 @@ import { useGetClientsFromNodeJsQuery } from '../../../services/clientsApi';
 
 export default function CreateInvoice() {
   const [createInvoice, { isLoading, error }] = useCreateInvoiceMutation();
-
-  const {data:clients, isLoading: isLoadingClients, error: errorClients} = useGetClientsFromNodeJsQuery();
-
-  console.log("clients from node js ",clients?.data);
-
+  const { data: clients, isLoading: isLoadingClients, error: errorClients } = useGetClientsFromNodeJsQuery();
+  
   const [invoiceId, setInvoiceId] = useState(null); // Store invoice ID for preview
   const navigate = useNavigate();
-
+  
   const [formData, setFormData] = useState({
     from: '',
     to: '',
     due_date: '',
     client_remotik_id: '',
   });
+
+  const [formErrors, setFormErrors] = useState({}); // Store validation errors
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -30,18 +29,22 @@ export default function CreateInvoice() {
     e.preventDefault();
     try {
       const { data } = await createInvoice(formData).unwrap();
-
+      // Clear previous errors
+      setFormErrors({});
+      
       // Alert user
       toast.success('Invoice created successfully');
 
       // Set the invoice ID for preview
       setInvoiceId(data.id); // Assuming `data` contains the invoice ID
 
-      // Optional: Navigate to another route if needed
-      // navigate(routes.adminInvoiceList.link);
     } catch (err) {
-      console.error('Failed to create invoice for child client:', err?.data?.message);
-      toast.error('Failed. '+err?.data?.message);
+      console.error('Failed to create invoice:', err?.data?.message);
+      toast.error( err?.data?.message);
+
+      if (err?.status === 422 && err?.data?.data) {
+        setFormErrors(err.data.data); // Set validation errors if present
+      }
     }
   };
 
@@ -60,6 +63,9 @@ export default function CreateInvoice() {
               className="w-full border border-gray-300 rounded px-3 py-2"
               required
             />
+            {formErrors?.from && (
+              <p className="text-red-500 mt-1">{formErrors.from[0]}</p> // Show from date error if exists
+            )}
           </div>
           <div>
             <label className="block font-semibold mb-1">To Date</label>
@@ -71,6 +77,9 @@ export default function CreateInvoice() {
               className="w-full border border-gray-300 rounded px-3 py-2"
               required
             />
+            {formErrors?.to && (
+              <p className="text-red-500 mt-1">{formErrors.to[0]}</p> // Show to date error if exists
+            )}
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -83,18 +92,28 @@ export default function CreateInvoice() {
               onChange={handleChange}
               className="w-full border border-gray-300 rounded px-3 py-2"
             />
+            {formErrors?.due_date && (
+              <p className="text-red-500 mt-1">{formErrors.due_date[0]}</p> // Show due date error if exists
+            )}
           </div>
           <div>
             <label className="block font-semibold mb-1">Client Remotik ID</label>
-            <select required    name="client_remotik_id"  onChange={handleChange}  className="w-full border border-gray-300 rounded px-3 py-2">
+            <select
+              required
+              name="client_remotik_id"
+              onChange={handleChange}
+              className="w-full border border-gray-300 rounded px-3 py-2"
+            >
               <option value="">Select Client</option>
-              {clients?.data.map((client,index) => (
+              {clients?.data.map((client, index) => (
                 <option key={index} value={client}>
                   {client}
                 </option>
               ))}
             </select>
-           
+            {formErrors?.client_remotik_id && (
+              <p className="text-red-500 mt-1">{formErrors.client_remotik_id[0]}</p> // Show error for client Remotik ID
+            )}
           </div>
         </div>
         <div>
@@ -106,7 +125,6 @@ export default function CreateInvoice() {
             {isLoading ? 'Creating Invoice...' : 'Create Invoice'}
           </button>
         </div>
-        {error && <p className="text-red-500 mt-2">Failed to create invoice</p>}
       </form>
 
       {invoiceId && (

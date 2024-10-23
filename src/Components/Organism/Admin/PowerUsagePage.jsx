@@ -127,7 +127,7 @@ const PowerUsagePage = () => {
           value={filters.start_time}
           onChange={handleInputChange}
           placeholder="Start Time"
-          className="w-1/4"
+          className="w-1/4 flex justify-center items-center"
         />
         <Input
           type="date"
@@ -135,7 +135,7 @@ const PowerUsagePage = () => {
           value={filters.end_time}
           onChange={handleInputChange}
           placeholder="End Time"
-          className="w-1/4"
+          className="w-1/4 justify-center items-center"
         />
 
         <Button onClick={handleSearch}>Search</Button>
